@@ -37,17 +37,17 @@ async function loadComponent(id, file) {
 async function showPage(page) {
   // ✅ Thêm dòng này
   if (page === 'booking') {
-    window.location.href = '/pet/pages/booking.html';
+    window.location.href = '/pages/booking.html';
     return;
   }
   loaderStart();
   const app = document.getElementById("app");
-  const res = await fetch(`/pet/pages/${page}.html`);
+  const res = await fetch(`/pages/${page}.html`);
   const html = await res.text();
   app.innerHTML = html;
 
   // ✅ Dùng pushState thay vì hash
-  history.pushState({ page }, "", `/pet/${page}`);
+  history.pushState({ page }, "", `/${page}`);
 
   setTimeout(() => {
     observeFadeUps();
@@ -465,7 +465,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   // ✅ Đọc hash từ URL, nếu không có thì về home
   // ✅ Đọc từ pathname thay vì hash
   const pathname = location.pathname; // e.g. /pet/shop hoặc /pet/
-  const page = pathname.replace(/^\/pet\/?/, '') || 'home';
+  const page = pathname.replace(/^\//, '') || 'home';
   showPage(page);
 
 
