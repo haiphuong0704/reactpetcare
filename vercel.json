@@ -1,10 +1,16 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/public/(.*)", "dest": "/public/$1" },
-    { "src": "/pages/(.*)", "dest": "/pages/$1" },
-    { "src": "/components/(.*)", "dest": "/components/$1" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/((?!pages|components|public|assets).*)", "destination": "/index.html" }
   ]
 }
