@@ -1,16 +1,7 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache" }
-      ]
-    }
-  ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/((?!pages|components|public|assets).*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
