@@ -91,8 +91,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   Cart.render();
 
   // Lấy page từ URL path: /pet/shop → shop
-  const path = location.pathname.replace("/pet/", "").replace("/pet", "") || "home";
-  const page = path === "" ? "home" : path;
+  const path = location.pathname.replace(/^\//, "") || "home";
+  const page = (path === "" || path === "index.html") ? "home" : path;
   showPage(page);
 
   // ... phần promo, lang switcher giữ nguyên
