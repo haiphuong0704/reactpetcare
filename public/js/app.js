@@ -37,6 +37,10 @@ async function showPage(page) {
     window.location.href = './pages/booking.html';
     return;
   }
+  if (page === 'terms') {                        // ← thêm
+    window.location.href = '/pages/terms.html';  // ← thêm
+    return;                                       // ← thêm
+  }
   loaderStart();
   const app = document.getElementById("app");
   const res = await fetch(`/pages/${page}.html`);
