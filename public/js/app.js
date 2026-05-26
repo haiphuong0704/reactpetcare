@@ -37,6 +37,10 @@ async function showPage(page) {
     window.location.href = '/pages/booking.html';
     return;
   }
+  if (page === 'terms') {                        // ← thêm
+    window.location.href = '/pages/terms.html';  // ← thêm
+    return;                                       // ← thêm
+  }
   loaderStart();
   const app = document.getElementById("app");
   const res = await fetch(`/pages/${page}.html`);
@@ -292,7 +296,29 @@ function initPawfeastPage() {
 
   $$('.s1-tab').forEach(t => t.addEventListener('click', () => activateType(t.dataset.s1)));
   $$('.s2-tab').forEach(t => t.addEventListener('click', () => activateRecipe(t.dataset.s2)));
-  activateType('unkibble');
+  // Swipe support mobile
+  const carousel = document.querySelector('.s3-carousel');
+  if (carousel) {
+    let startX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          const max = Math.max(0, DATA[activeRecipe].ingredients.length - 3);
+          carouselIdx = Math.min(max, carouselIdx + 1);
+        } else {
+          carouselIdx = Math.max(0, carouselIdx - 1);
+        }
+        updateCarousel();
+      }
+    }, { passive: true });
+  }
+
+  activateType('unkibble'); // dòng này đã có sẵn
 }
 
 // ===============================

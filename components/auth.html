@@ -297,7 +297,7 @@
   position: fixed;
   top: 53%; left: 50%;
   transform: translate(-50%, -48%) scale(.96);
-  z-index: 901;
+  z-index: 999;
   width: min(480px, 94vw);
   max-height: 89vh;
   overflow-y: auto;
@@ -540,7 +540,11 @@
 
 /* RESPONSIVE */
 @media (max-width: 480px) {
-  .auth-modal { padding: 28px 22px 26px; }
+  .auth-modal {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    padding: 28px 22px 26px;
+  }
   .auth-row-2 { grid-template-columns: 1fr; }
 }
 </style>
