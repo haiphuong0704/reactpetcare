@@ -571,7 +571,7 @@ var Cart = (function () {
         + '<div class="cd-item-info"><div class="cd-item-name">' + item.name + '</div><div class="cd-item-cat">' + (item.cat || '') + '</div>'
         + '<div class="cd-qty"><button class="cd-qty-btn" onclick="Cart.setQty(\'' + item.id + '\',' + (item.qty - 1) + ')">−</button><span class="cd-qty-val">' + item.qty + '</span><button class="cd-qty-btn" onclick="Cart.setQty(\'' + item.id + '\',' + (item.qty + 1) + ')">+</button></div>'
         + '<button class="cd-remove" onclick="Cart.remove(\'' + item.id + '\')">Remove</button></div>'
-        + '<div class="cd-item-price">$' + (parseFloat(String(item.price).replace(/[^0-9.]/g, '')) * item.qty).toFixed(2) + '</div></div>';
+        + '<div class="cd-item-price">'+ (parseFloat(String(item.price).replace(/[^0-9.]/g, '')) * item.qty) .toLocaleString('vi-VN')+ '₫</div></div>';
     }).join('');
   }
   function bumpBadge() {
