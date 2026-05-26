@@ -1,0 +1,45 @@
+petcare-spa/
+│
+├── index.html
+│
+├── pages/
+│   ├── home.html
+│   ├── services.html
+│   ├── booking.html
+│   ├── contact.html
+│   ├── blog.html
+│   ├── shop.html
+│   ├── cart.html
+│   ├── member.html
+│   ├── pawfeast.html
+│   │
+│   └── booking/
+│       ├── step1.html
+│       ├── step2.html
+│       ├── step3.html
+│       ├── step4.html
+│       ├── step5.html
+│       └── success.html
+│
+├── components/
+│   ├── header.html
+│   ├── navbar.html
+│   ├── footer.html
+│   └── chat.html
+│
+├── public/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── booking.js
+│   │   ├── shop.js
+│   │   └── home.js
+│   │
+│   └── assets/
+│       ├── images/
+│       ├── icons/
+│       └── favicon.png
+│
+└── README.md

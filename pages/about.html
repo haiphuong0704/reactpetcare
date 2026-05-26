@@ -1,0 +1,541 @@
+<!-- app/views/pages/about.php -->
+<div class="page" id="page-about">
+
+  <!-- SECTION 1: HERO STORY -->
+  <section
+        style="
+          background: linear-gradient(135deg, #fffafb, #fff1f5);
+          padding: 80px 32px;
+        "
+      >
+        <div
+          style="
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+          "
+        >
+          <div class="fade-up">
+            <div
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                border: 1.5px solid #b8860b;
+                border-radius: 30px;
+                padding: 6px 18px;
+                font-size: 13px;
+                font-weight: 700;
+                color: #7a5c00;
+                margin-bottom: 28px;
+              "
+            >
+              🐾 About Us
+            </div>
+            <h1
+              style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(32px, 4vw, 52px);
+                color: #1a1200;
+                line-height: 1.15;
+                margin-bottom: 16px;
+              "
+            >
+              The Story Behind<br /><span style="color: #e89bb0"
+                >The Dog Retreat</span
+              >
+            </h1>
+            <p
+              style="
+                font-size: 15px;
+                color: #5a4a2a;
+                line-height: 1.75;
+                margin-bottom: 32px;
+              "
+            >
+              Where Love Begins – Every Product, Every Service Is Created from
+              the hearts of true pet lovers.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap">
+              <button
+                onclick="showPage('shop')"
+                style="
+                  background: #b8860b;
+                  color: #fff;
+                  border: none;
+                  padding: 14px 28px;
+                  border-radius: 6px;
+                  font-size: 13px;
+                  font-weight: 800;
+                  letter-spacing: 0.06em;
+                  cursor: pointer;
+                  font-family: 'Nunito', sans-serif;
+                  text-transform: uppercase;
+                "
+              >
+                VIEW PRODUCT
+              </button>
+              <button
+                onclick="showPage('contact')"
+                style="
+                  background: transparent;
+                  color: #b8860b;
+                  border: 2px solid #b8860b;
+                  padding: 14px 28px;
+                  border-radius: 6px;
+                  font-size: 13px;
+                  font-weight: 800;
+                  letter-spacing: 0.06em;
+                  cursor: pointer;
+                  font-family: 'Nunito', sans-serif;
+                  text-transform: uppercase;
+                "
+              >
+                CONTACT US
+              </button>
+            </div>
+          </div>
+          <div class="about-hero-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?w=700&q=85"
+            />
+          </div>
+        </div>
+        <!-- STATS BAR -->
+        <div
+          style="
+            max-width: 1200px;
+            margin: 60px auto 0;
+            border-top: 1px solid #d9c9a0;
+            padding-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+          "
+        >
+          <div
+            style="
+              text-align: center;
+              border-right: 1px solid #d9c9a0;
+              padding: 0 24px;
+            "
+          >
+            <div
+              style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(28px, 3vw, 42px);
+                color: #b8860b;
+                font-weight: 700;
+              "
+            >
+              10.000+
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                color: #7a5c00;
+                text-transform: uppercase;
+                margin-top: 6px;
+              "
+            >
+              Orders Per Year
+            </div>
+          </div>
+          <div
+            style="
+              text-align: center;
+              border-right: 1px solid #d9c9a0;
+              padding: 0 24px;
+            "
+          >
+            <div
+              style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(28px, 3vw, 42px);
+                color: #b8860b;
+                font-weight: 700;
+              "
+            >
+              TOP 1
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                color: #7a5c00;
+                text-transform: uppercase;
+                margin-top: 6px;
+              "
+            >
+              The Standard Price Unit<br />Chosen Is Assured
+            </div>
+          </div>
+          <div
+            style="
+              text-align: center;
+              border-right: 1px solid #d9c9a0;
+              padding: 0 24px;
+            "
+          >
+            <div
+              style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(28px, 3vw, 42px);
+                color: #b8860b;
+                font-weight: 700;
+              "
+            >
+              30+
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                color: #7a5c00;
+                text-transform: uppercase;
+                margin-top: 6px;
+              "
+            >
+              Reliable Large Unit
+            </div>
+          </div>
+          <div style="text-align: center; padding: 0 24px">
+            <div
+              style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(28px, 3vw, 42px);
+                color: #b8860b;
+                font-weight: 700;
+              "
+            >
+              96%
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                color: #7a5c00;
+                text-transform: uppercase;
+                margin-top: 6px;
+              "
+            >
+              Satisfied Customers
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: VIDEO BANNER -->
+      <section
+        style="
+          background: linear-gradient(135deg, #fffafb, #fff1f5);
+          padding: 0 32px 72px;
+        "
+      >
+        <div
+          style="
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+          "
+          onclick="this.querySelector('.play-overlay').style.display='none';this.querySelector('video')&&this.querySelector('video').play()"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80"
+            alt="Dogs running"
+            style="
+              width: 100%;
+              height: 380px;
+              object-fit: cover;
+              display: block;
+              border-radius: 24px;
+            "
+          />
+          <div
+            class="play-overlay"
+            style="
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: rgba(0, 0, 0, 0.15);
+            "
+          >
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                background: rgba(255, 255, 255, 0.92);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid #b8860b;
+              "
+            >
+              <div
+                style="
+                  width: 0;
+                  height: 0;
+                  border-top: 14px solid transparent;
+                  border-bottom: 14px solid transparent;
+                  border-left: 22px solid #b8860b;
+                  margin-left: 5px;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: VISION + MISSION — white bg, 2 col -->
+      <section style="background: #fff; padding: 72px 32px">
+        <div
+          style="
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+          "
+        >
+          <!-- LEFT: Strategic Vision -->
+          <div class="fade-up">
+            <div
+              style="border-radius: 20px; overflow: hidden; margin-bottom: 22px"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=600&q=85"
+                alt="Dog with toy"
+                style="
+                  width: 100%;
+                  height: 300px;
+                  object-fit: cover;
+                  display: block;
+                  transition: transform 0.5s ease;
+                "
+              />
+            </div>
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 0.12em;
+                color: #1a1200;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+              "
+            >
+              STRATEGIC VISION
+            </div>
+            <p style="font-size: 15px; color: #5a4a2a; line-height: 1.75">
+              Become a favorite and trusted pet care brand in Vietnam, where
+              positive messages and love through each product and each service.
+            </p>
+          </div>
+          <!-- RIGHT: Noble Mission + dog photo -->
+          <div class="fade-up">
+            <div
+              style="
+                font-size: 12px;
+                font-weight: 900;
+                letter-spacing: 0.12em;
+                color: #1a1200;
+                text-transform: uppercase;
+                margin-bottom: 14px;
+              "
+            >
+              NOBLE MISSION
+            </div>
+            <p
+              style="
+                font-size: 15px;
+                color: #5a4a2a;
+                line-height: 1.75;
+                margin-bottom: 28px;
+              "
+            >
+              Bringing high-quality pet products, cared for from Mind – the
+              emotional connection between the pet and the pet. Accompanying
+              customers in every meaningful moment of life by sophisticated,
+              dedicated and creative.
+            </p>
+            <div
+              style="border-radius: 20px; overflow: hidden; background: #d4a017"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80"
+                alt="Cute dog"
+                style="
+                  width: 100%;
+                  height: 280px;
+                  object-fit: cover;
+                  display: block;
+                  transition: transform 0.5s ease;
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: PHOTO STRIP — horizontal scroll -->
+      <section class="about-gallery-banner">
+        <div class="about-gallery-track" id="galleryTrack"></div>
+      </section>
+
+      <!-- SECTION 5: CORE VALUES — white, centered -->
+      <section style="background: #fff; padding: 80px 32px">
+        <div style="max-width: 900px; margin: 0 auto; text-align: center">
+          <!-- Divider with icon -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              justify-content: center;
+              margin-bottom: 24px;
+            "
+          >
+            <div style="flex: 1; height: 1px; background: #d9c9a0"></div>
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                background: #d4a017;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                box-shadow: 0 4px 16px rgba(180, 134, 11, 0.3);
+              "
+            >
+              🐾
+            </div>
+            <div style="flex: 1; height: 1px; background: #d9c9a0"></div>
+          </div>
+          <h2
+            style="
+              font-family: 'Playfair Display', serif;
+              font-size: clamp(26px, 4vw, 40px);
+              font-weight: 800;
+              letter-spacing: 0.12em;
+              color: #1a1200;
+              text-transform: uppercase;
+              margin-bottom: 56px;
+            "
+          >
+            Core Values
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 40px;
+            "
+            class="fade-up"
+          >
+            <!-- Value 1 -->
+            <div style="text-align: center">
+              <div style="font-size: 48px; margin-bottom: 16px">🌸</div>
+              <h3
+                style="
+                  font-size: 16px;
+                  font-weight: 800;
+                  color: #1a1200;
+                  margin-bottom: 14px;
+                "
+              >
+                Sincere & Emotional
+              </h3>
+              <p style="font-size: 14px; color: #5a4a2a; line-height: 1.75">
+                Each product is a message of true love. We always put love and
+                understanding into each product to make a deep connection
+                between the giver and the recipient.
+              </p>
+            </div>
+            <!-- Value 2 -->
+            <div style="text-align: center">
+              <div style="font-size: 48px; margin-bottom: 16px">🏺</div>
+              <h3
+                style="
+                  font-size: 16px;
+                  font-weight: 800;
+                  color: #1a1200;
+                  margin-bottom: 14px;
+                "
+              >
+                Sophistication & Aesthetics
+              </h3>
+              <p style="font-size: 14px; color: #5a4a2a; line-height: 1.75">
+                Always pursuing modern and harmonious beauty, PawNest pays
+                attention to every detail in its design to deliver a complete
+                and impressive visual experience.
+              </p>
+            </div>
+            <!-- Value 3 -->
+            <div style="text-align: center">
+              <div style="font-size: 48px; margin-bottom: 16px">🌺</div>
+              <h3
+                style="
+                  font-size: 16px;
+                  font-weight: 800;
+                  color: #1a1200;
+                  margin-bottom: 14px;
+                "
+              >
+                Prestige & Dedication
+              </h3>
+              <p style="font-size: 14px; color: #5a4a2a; line-height: 1.75">
+                We are committed to product quality and professional service in
+                every order. Customer satisfaction is the most valuable thing
+                that PawNest always strives to preserve.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6:  -->
+      <section class="about-cta-section">
+        <div class="about-cta-inner">
+          
+          <!-- TEXT CONTENT -->
+          <div class="about-cta-text">
+            <h2>
+              Ready to give your pet<br />
+              the care they deserve with PawNest?
+            </h2>
+
+            <p>Trusted by thousands of loving families — join them today!</p>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="about-cta-btns">
+            <a href="?page=services" class="about-cta-btn-white">
+              🛍️ Shop Now
+            </a>
+
+            <a href="?page=booking" class="about-cta-btn-outline">
+              ✂️ Book a Spa Session
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+</div>

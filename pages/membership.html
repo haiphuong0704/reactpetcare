@@ -1,0 +1,1028 @@
+
+
+  <style>
+    /* ─── SECTION 1 – Hero ─────────────────────────────────────────────────── */
+    .hero {
+        background: linear-gradient(135deg, #fffafb, #fff1f5);
+        padding: 40px 60px 60px;
+    }
+
+    .hero__logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .hero__logo span:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #3b1a0e;
+    }
+    .hero__logo span:last-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #c0593b;
+    }
+
+    .hero__inner {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero__img {
+      flex: 0 0 420px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(59,26,14,.12);
+    }
+    .hero__img img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      display: block;
+    }
+    /* placeholder when no real image */
+    .hero__img-placeholder {
+      width: 420px;
+      height: 360px;
+      background: linear-gradient(135deg, #d4bfad 0%, #c4a98e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .hero__content { flex: 1; }
+
+    .hero__content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      line-height: 1.2;
+      color: #3b1a0e;
+      margin-bottom: 18px;
+    }
+
+    .hero__content p {
+      font-size: .95rem;
+      line-height: 1.6;
+      color: #6b4030;
+      margin-bottom: 28px;
+      max-width: 420px;
+    }
+
+    .hero__features { list-style: none; margin-bottom: 36px; }
+    .hero__features li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #3b1a0e;
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: #4b8c7a;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .feature-icon svg { width: 22px; height: 22px; fill: white; }
+
+    .btn-join {
+      display: inline-block;
+      background: #4a2015;
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-join:hover { background: #3a150a; }
+
+    /* ── WHY PETCARE SPA SECTION ───────────────────── */
+
+.why-sec {
+  overflow: visible;
+  position: relative;
+}
+
+.why-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+/* ── LEFT STICKY ───────────────────── */
+
+.why-left {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  height: max-content;
+}
+
+.why-left .eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #a63558;
+  margin-bottom: 18px;
+}
+
+.why-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: .95;
+  letter-spacing: -1.5px;
+  color: #4a2216;
+  margin: 0 0 28px;
+}
+
+.why-desc {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #7a5c50;
+  max-width: 420px;
+  margin-bottom: 34px;
+}
+
+/* ── RIGHT SIDE ───────────────────── */
+
+.why-right {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* CARD */
+
+.why-card {
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(14px);
+  border-radius: 30px;
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.7);
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+  box-shadow:
+    0 10px 30px rgba(74,34,22,.06);
+}
+
+.why-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(166,53,88,.16);
+  box-shadow:
+    0 18px 42px rgba(74,34,22,.12);
+}
+
+/* ICON */
+
+.why-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg,#fffafb,#ffeef3);
+  border: 1px solid rgba(166,53,88,.12);
+  margin-bottom: 24px;
+  color: #7a3f33;
+  box-shadow:
+    0 8px 18px rgba(166,53,88,.06);
+}
+
+.why-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+}
+
+/* TEXT */
+
+.why-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #3a2010;
+  margin: 0 0 14px;
+}
+
+.why-card-desc {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #7a5c50;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ───────────────────── */
+
+@media (max-width: 900px) {
+
+  .why-inner {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 70px 20px;
+  }
+
+  .why-left {
+    position: relative;
+    top: 0;
+    text-align: center;
+  }
+
+  .why-desc {
+    margin-inline: auto;
+  }
+
+}
+
+    /* ─── SECTION 2 – Testimonials ─────────────────────────────────────────── */
+    .testimonials {
+    background: linear-gradient(135deg, #fcfffe, #ecfdf5);
+    border-radius: 32px;
+    margin: 0 auto 40px;
+    max-width: 1280px;
+    padding: 70px 40px;
+}
+
+    .testimonials h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      text-align: center;
+      color: #c0593b;
+      margin-bottom: 32px;
+      line-height: 1.25;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 44px;
+    }
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 28px;
+      border: 1.5px solid #c4a98e;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #3b1a0e;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .tab-btn:first-child { border-radius: 30px 0 0 30px; }
+    .tab-btn:last-child  { border-radius: 0 30px 30px 0; border-left: none; }
+    .tab-btn.active {
+      background: #4a2015;
+      color: white;
+      border-color: #4a2015;
+    }
+    .tab-btn svg { width: 18px; height: 18px; }
+
+    /* Stage selector */
+    .stage-selector {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 0;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .stage-track {
+        position: absolute;
+        bottom: 31px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        border-radius: 50px;
+        height: 8px;
+        background: #c4a98e;
+        z-index: 0;
+    }
+    .stage-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: 350px;
+      z-index: 1;
+      position: relative;
+    }
+    .stage-icon {
+      width: 142px; 
+      height: 69px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      transition: transform .2s;
+    }
+    .stage-icon svg { 
+        width: 142px; 
+        height: 69px; 
+        transition: fill .2s; }
+    .stage-item:not(.active) .stage-icon svg { fill: #d4b9a8; }
+    .stage-item.active .stage-icon svg  { fill: #4a2015; }
+    .stage-item:hover .stage-icon { transform: scale(1.1); }
+
+    .stage-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      transition: left .3s ease-in-out,transform .3s ease-in-out;
+      top: 50%;
+    }
+    .stage-item.active .stage-dot { 
+        outline: 6px solid #fafafa;
+        background: #4a2015; 
+    }
+
+    .stage-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: #9b7060;
+      margin-top: 4px;
+    }
+    .stage-item.active .stage-label { color: #4a2015; }
+
+    /* Review card */
+    .review-area {
+        display: flex;
+        gap: 15px;
+        align-items: stretch;
+        max-width: 860px;
+        margin: 10px auto 30px auto;
+    }
+    .review-photo {
+      flex: 0 0 220px;
+      border-radius: 16px 0 0 16px;
+      overflow: hidden;
+    }
+    .review-photo img {
+      width: 100%; 
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .review-photo-placeholder {
+      width: 220px; height: 260px;
+      background: linear-gradient(135deg, #c9a58a 0%, #b08060 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .review-card {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 0 16px 16px 0;
+      padding: 32px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn .35s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .review-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #3b1a0e;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .review-name span.paw { color: #c0593b; font-size: 1.1rem; }
+    .review-meta {
+      font-size: .82rem;
+      color: #9b7060;
+      margin-bottom: 16px;
+    }
+    .review-text {
+      font-size: .93rem;
+      line-height: 1.65;
+      color: #5a3525;
+      margin-bottom: 20px;
+    }
+    .review-savings {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #c0593b;
+    }
+
+    /* Panel switch */
+    .tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block !important;
+}
+
+    .stage-icon svg {
+    color: #c59aa5;
+}
+
+.stage-item.active .stage-icon svg {
+    color: #6b3f33;
+}
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 24px 20px 40px; }
+      .hero__inner { flex-direction: column; gap: 32px; }
+      .hero__img, .hero__img-placeholder { width: 100%; flex: none; }
+      .testimonials { margin: 0 8px 40px; padding: 36px 16px; }
+      .review-area { flex-direction: column; }
+      .review-photo { border-radius: 16px 16px 0 0; flex: none; height: 200px; }
+      .review-card { border-radius: 0 0 16px 16px; }
+      .stage-selector { gap: 0; }
+      .stage-item { width: 100px; }
+    }
+  </style>
+
+<!-- ════════════════════════════════════════
+     SECTION 1 – Hero / Membership intro
+════════════════════════════════════════ -->
+<section class="hero">
+
+  <div class="hero__inner">
+    <!-- Left: photo -->
+    <div class="hero__img">
+      <!-- Replace src with your real photo -->
+      <img src="https://hanoispiritofplace.com/wp-content/uploads/2015/12/anh-cho-va-meo-4.jpg" alt="Family with pet at vet" /> 
+    </div>
+
+    <!-- Right: copy -->
+    <div class="hero__content">
+        <!--<div class="hero__logo">
+            <span>Petfolk</span><span>care</span>
+        </div>-->
+      <h1>the all-in-one membership for total peace of mind</h1>
+      <p>Petcare Spa is your inside track to easier visits, real savings, and 24/7 access to trusted support.</p>
+
+      <ul class="hero__features">
+        <li>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </div>
+          Save on every visit
+        </li>
+        <li>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          Round-the-clock support
+        </li>
+        <li>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          Care you can count on
+        </li>
+      </ul>
+
+      <a href="#" class="btn-join">Subscribe</a>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════
+     SECTION 2 – Tại sao chọn
+════════════════════════════════════════ -->
+<section class="why-sec">
+  <div class="why-inner">
+ 
+    <!-- LEFT: sticky -->
+    <div class="why-left">
+      <div class="eyebrow">Why Choose Us</div>
+      <h2 class="why-h2">why choose<br>Petcare Spa</h2>
+      <p class="why-desc">
+        Just like people, pets need consistent care and attention.
+        We’re here to protect your companion’s health, comfort, and happiness every single day.
+      </p>
+    </div>
+ 
+    <!-- RIGHT: scrollable cards -->
+    <div class="why-right">
+ 
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3d5c40" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <path d="M10.5 3.5a2 2 0 1 1 3 0L21 8H3l7.5-4.5Z"/>
+            <path d="M3 8v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8"/>
+            <path d="M9 13h6M9 17h4"/>
+          </svg>
+        </div>
+        <h3 class="why-card-title">Early Health Detection</h3>
+        <p class="why-card-desc">
+          Busy schedules can make small changes easy to miss. Our experienced
+          team can spot early signs related to skin, coat, and nails before
+          they become bigger health concerns.
+        </p>
+      </div>
+ 
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3d5c40" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402C1 3.518 3.8 1 6.8 1c1.9 0 3.592.97 4.7 2.455A5.927 5.927 0 0 1 16.7 1C19.7 1 22 3.518 22 7.19c0 4.105-5.37 8.863-11 14.403z"/>
+          </svg>
+        </div>
+        <h3 class="why-card-title">Complete Wellness Care</h3>
+        <p class="why-card-desc">
+          From nutrition and behavior to coat health, our team understands
+          every aspect of your pet’s well-being. Every visit is filled with
+          love, comfort, and personalized attention.
+        </p>
+      </div>
+ 
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3d5c40" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="why-card-title">Trusted by Thousands of Families</h3>
+        <p class="why-card-desc">
+          With hundreds of 5-star reviews and a strong reputation for quality
+          care, Petcare Spa has earned the trust of pet parents who want the
+          very best for their companions.
+        </p>
+      </div>
+ 
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3d5c40" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 class="why-card-title">24/7 Support & Care</h3>
+        <p class="why-card-desc">
+          Our team is available day and night. Whether it’s a late-night
+          check-in or an early morning question, we’re always here to ensure
+          your pet receives safe and attentive care.
+        </p>
+      </div>
+ 
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3d5c40" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <path d="M12 2a4 4 0 0 1 4 4c0 1.8-1 3.3-2.5 4.1C16.6 11 20 14.1 20 18v1H4v-1c0-3.9 3.4-7 8.5-7.9C11 9.3 10 7.8 10 6a4 4 0 0 1 2-3.46A4 4 0 0 1 12 2z"/>
+          </svg>
+        </div>
+        <h3 class="why-card-title">Premium Organic Nutrition</h3>
+        <p class="why-card-desc">
+          Our PawFeast meals are made with 100% human-grade organic ingredients.
+          Because what goes into your pet’s bowl matters just as much as the
+          care they receive every day.
+        </p>
+      </div>
+ 
+    </div><!-- /why-right -->
+  </div><!-- /why-inner -->
+</section>
+
+<!-- ════════════════════════════════════════
+     SECTION 3 – Testimonials / Life-stage
+════════════════════════════════════════ -->
+<section class="testimonials">
+  <h2>membership that gets two paws up</h2>
+
+  <!-- Dog / Cat tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchPetTab('dog', this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 11C4.5 9.07 6.07 7.5 8 7.5h.5V6c0-1.1.9-2 2-2h3c1.1 0 2 .9 2 2v1.5H16c1.93 0 3.5 1.57 3.5 3.5v1c0 1.93-1.57 3.5-3.5 3.5H8C6.07 15.5 4.5 13.93 4.5 13v-2zM9 10a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2zM7 17h10l-1 3H8l-1-3z"/></svg>
+        Dog
+    </button>
+    <button class="tab-btn" onclick="switchPetTab('cat', this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-1.2 5.4-5 6-5 9a5 5 0 0010 0c0-3-3.8-3.6-5-9zm0 12a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM9.5 11.5c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zm5 0c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5z"/></svg>
+        Cat
+    </button>
+  </div>
+
+  <!-- ── DOG panel ── -->
+  <div id="panel-dog" class="tab-panel active">
+    <!-- Review cards per dog stage -->
+    <div id="dog-puppy" class="review-area">
+        <div class="review-photo">
+            <img src="https://thf.bing.com/th/id/OIP.4C3hcFDMCGjrj_LvSMCewQHaJ3?o=7&cb=thfc1falconrm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Family with pet at vet" /> 
+        </div>
+        <div class="review-card">
+        <div class="review-name">Linh & Bông <span class="paw">🐾</span></div>
+        <div class="review-meta">Member since 2023 &nbsp;|&nbsp; Golden Retriever Puppy</div>
+        <p class="review-text">Joining Petcare Spa when Bông was just 3 months old was the best decision. All vaccinations, deworming and first-year check-ups were covered seamlessly. The team genuinely loves puppies!</p>
+        <div class="review-savings">Annual savings $980</div>
+        </div>
+    </div>
+
+    <div id="dog-canine" class="review-area" style="display:none;">
+        <div class="review-photo">
+            <img src="https://tse3.mm.bing.net/th/id/OIP.-mTER-vTfOtVdz8G0xS7IQHaE8?cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Family with pet at vet" /> 
+        </div>
+        <div class="review-card">
+        <div class="review-name">Minh & Rocky <span class="paw">🐾</span></div>
+        <div class="review-meta">Member since 2022 &nbsp;|&nbsp; Labrador Mix</div>
+        <p class="review-text">Rocky had two unexpected injuries this year and Petcare Spa covered most of the cost. I never had to stress about money while worrying about my dog. Absolutely worth every penny.</p>
+        <div class="review-savings">Annual savings $1,400</div>
+        </div>
+    </div>
+
+    <div id="dog-senior" class="review-area" style="display:none;">
+      <div class="review-photo">
+      <img src="https://thuthuatnhanh.com/wp-content/uploads/2020/01/hinh-nen-chu-cho-poodle-de-thuong-cho-desktop.jpg" alt="Family with pet at vet" /> 
+      </div>
+      <div class="review-card">
+      <div class="review-name">Samantha & Chance <span class="paw">🐾</span></div>
+      <div class="review-meta">Member since 2024 &nbsp;|&nbsp; Bulldog & Border Collie Mix</div>
+      <p class="review-text">We've had more vet visits than expected this past year, and joining Petcare Spa was a huge financial relief. But what matters most is knowing Chance is truly known and loved by Dr. Randall and Michelle. They treat him like their own.</p>
+      <div class="review-savings">Annual savings $1,600</div>
+      </div>
+    </div>
+
+    <div class="stage-selector" id="dog-stages">
+      <div class="stage-track"></div>
+
+      <div class="stage-item active" onclick="switchStage('dog', 'puppy', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 140 69" width="140" xmlns="http://www.w3.org/2000/svg">
+            <path d="M77.7375 21.0862C80.0516 17.5324 81.8361 16.1492 85.9493 16.5638C86.0898 16.578 86.2287 16.6189 86.3534 16.6851C87.893 17.5024 88.8308 18.4941 89.9115 19.9123C91.1387 21.509 92.6062 22.4402 94.2792 23.3215C94.7573 23.5733 95.022 24.112 94.8784 24.633C94.4301 26.2592 93.7549 27.4374 92.3552 
+            28.4885C92.2015 28.6039 92.0181 28.6742 91.8273 28.6975C90.9082 28.8093 89.9848 28.8865 89.061 28.94C88.5199 28.9734 87.9786 29.0072 87.4212 29.0416C87.2383 29.0513 87.0551 29.061 86.8712 29.0707C86.4352 29.0938 86.0452 29.353 85.8666 29.7514C84.6484 32.469 83.8132 35.3298 83.0062 38.2088C82.3729 
+            40.6126 81.7148 43.3092 82.7814 45.6408C82.8365 45.7613 82.9158 45.8697 83.0125 45.9603C83.4884 46.4061 83.9444 46.7385 84.4635 47.0274C84.9417 47.2936 85.224 47.8172 85.0975 48.3496C84.9764 48.8588 84.5184 49.2317 83.995 49.2318H75.5016C75.0076 49.2316 74.5634 48.9264 74.3947 48.462C73.4435 45.8438 
+            72.7359 43.2144 72.5881 40.41C72.5692 39.8308 72.1182 39.358 71.5406 39.3113L67.6124 38.9937C67.2429 38.9638 66.8811 39.1067 66.6438 39.3915C65.7887 40.4178 63.7738 43.0136 63.4974 44.998C63.4886 45.0606 63.4874 45.1236 63.4904 45.1868C63.5353 46.1189 63.5619 46.2056 64.2936 46.8399C64.4124 46.9428 
+            64.5514 47.0205 64.7009 47.0691C65.0079 47.169 65.1876 47.2255 65.3664 47.2718C65.8313 47.3922 66.1751 47.7829 66.1753 48.2631C66.1753 48.8006 65.752 49.2499 65.2149 49.2696C64.0203 49.3132 62.8255 49.3437 61.6302 49.3713C61.2018 49.39 60.7734 49.4088 60.332 49.4281C57.2956 49.4808 56.5557 49.7893 
+            55.0747 48.6881C54.9135 48.5682 54.7899 48.402 54.7179 48.2145C53.8189 45.8728 54.4385 45.1574 54.466 43.3632C54.4677 43.249 54.4835 43.1326 54.5152 43.0229C55.4871 39.6634 55.6361 39.3793 55.5356 37.1802C55.4822 34.6937 55.0972 33.3166 55.3064 30.9031C55.3705 30.164 54.7952 29.4796 54.0637 
+            29.603C53.0186 29.7793 52.3518 30.1907 51.5146 31.0767C51.0929 31.6532 50.6718 32.2302 50.2511 32.8075C50.1024 33.0116 49.869 33.1327 49.6165 33.1327C49.1488 33.1327 48.7772 32.7248 48.8525 32.2632C49.6494 27.3793 52.6248 27.2723 57.3125 26.2292C64.9207 23.8301 72.6948 27.7856 77.7375 
+            21.0862ZM77.3087 42.0012C77.0837 43.658 76.9293 46.9781 78.1126 47.0053C79.2956 47.0323 79.2703 47.0166 79.1096 47.0053C78.4343 46.0134 77.1287 43.6242 77.3087 42.0012ZM59.8136 42.4261C58.8244 43.1244 57.243 44.7281 58.2255 46.0904C58.7793 46.8581 59.325 47.0053 59.8136 47.0053V42.4261Z" 
+            fill="currentColor">
+            </path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Puppy</div>
+      </div>
+
+      <div class="stage-item" onclick="switchStage('dog', 'canine', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 250 69" width="250" xmlns="http://www.w3.org/2000/svg">
+            <path d="M148.918 9.12839C149.051 9.1468 149.18 9.1849 149.301 9.24324C150.94 10.0344 152.247 11.1467 153.611 12.3547C154.83 13.2381 155.898 13.5875 157.344 13.9885C159.122 14.4886 159.609 14.6256 159.905 14.8263C160.132 14.9795 160.252 15.2457 160.3 15.5148C160.374 15.9287 160.363 16.1177 160.266 
+            16.7686C160.235 16.977 160.157 17.1762 160.036 17.3489C159.285 18.4243 158.464 19.4487 157.331 20.1038C157.147 20.2103 156.935 20.2582 156.723 20.2602C153.903 20.2867 153.866 20.2855 152.839 20.2533C151.6 20.278 150.732 20.3165 149.812 21.1252C149.735 21.1928 149.669 21.272 149.613 21.3577C148.241 
+            3.4473 147.621 25.8438 146.963 28.2355C146.207 30.8618 145.43 33.3832 144.287 35.8669C142.447 39.9227 141.684 44.35 140.949 48.7218C140.793 49.5936 140.793 49.5936 140.581 50.3958C140.009 52.8253 140.235 55.0638 141.408 57.2103C141.521 57.4169 141.692 57.5861 141.895 57.705C142.339 57.9646 142.544 
+            58.0701 142.845 58.1549C143.26 58.2718 143.568 58.6192 143.568 59.0498C143.568 59.5257 143.199 59.9264 142.724 59.9514C142.37 59.9701 142.015 59.9859 141.66 60.0001C141.353 60.0161 141.047 60.032 140.733 60.0483C140.636 60.0534 140.538 60.0483 140.442 60.033C139.686 59.9128 139.584 59.8763 139.108 
+            59.445C138.992 59.3395 138.894 59.2143 138.823 59.0742C138.225 57.8918 137.889 56.6816 137.572 55.3915C137.471 55.0067 137.471 55.0067 137.369 54.6142C136.789 52.3492 136.376 50.2001 136.407 47.8592C136.411 47.5127 136.414 47.1662 136.418 46.8093C136.42 46.6881 136.422 46.567 136.425 46.445C136.429 
+            46.2146 136.246 46.0257 136.016 46.0257C135.804 46.0257 135.623 46.1864 135.603 46.3973C135.591 46.5185 135.579 46.6405 135.566 46.7644C135.517 47.245 135.517 47.245 135.466 47.7353C135.417 48.2113 135.417 48.2113 135.368 48.697C135.249 49.5512 135.243 49.5916 134.9 50.622C134.865 50.7284 134.842 
+            50.8398 134.833 50.9517C134.646 53.4307 134.827 55.4658 135.722 57.6178C135.902 58.0494 136.333 58.3153 136.8 58.3153C136.928 58.3153 137.056 58.3153 137.184 58.3153C137.645 58.3153 138.018 58.6825 138.018 59.1429C138.018 59.5702 137.695 59.9363 137.269 59.9688C136.335 60.0399 135.425 60.0532 134.486 
+            59.9545C134.204 59.9247 133.938 59.8009 133.744 59.5941C131.018 56.7018 131.047 51.3252 130.656 47.565C130.536 46.4808 130.388 45.4121 130.209 44.3407C130.141 43.9311 129.801 43.6224 129.388 43.5868C124.713 43.1798 119.807 41.5853 115.133 42.0076C114.806 42.0371 114.499 42.1883 114.3 42.4491C113.37 
+            43.668 113.036 45.2139 112.579 46.6885C112.252 47.6041 111.84 48.3799 111.357 49.222C110.711 50.4991 110.442 51.5591 110.691 52.9868C110.707 53.0795 110.734 53.1698 110.771 53.2561C111.596 55.1631 113.101 56.9389 114.964 57.8767C115.027 57.9083 115.093 57.9341 115.16 57.9549C115.554 58.0769 115.746 
+            58.134 116.016 58.182C116.538 58.2753 116.905 58.7225 116.776 59.2377C116.684 59.6055 116.356 59.9232 115.977 59.9473C114.557 60.0378 113.357 59.9987 111.995 59.4161C111.867 59.3616 111.75 59.2845 111.648 59.1911C110.181 57.8534 109.033 56.3768 107.889 54.7473C107.714 54.5041 107.54 54.2608 107.36 
+            54.0102C106.187 52.203 106.157 50.8777 106.303 48.8008C103.995 50.5723 103.904 50.6421 102.516 52.8756C102.4 53.0627 102.328 53.276 102.311 53.4956C102.202 54.9272 102.196 56.2608 102.536 57.6299C102.639 58.0436 103.022 58.3153 103.449 58.3153C103.533 58.3153 103.617 58.3153 103.702 58.3153C104.217 
+            58.3153 104.609 58.7492 104.483 59.2496C104.395 59.6026 104.065 59.901 103.702 59.901C102.855 59.901 102.005 59.901 101.143 59.901C100.654 59.901 100.194 59.6495 99.9717 59.2146C99.075 57.4596 98.9685 55.9295 98.9934 53.8553C98.9953 53.5211 98.9971 53.1868 98.999 52.8424C99.0597 50.2867 99.5459 
+            48.2895 100.753 46.0257C101.53 44.3975 101.659 43.0427 101.696 41.2452C101.702 40.9809 101.709 40.7165 101.716 40.4442C101.737 39.604 101.753 38.7638 101.769 37.9235C101.786 37.0846 101.805 36.2458 101.825 35.407C101.843 34.6449 101.858 33.8828 101.873 33.1206C101.92 32.1801 102.021 31.2771 102.165 
+            30.3653C102.259 29.7722 101.99 29.1658 101.437 28.9318C100.533 28.5495 99.644 28.353 98.597 28.1612C95.5128 27.4337 93.3204 25.7047 90.8417 23.8251C90.5477 23.6292 90.2538 23.4332 89.9548 23.2339C89.7659 23.1079 89.6523 22.8991 89.6523 22.672C89.6523 22.2442 90.043 21.9194 90.461 22.0101C92.7409 
+            22.5046 94.9427 23.1736 97.1694 23.8948C99.3635 24.5904 102.471 24.4348 104.335 25.8694C104.595 26.0693 104.896 26.222 105.223 26.2427C106.785 26.3417 107.975 26.2007 109.508 25.6029C112.719 24.6057 116.112 24.92 119.435 24.9896C124.082 25.077 128.659 25.0422 132.938 22.9331C133.402 22.7103 133.866 
+            22.4875 134.343 22.2579C136.72 20.7696 137.797 18.8944 138.811 16.2928C139.829 13.6871 140.979 11.1444 143.386 9.56414C143.462 9.51423 143.544 9.47285 143.629 9.44158C145.341 8.81476 147.128 8.88046 148.918 9.12839Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Canine</div>
+      </div>
+
+      <div class="stage-item" onclick="switchStage('dog', 'senior', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 142 69" width="142" xmlns="http://www.w3.org/2000/svg">
+            <path d="M97.5992 8.03623C94.7653 6.72404 91.1631 6.35667 88.225 7.59497C86.9229 8.4858 85.9874 9.74693 85.0417 10.9745C82.0417 14.2769 82.6183 19.1527 79.0588 22.1831C78.1832 22.9439 77.3506 23.69 76.6061 24.5763C75.2887 26.0787 73.5299 26.9914 71.7978 27.9809C63.7386 32.5912 53.0286 40.563 51.9496 
+            50.1888C51.9377 51.3535 51.9671 52.5182 52.0004 53.6825C52.019 55.0029 51.9944 55.9212 51.2401 57.0686C50.2146 60.0524 42.1352 59.0896 39.5816 59.2168C38.3549 59.2872 37.2788 59.4415 36.1123 59.8206L36.1123 60.279C37.2265 60.8758 38.2807 61.1889 39.5103 61.4542C39.6797 61.4929 39.8491 61.5319 40.0236 
+            61.5718C44.4895 62.565 50.4332 62.5266 55.0225 61.8842C55.042 62.0639 55.0612 62.244 55.0813 62.4292C55.2585 63.0308 55.2588 63.0307 55.664 63.2932C61.9408 64.0455 67.8523 63.7188 74.8781 63.2602C74.821 62.1245 74.4543 61.4423 73.6877 60.6186C72.8497 60.006 71.882 59.9167 70.8591 59.8206C70.9963 59.6707 
+            70.9967 59.6703 71.1366 59.5174C73.2015 57.2264 73.2015 57.2261 73.3561 55.6636C73.6442 53.8535 74.9252 52.714 76.2963 51.5647C77.5325 50.7832 78.9532 50.2758 80.3146 49.7303C80.561 52.2043 80.5874 54.6677 80.6515 57.1472C80.6549 57.3747 80.6585 57.6025 80.662 57.8369C80.8197 58.6014 81.1544 58.8397 
+            81.7328 59.3615C81.8946 59.9866 82.0139 60.5626 82.1021 61.1966C82.393 63.2068 82.3933 63.2067 83.1511 63.9478C84.6303 64.2265 87.821 64.3199 89.0606 63.7186V62.8017C89.2515 62.8071 89.4425 62.8121 89.6392 62.8176C89.8918 62.8217 90.1446 62.8259 90.4048 62.8302C90.6544 62.8355 90.9041 62.8412 91.1612 
+            62.8467C91.9023 62.8015 92.4115 62.6477 93.0788 62.3426C93.0345 61.5833 93.0344 61.583 92.8424 60.7375C92.2541 60.2778 91.7402 60.0749 91.0251 59.849C90.4434 59.638 90.4434 59.6379 90.2126 59.1157C88.4538 53.403 90.2288 44.1587 92.6211 39.6401C93.9089 37.1944 94.2898 35.1734 94.2157 32.4471C94.1808 
+            28.7348 94.7913 23.9802 96.8606 20.8355C98.1665 20.2995 99.4228 20.2942 100.822 20.2489C101.622 20.1433 101.952 19.9857 102.534 19.4595C102.398 18.8021 102.33 18.5739 101.825 18.0836C102.034 18.0079 102.244 17.9323 102.46 17.8543C104.095 16.8964 105.028 14.76 105.607 13.0388C105.554 12.521 105.554 
+            12.5207 105.37 12.1212C103.521 11.2485 101.282 11.7438 99.6971 10.2868C99.3942 9.10023 98.7647 8.53483 97.5992 8.03623ZM85.5146 51.5647C85.751 51.794 85.7512 51.794 85.8357 52.1929C85.8619 52.371 85.8868 52.5439 85.9123 52.7168C85.9564 53.0143 85.9569 53.0143 86.0001 53.306C86.031 53.5229 86.0607 
+            53.7336 86.0906 53.9441C86.4293 56.2796 86.6978 58.6194 86.9329 60.9667C86.4602 60.9667 86.4603 60.9667 86.1058 60.7375C85.1905 59.5535 85.1901 59.5533 85.2425 55.3663C85.2466 55.0453 85.25 54.7243 85.2524 54.4032C85.258 53.457 85.2663 52.5109 85.2781 51.5647C85.3585 51.5647 85.4366 51.5647 85.5146 
+            51.5647Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Senior Canine</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CAT panel ── -->
+  <div id="panel-cat" class="tab-panel">
+    <!-- Review cards per cat stage -->
+    <div id="cat-kitten" class="review-area">
+      <div class="review-photo">
+          <img src="https://thf.bing.com/th/id/OIP.fUJvWw4kNi5hNxwr6IBCYQHaHa?o=7&cb=thfc1falconrm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Family with pet at vet" /> 
+      </div>
+      <div class="review-card">
+          <div class="review-name">Hoa & Mochi <span class="paw">🐾</span></div>
+          <div class="review-meta">Member since 2024 &nbsp;|&nbsp; Domestic Shorthair Kitten</div>
+          <p class="review-text">Mochi was only 8 weeks old when we adopted her. Petcare Spa guided us through every vaccine, spay appointment and midnight question. I can't imagine doing it without them!</p>
+          <div class="review-savings">Annual savings $760</div>
+      </div>
+    </div>
+
+    <div id="cat-adult" class="review-area" style="display:none;">
+      <div class="review-photo">
+          <img src="https://tse1.mm.bing.net/th/id/OIP.YVToH_wxarxB23ctK971RQHaHa?cb=thfc1falcon&pid=ImgDet&w=474&h=474&rs=1&o=7&rm=3" alt="Family with pet at vet" /> 
+      </div>
+      <div class="review-card">
+          <div class="review-name">An & Luna <span class="paw">🐾</span></div>
+          <div class="review-meta">Member since 2023 &nbsp;|&nbsp; Siamese Mix</div>
+          <p class="review-text">Luna needed dental surgery this year – without the membership the bill would have been brutal. The 24/7 chat is also a lifesaver when she acts weird at 2 am and I panic!</p>
+          <div class="review-savings">Annual savings $1,200</div>
+      </div>
+    </div>
+
+    <div id="cat-senior" class="review-area" style="display:none;">
+      <div class="review-photo">
+          <img src="https://scr.vn/wp-content/uploads/2020/10/Hinh-meo-dang-yeu-de-thuong-nhat.jpg" alt="Family with pet at vet" /> 
+      </div>
+      <div class="review-card">
+          <div class="review-name">Thu & Oliver <span class="paw">🐾</span></div>
+          <div class="review-meta">Member since 2021 &nbsp;|&nbsp; Persian Senior Cat</div>
+          <p class="review-text">Oliver is 14 and has chronic kidney disease. PetfolkCare's team knows his full history and makes every senior visit feel personal. The savings on his monthly check-ups add up incredibly fast.</p>
+          <div class="review-savings">Annual savings $2,100</div>
+      </div>
+    </div>
+    <div class="stage-selector" id="cat-stages">
+      <div class="stage-track"></div>
+      <div class="stage-item active" onclick="switchStage('cat', 'kitten', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 140 69" width="140" xmlns="http://www.w3.org/2000/svg">
+          <path d="M85.8358 20.4267L85.6281 20.5825C85.3604 19.5592 85.3806 19.0575 85.2038 18.3198C84.072 18.3198 81.9988 20.8039 81.6248 21.7652L81.527 22.1381C79.1388 22.5205 78.3641 23.6298 74.939 28.0389L74.8805 28.3604C74.5661 28.3663 74.2517 28.3709 73.9372 28.3742L73.5459 28.378C69.2238 28.9525 65.4056 23.0491 53.5885 27.6003C50.2253 28.7024 48.0838 33.229 47.0087 36.4208C46.5498 47.7609 64.4573 53.7992 64.8488 49.0452C65.0658 46.4102 58.272 47.8359 56.7631 44.199C57.1874 44.1779 64.46 45.5703 64.8488 45.7192C65.2407 45.8642 65.4845 45.9227 65.6879 46.2959C65.8298 46.603 65.8298 46.603 66.1204 46.9847C66.6093 47.3667 66.8728 47.4002 67.4755 47.4226C68.3442 47.4285 69.2128 47.4556 70.0812 47.478C70.9206 47.4649 71.8734 47.4889 72.4941 46.8682C72.6867 46.2354 72.7522 45.6228 72.4676 45.0033L72.335 44.7646L72.4764 44.3404C72.8458 45.1068 72.8458 45.1068 73.1658 45.8959L73.1658 45.896C73.3613 46.379 73.5408 46.7978 73.8563 47.2129C74.5958 47.7694 74.5958 47.7694 76.502 47.7661H76.5021L76.9929 47.7609L77.042 47.7608C78.0274 47.7603 78.9977 47.7598 79.9715 47.5929C80.3394 47.3555 80.3827 47.2288 80.4758 46.7997L80.5371 46.4616L80.9343 46.4357C81.5814 46.3904 82.2971 46.4494 82.7467 45.896C83.0227 45.2939 82.9588 44.8318 82.7998 44.199C82.4392 43.3838 81.8859 43.125 81.1094 42.7682L80.8199 42.6434C81.3957 42.4548 81.8777 42.2647 82.3932 41.9451C84.5713 39.9446 83.593 36.6662 84.717 35.3146C84.9062 35.055 91.0851 34.6589 91.2847 34.4413C91.709 34.2998 91.709 34.2998 92.0625 34.0789C92.6706 33.486 92.834 32.7605 92.9817 31.94C93.0229 31.4465 93.0204 31.377 92.69 30.9766C92.2834 30.6559 92.2834 30.6559 92.0531 30.3325L91.8327 30.0043C91.3021 29.2156 90.9639 28.4826 90.9433 27.5191C90.9325 26.5728 90.9089 25.8601 90.2948 25.1078C90.0732 24.9141 89.8523 24.7196 89.6319 24.5245C89.0871 24.0027 88.9382 23.6777 88.8983 22.9247C88.4732 21.5138 88.4148 20.4614 88.2205 19.207L88.1736 18.8855C87.3173 18.8855 86.5026 19.9266 85.8358 20.4267Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Kitten</div>
+      </div>
+      <div class="stage-item" onclick="switchStage('cat', 'adult', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 250 69" width="250" xmlns="http://www.w3.org/2000/svg">
+          <path d="M103.818 5.52148C101.734 5.5513 100.201 7.02887 98.729 8.37116C96.9553 10.24 95.7128 12.5216 95.6758 15.1253C95.6545 15.4077 95.6331 15.6901 95.6111 15.9811C95.3392 21.6079 98.7682 26.2057 102.166 30.322C103.173 31.5114 104.335 31.6674 104.024 33.0884C103.917 33.5894 103.812 34.0906 103.707 34.5919C103.651 34.8567 103.596 35.1215 103.538 35.3943C103.209 37.0395 102.999 38.6487 102.888 40.3223C102.709 43.0007 102.404 44.5834 100.413 46.5087C99.9806 47.0212 99.5551 47.5395 99.1362 48.0631C98.9419 48.2966 98.7476 48.5302 98.5475 48.7708C97.7113 49.9318 97.3867 51.0695 97.2105 52.4775C96.8242 55.4538 95.309 59.5221 96.8231 62.3484C97.4523 63.0886 97.4523 63.0886 98.0444 63.3847C99.2523 63.4816 100.399 63.695 101.301 62.7925C101.639 61.7261 101.249 60.9952 99.8208 60.424C99.8689 57.5932 99.8689 57.5932 101.005 55.0947C104.073 52.5355 107.992 51.2864 110.875 48.432C111.379 47.9196 111.379 47.9196 112.256 47.693C112.234 47.9971 112.213 48.3013 112.191 48.6147C112.132 49.4668 112.081 50.319 112.035 51.1718C111.995 51.9054 111.938 52.6244 111.857 53.3553C111.642 56.0414 113.351 57.8353 114.985 59.6884C116.547 61.3494 118.18 62.9019 120.518 63.1973C122.675 63.2484 122.675 63.2484 123.802 62.4965C123.747 61.8118 123.747 61.8118 123.506 61.0161C122.896 60.572 122.896 60.572 122.026 60.1279C120.14 59.1577 118.716 57.9885 117.881 55.9829C117.73 54.4231 117.997 53.4301 118.695 52.0415C119.508 50.4063 120.155 48.8181 120.842 47.1008C124.652 47.1008 128.463 47.1008 132.389 47.1008C131.575 51.7371 130.382 56.4232 130.19 61.1387C130.316 61.9043 130.316 61.9043 130.799 62.5901C131.7 63.2309 132.237 63.2198 133.332 63.1811C133.648 63.1739 133.964 63.1666 134.289 63.1592C136.317 62.9719 135.775 60.1279 134.165 60.1279C134.323 58.3781 135.048 56.9804 135.812 55.4278C135.938 55.1675 136.063 54.9072 136.193 54.639C136.502 54.0004 136.813 53.3629 137.126 52.7262C137.206 52.8811 137.286 53.036 137.369 53.1956C140.485 59.1878 140.485 59.1878 141.863 61.3122C141.965 61.5003 142.068 61.6885 142.174 61.8824C142.492 62.3854 142.492 62.3854 143.343 63.0886C144.546 63.2662 145.694 63.2733 146.896 63.0886C147.488 62.4965 147.488 62.4965 147.581 61.7748C147.488 61.0161 147.488 61.0161 147.155 60.5165C146.6 60.1279 146.6 60.1279 145.693 59.8318C144.74 59.6058 144.74 59.6058 144.231 58.6476C143.83 56.8865 143.579 55.108 143.343 53.3183C143.29 52.9462 143.237 52.5741 143.182 52.1907C142.971 49.4882 143.857 48.0774 145.512 46.0785C148.344 42.5017 148.619 37.5163 149.111 33.1346C149.534 29.5629 150.249 25.3346 153.192 22.9734C154.041 22.2352 154.269 21.6143 154.387 20.5019C154.388 20.1993 154.389 19.8966 154.39 19.5848C154.395 19.2829 154.4 18.981 154.405 18.67C154.279 17.6341 154.107 17.0917 153.41 16.3095C152.52 16.217 152.52 16.217 151.467 16.3095C149.984 16.3702 149.076 16.3412 147.803 15.5694C146.495 14.7884 145.577 14.785 144.065 14.8662C142.432 14.9354 141.609 14.852 140.345 13.7929C139.358 12.7934 138.692 13.2978 137.422 13.0528C137.422 13.7929 137.369 15.2209 137.718 16.3095C137.48 16.163 137.241 16.0164 136.996 15.8654C135.699 15.3191 134.661 15.3382 133.277 15.4213C133.303 15.8349 133.335 16.2481 133.369 16.6611C133.595 19.6832 135.053 22.2397 135.053 25.4877C133.681 25.5313 132.507 25.5285 131.174 25.1951C124.57 23.6605 116.722 25.3281 110.864 28.3975C109.61 28.843 108.536 29.0402 107.223 28.7445C103.152 25.9971 99.5392 19.8478 99.6901 15.0131C100.03 12.2209 101.598 10.4033 103.67 8.61172C103.963 8.39799 104.256 8.18426 104.558 7.96406C105.15 7.42744 105.15 7.42744 105.261 6.63175C105.084 5.53862 104.98 5.66678 103.818 5.52148Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Adult Cat</div>
+      </div>
+      <div class="stage-item" onclick="switchStage('cat', 'senior', this)">
+        <div class="stage-icon">
+          <svg fill="none" height="69" viewBox="0 0 142 69" width="142" xmlns="http://www.w3.org/2000/svg">
+          <path d="M84.2598 4.52637C84.9957 4.65434 85.3777 5.26275 85.7986 5.84127C87.1999 7.99554 88.1775 10.4175 89.0908 12.8082C89.568 14.0454 90.1119 15.2405 90.6823 16.4371C91.1007 17.3226 91.4942 18.2136 91.8641 19.1205C91.907 19.2253 91.9499 19.3302 91.9941 19.4383C92.2035 19.9514 92.4104 20.4653 92.6141 20.9806C93.2379 22.5348 94.0537 23.8403 95.0302 25.2025C96.1008 26.7157 96.2572 28.4013 96.2447 30.206C96.2444 30.3235 96.2441 30.4411 96.2439 30.5622C96.2429 30.9522 96.2409 31.3422 96.239 31.7323C96.2381 32.0135 96.2372 32.2948 96.2365 32.576C96.2347 33.1799 96.2326 33.7838 96.2302 34.3878C96.2265 35.3442 96.2243 36.3006 96.2224 37.257C96.2217 37.5851 96.221 37.9132 96.2203 38.2414C96.22 38.4057 96.2196 38.5699 96.2193 38.7392C96.2145 40.9642 96.2086 43.1892 96.1998 45.4142C96.194 46.9173 96.19 48.4204 96.1881 49.9235C96.1871 50.7177 96.1851 51.5119 96.1807 52.3061C96.1766 53.0536 96.1749 53.8012 96.1752 54.5487C96.1748 54.8218 96.1736 55.0948 96.1713 55.3678C96.157 57.1841 96.1756 58.93 97.1875 60.5107C97.7195 61.4113 97.6801 62.3406 97.5498 63.3515C97.4175 63.7503 97.2947 63.9459 97.0228 64.2737C96.4829 64.5437 95.7965 64.4473 95.2031 64.4549C95.059 64.4598 94.9149 64.4647 94.7664 64.4698C93.7029 64.4815 93.7029 64.4815 93.1847 64.108C92.4022 62.9588 92.1552 61.535 91.8847 60.1896C91.8628 60.0847 91.8408 59.9798 91.8182 59.8718C91.5527 58.4664 91.4971 57.0362 91.4071 55.6114C91.3894 55.3393 91.3715 55.0672 91.3536 54.7951C91.3102 54.1341 91.2678 53.4729 91.226 52.8117C91.1572 52.9077 91.0885 53.0038 91.0177 53.1027C88.9875 55.9202 86.362 57.8199 83.3211 59.4485C83.198 59.5145 83.198 59.5145 83.0725 59.5818C82.6364 59.8118 82.199 60.0103 81.7402 60.1896C81.8242 60.1915 81.9083 60.1934 81.9949 60.1954C85.1744 60.2762 88.2163 60.4437 90.6413 62.7504C90.8307 63.088 90.8307 63.088 90.8472 63.5656C90.699 64.0103 90.699 64.0103 90.3757 64.2325C89.7701 64.4567 89.2494 64.4603 88.609 64.4557C88.4787 64.4563 88.3484 64.4569 88.2142 64.4576C87.778 64.4591 87.3417 64.4579 86.9055 64.4566C86.5925 64.4572 86.2795 64.4579 85.9665 64.4587C85.2044 64.4603 84.4424 64.4601 83.6803 64.459C83.0599 64.4581 82.4395 64.458 81.8191 64.4584C81.6865 64.4585 81.6865 64.4585 81.5512 64.4586C81.3715 64.4587 81.1918 64.4588 81.0121 64.4589C79.327 64.4601 77.6418 64.4588 75.9566 64.4567C74.5151 64.4549 73.0736 64.4552 71.632 64.457C69.9552 64.4591 68.2784 64.46 66.6016 64.4588C66.4221 64.4586 66.2426 64.4585 66.0631 64.4584C65.9748 64.4583 65.8865 64.4583 65.7956 64.4582C65.1777 64.4579 64.5599 64.4584 63.9421 64.4594C63.1068 64.4605 62.2716 64.4597 61.4363 64.4574C61.1314 64.4569 60.8265 64.457 60.5215 64.4579C55.8666 64.4701 51.9716 63.3241 48.581 60.0331C46.7082 58.1492 45.5301 55.7534 44.8509 53.207C44.8086 53.0546 44.7664 52.9023 44.7228 52.7453C43.8229 48.9994 44.6904 45.0775 46.6542 41.8216C47.0917 41.1282 47.5913 40.505 48.1446 39.9005C48.3089 39.7178 48.3089 39.7178 48.4766 39.5315C50.1182 37.7937 52.2893 36.4728 54.7191 36.3191C56.5444 36.2792 58.3627 36.6849 59.813 37.8517C60.0019 38.056 60.0019 38.056 60.1501 38.4842C60.1336 38.8465 60.1336 38.8465 59.8701 39.11C59.6048 39.1373 59.338 39.1515 59.0714 39.1594C57.4096 39.2584 55.8093 39.6361 54.3367 40.4275C54.1421 40.5291 54.1421 40.5291 53.9435 40.6328C51.3966 42.0324 49.8451 44.2698 49.0354 47.0267C48.3055 49.8153 48.8134 52.7298 50.2351 55.199C51.7151 57.6552 54.0127 59.2494 56.7885 59.9714C57.8402 60.1749 58.9211 60.2185 59.8701 59.6626C62.0436 58.1751 62.5709 55.1986 63.0344 52.774C63.1054 52.394 63.1755 52.0139 63.2454 51.6338C64.3978 45.4041 64.3978 45.4041 65.14 43.0624C65.173 42.9557 65.206 42.849 65.24 42.7391C67.2698 36.2585 71.5123 31.227 77.3395 27.8446C78.74 26.9889 79.2435 25.608 79.7146 24.0888C79.7808 23.7384 79.7864 23.4015 79.7887 23.0451C79.7905 22.9108 79.7924 22.7764 79.7943 22.638C79.7626 22.2288 79.6904 21.9505 79.5005 21.5876C79.0317 21.2751 78.6151 21.2257 78.0708 21.1486C77.8613 21.1166 77.6519 21.0844 77.4424 21.0522C77.1139 21.0027 76.7853 20.9539 76.4564 20.9066C73.7047 20.5071 73.7047 20.5071 72.9648 19.6214C72.1047 18.3394 71.7561 16.8439 71.7624 15.3235C71.8847 14.7481 72.0992 14.486 72.5179 14.078C72.8426 13.8984 72.8426 13.8984 73.1684 13.7734C73.9322 13.4157 74.2233 12.9549 74.6258 12.2336C75.5064 10.7221 76.328 9.39896 78.0512 8.80815C78.7466 8.63643 79.4516 8.52089 80.1592 8.41291C80.1618 8.3225 80.1644 8.23208 80.1671 8.13893C80.1796 7.73066 80.1941 7.32249 80.2086 6.91429C80.2127 6.77197 80.2168 6.62965 80.221 6.48302C80.226 6.34716 80.2311 6.21129 80.2364 6.07131C80.2405 5.94574 80.2447 5.82017 80.2489 5.6908C80.2909 5.38272 80.2909 5.38272 80.5544 5.11923C81.6215 5.11923 82.4001 5.53186 83.3211 6.04146C83.3576 5.94788 83.3942 5.85431 83.4318 5.7579C83.4795 5.63681 83.5272 5.51572 83.5764 5.39096C83.6238 5.27021 83.6712 5.14946 83.72 5.02505C83.8958 4.61203 83.8958 4.61203 84.2598 4.52637Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="stage-dot"></div>
+        <div class="stage-label">Senior Cat</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════
+     SECTION 2 – Testimonials / Life-stage
+════════════════════════════════════════ -->
+<section class="points-section">
+        <div class="points-inner">
+          <div style="text-align: center; margin-bottom: 0" class="fade-up">
+            <div class="eyebrow">Earning Points</div>
+            <h2 class="section-title">Every Action Earns Rewards</h2>
+          </div>
+          <div class="points-grid fade-up">
+            <div class="points-visual">
+              <div class="points-circle">
+                <div class="pts-num">150</div>
+                <div class="pts-label">POINTS</div>
+              </div>
+              <p
+                style="
+                  font-size: 14px;
+                  color: var(--gray);
+                  line-height: 1.6;
+                  text-align: center;
+                "
+              >
+                You're just
+                <strong style="color: var(--pink)">350 points</strong> away from
+                Gold status! Keep going 🐾
+              </p>
+              <div
+                style="
+                  background: #fff;
+                  border-radius: 12px;
+                  padding: 16px;
+                  margin-top: 16px;
+                  border: 1px solid var(--border);
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 13px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span style="color: var(--gray)">Progress to Gold</span
+                  ><span style="font-weight: 800; color: var(--pink)"
+                    >150/500</span
+                  >
+                </div>
+                <div
+                  style="background: #f0e6ec; border-radius: 30px; height: 10px"
+                >
+                  <div
+                    style="
+                      background: linear-gradient(
+                        90deg,
+                        var(--pink),
+                        var(--gold)
+                      );
+                      width: 30%;
+                      height: 100%;
+                      border-radius: 30px;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="points-info">
+              <h3>How to Earn Points</h3>
+              <p
+                style="
+                  font-size: 14px;
+                  color: var(--gray);
+                  line-height: 1.7;
+                  margin-bottom: 20px;
+                "
+              >
+                Accumulate PawNest Points through everyday activities. Every
+                point gets you closer to amazing rewards, free services, and
+                exclusive access.
+              </p>
+              <div class="earn-grid">
+                <div class="earn-card">
+                  <div class="earn-icon">🛒</div>
+                  <h4>Shopping</h4>
+                  <p>Every purchase at our shop</p>
+                  <div class="earn-pts">+10 pts / 100k₫</div>
+                </div>
+                <div class="earn-card">
+                  <div class="earn-icon">✂️</div>
+                  <h4>Grooming</h4>
+                  <p>Book a grooming session</p>
+                  <div class="earn-pts">+50 pts / session</div>
+                </div>
+                <div class="earn-card">
+                  <div class="earn-icon">🏨</div>
+                  <h4>Boarding</h4>
+                  <p>Every night your pet stays</p>
+                  <div class="earn-pts">+30 pts / night</div>
+                </div>
+                <div class="earn-card">
+                  <div class="earn-icon">🌿</div>
+                  <h4>PawFeast Orders</h4>
+                  <p>Double points on organic food</p>
+                  <div class="earn-pts">+20 pts / 100k₫</div>
+                </div>
+                <div class="earn-card">
+                  <div class="earn-icon">⭐</div>
+                  <h4>Write a Review</h4>
+                  <p>Share your experience</p>
+                  <div class="earn-pts">+25 pts</div>
+                </div>
+                <div class="earn-card">
+                  <div class="earn-icon">👥</div>
+                  <h4>Refer a Friend</h4>
+                  <p>When they make first order</p>
+                  <div class="earn-pts">+100 pts</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</section>
+
+<!-- BENEFITS TABLE -->
+<section class="benefits-section">
+    <div style="max-width: 1000px; margin: 0 auto" class="fade-up">
+        <div style="text-align: center; margin-bottom: 8px">
+            <div class="eyebrow">Compare Tiers</div>
+            <h2 class="section-title">Full Benefits Breakdown</h2>
+        </div>
+        <table class="benefits-table">
+            <thead>
+                <tr>
+                <th class="th-feature">Feature</th>
+                <th class="th-bronze">🥉 Bronze</th>
+                <th class="th-gold">🥇 Gold</th>
+                <th class="th-platinum">💎 Platinum</th>
+                <th class="th-diamond">👑 Diamond</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Points per 100k₫</td>
+                <td>10</td>
+                <td>15</td>
+                <td>20</td>
+                <td>30</td>
+                </tr>
+                <tr>
+                <td>Birthday treat</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>Free grooming / month</td>
+                <td class="check-no">—</td>
+                <td>1 trim</td>
+                <td>Full session</td>
+                <td>Unlimited</td>
+                </tr>
+                <tr>
+                <td>Priority booking</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>Dedicated concierge</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>Surprise quarterly gifts</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>Nutrition consultation</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>VIP lounge access</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>PawFeast double points</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+                <tr>
+                <td>Early product access</td>
+                <td class="check-no">—</td>
+                <td class="check-no">—</td>
+                <td class="check-yes">✓</td>
+                <td class="check-yes">✓</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center; margin-top: 32px">
+            <button
+                class="btn-primary"
+                style="font-size: 15px; padding: 14px 36px"
+                onclick="openAccountModal()"
+            >
+                Subscribe  PetcareSpa Rewards — It's Free 🐾
+            </button>
+        </div>
+    </div>
+</section>

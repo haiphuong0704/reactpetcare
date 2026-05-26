@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Spa Booking</title>
+
+    <style>
+      :root {
+        --pink: #a63558;
+        --pink-dark: #7c2341;
+        --pink-light: #c97892;
+        --pink-pale: #faf0f3;
+        --pink-border: #e3cdd5;
+        --pink-muted: #edd5dc;
+        --white: #ffffff;
+        --bg: #fdfbfc;
+        --surface: #f8f4f6;
+        --surface-alt: #f2edf0;
+        --border: #e5dee2;
+        --border-soft: #ede7ea;
+        --text: #1a0e12;
+        --text-body: #4a3840;
+        --text-muted: #887278;
+        --shadow-xs: 0 1px 3px rgba(26, 18, 20, 0.04);
+        --shadow-sm: 0 2px 12px rgba(26, 18, 20, 0.06);
+        --shadow-md: 0 8px 28px rgba(26, 18, 20, 0.08);
+        --shadow-lg: 0 20px 56px rgba(26, 18, 20, 0.1);
+        --shadow-card: 0 2px 16px rgba(26, 18, 20, 0.055);
+        --r-sm: 8px;
+        --r-md: 16px;
+        --r-lg: 24px;
+        --r-xl: 36px;
+        --r-2xl: 48px;
+        --r-pill: 9999px;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --t-fast: 150ms ease;
+        --t-base: 220ms ease;
+        --t-smooth: 360ms cubic-bezier(0.22, 1, 0.36, 1);
+        --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+        --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      button,
+      input,
+      textarea {
+        font-family: inherit;
+      }
+
+      .booking-body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* HEADER */
+      .bk-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 72px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 32px;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .logo span {
+        color: var(--pink);
+      }
+
+      .bk-header__help {
+        text-decoration: none;
+        color: var(--text-body);
+        font-size: 0.9rem;
+      }
+
+      /* PROGRESS */
+      .bk-progress-wrap {
+        background: #fff;
+        border-bottom: 1px solid var(--border-soft);
+        padding: 24px 0;
+      }
+
+      .bk-progress {
+        width: min(760px, 92%);
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .bk-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .bk-step__num {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border);
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--text-muted);
+        transition: 0.3s;
+      }
+
+      .bk-step__label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+
+      .bk-step.active .bk-step__num {
+        background: var(--pink);
+        border-color: var(--pink);
+        color: #fff;
+      }
+
+      .bk-step.active .bk-step__label {
+        color: var(--pink);
+      }
+
+      .bk-step.done .bk-step__num {
+        background: var(--pink-pale);
+        border-color: var(--pink);
+        color: var(--pink);
+      }
+
+      .bk-step-line {
+        flex: 1;
+        height: 2px;
+        background: var(--border);
+        margin: 0 10px 22px;
+        max-width: 70px;
+      }
+
+      .bk-step-line.done {
+        background: var(--pink);
+      }
+
+      /* MAIN */
+      .bk-main {
+        flex: 1;
+        padding: 60px 0 140px;
+      }
+
+      .bk-container {
+        width: min(980px, 92%);
+        margin: auto;
+      }
+
+      .bk-panel {
+        display: none;
+      }
+
+      .bk-panel.active {
+        display: block;
+        animation: fade 0.4s ease;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bk-panel__header {
+        margin-bottom: 40px;
+      }
+      .bk-field-group.has-success .bk-input {
+        border-color: #7bae8d;
+        background: #fcfffd;
+        box-shadow: 0 0 0 4px rgba(123, 174, 141, 0.1),
+          0 10px 30px rgba(123, 174, 141, 0.08);
+      }
+
+      .bk-panel__header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        margin: 14px 0 12px;
+        line-height: 1.1;
+      }
+
+      .bk-panel__header p {
+        color: var(--text-body);
+        line-height: 1.8;
+      }
+
+      /* SERVICES */
+      .bk-service-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .bk-service-card {
+        background: #fff;
+        border: 1.5px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        padding: 26px;
+        cursor: pointer;
+        transition: 0.25s;
+        box-shadow: var(--shadow-card);
+      }
+
+      .bk-service-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--pink-border);
+      }
+
+      .bk-service-card.selected {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 3px rgba(166, 53, 88, 0.12);
+      }
+
+      .bk-service-card__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 18px;
+        background: var(--pink-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 18px;
+      }
+
+      .bk-service-card h3 {
+        margin-bottom: 10px;
+      }
+
+      .bk-service-card p {
+        color: var(--text-body);
+        line-height: 1.7;
+        font-size: 0.92rem;
+      }
+
+      .bk-service-card__footer {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border-soft);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .bk-confirm-callout svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--pink);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      /* TYPE */
+      .bk-pet-section {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .bk-label {
+        display: block;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .bk-type-grid,
+      .bk-size-grid,
+      .bk-age-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .bk-type-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .bk-size-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .bk-age-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .bk-type-btn,
+      .bk-size-btn,
+      .bk-age-btn {
+        border: 1.5px solid var(--border);
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-weight: 600;
+      }
+
+      .bk-type-btn:hover,
+      .bk-size-btn:hover,
+      .bk-age-btn:hover {
+        border-color: var(--pink-border);
+      }
+
+      .bk-type-btn.selected,
+      .bk-size-btn.selected,
+      .bk-age-btn.selected {
+        background: var(--pink-pale);
+        border-color: var(--pink);
+        color: var(--pink);
+      }
+
+      /* INPUT */
+      .bk-input {
+        width: 100%;
+        border: 1.5px solid var(--border);
+        background: #fff;
+        border-radius: 16px;
+        padding: 14px 16px;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      .bk-input:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(166, 53, 88, 0.08);
+      }
+
+      .bk-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .bk-form__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      /* CALENDAR */
+      .bk-datetime-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .bk-calendar,
+      .bk-slots-wrap {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .bk-calendar__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .bk-cal-nav {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: none;
+        background: var(--surface);
+        cursor: pointer;
+      }
+
+      .bk-calendar__grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+      }
+
+      .bk-calendar__weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 700;
+      }
+
+      .bk-cal-day {
+        aspect-ratio: 1;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .bk-cal-day.selected {
+        background: var(--pink);
+        color: #fff;
+      }
+
+      .bk-cal-day.today {
+        color: var(--pink);
+        font-weight: 700;
+      }
+
+      .bk-cal-day:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      .bk-slot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .bk-slot {
+        padding: 10px;
+        border-radius: 14px;
+        border: 1.5px solid var(--border);
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .bk-slot.selected {
+        background: var(--pink);
+        border-color: var(--pink);
+        color: #fff;
+      }
+
+      .bk-slot:disabled {
+        opacity: 0.4;
+        text-decoration: line-through;
+      }
+
+      .bk-slots {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .bk-slots-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 280px;
+        color: var(--text-muted);
+      }
+
+      /* SUMMARY */
+      .bk-confirm-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 24px;
+      }
+
+      .bk-summary {
+        background: #fff;
+        border-radius: 28px;
+        padding: 30px;
+        border: 1px solid var(--border-soft);
+      }
+
+      .bk-summary__section {
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .bk-summary__label {
+        display: block;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .bk-summary__row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .bk-summary__total {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 24px;
+      }
+
+      .bk-summary__total strong {
+        font-size: 1.7rem;
+      }
+
+      .bk-confirm-callout {
+        background: #fff;
+        border-radius: 24px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-soft);
+        padding: 22px;
+      }
+
+      /* SUCCESS */
+      .bk-success {
+        text-align: center;
+        max-width: 560px;
+        margin: auto;
+      }
+
+      .bk-success__icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--pink), var(--pink-dark));
+        color: #fff;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 26px;
+      }
+
+      .bk-success h2 {
+        font-size: 3rem;
+        margin-bottom: 12px;
+      }
+
+      .bk-success__details {
+        margin: 30px 0;
+        background: var(--surface);
+        border-radius: 24px;
+        padding: 24px;
+        line-height: 1.8;
+      }
+
+      /* FOOTER */
+      .bk-footer-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(18px);
+        border-top: 1px solid var(--border);
+        padding: 16px 0;
+      }
+
+      .bk-footer-nav__inner {
+        width: min(980px, 92%);
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .btn {
+        border: none;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--pink);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--pink-dark);
+      }
+
+      .btn-secondary {
+        background: var(--surface);
+      }
+
+      .btn:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .bk-service-card__duration {
+        font-size: 0.75rem;
+        color: #887278;
+        background: #f8f4f6;
+        padding: 3px 10px;
+        border-radius: 9999px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.69rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--pink);
+      }
+
+      .eyebrow::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 1.5px;
+        background: var(--pink-light);
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      /* RESPONSIVE */
+      @media (max-width: 860px) {
+        .bk-service-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .bk-confirm-grid,
+        .bk-datetime-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .bk-service-grid,
+        .bk-age-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .bk-type-grid,
+        .bk-size-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .bk-form__row {
+          grid-template-columns: 1fr;
+        }
+
+        .bk-slot-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .bk-step__label {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="booking-body">
+    <header class="bk-header">
+      <div class="logo">Pet <span>Care</span></div>
+      <a href="#" class="bk-header__help">Need Help?</a>
+    </header>
+
+    <div class="bk-progress-wrap">
+      <div class="bk-progress">
+        <div class="bk-step active">
+          <div class="bk-step__num">1</div>
+          <div class="bk-step__label">Service</div>
+        </div>
+
+        <div class="bk-step-line"></div>
+
+        <div class="bk-step">
+          <div class="bk-step__num">2</div>
+          <div class="bk-step__label">Pet</div>
+        </div>
+
+        <div class="bk-step-line"></div>
+
+        <div class="bk-step">
+          <div class="bk-step__num">3</div>
+          <div class="bk-step__label">Date</div>
+        </div>
+
+        <div class="bk-step-line"></div>
+
+        <div class="bk-step">
+          <div class="bk-step__num">4</div>
+          <div class="bk-step__label">Details</div>
+        </div>
+
+        <div class="bk-step-line"></div>
+
+        <div class="bk-step">
+          <div class="bk-step__num">5</div>
+          <div class="bk-step__label">Confirm</div>
+        </div>
+      </div>
+    </div>
+
+    <main class="bk-main">
+      <div class="bk-container">
+        <!-- STEP 1 -->
+        <section class="bk-panel active" id="bk-step-1">
+          <div class="bk-panel__header">
+            <span class="eyebrow">Step 1 of 5</span>
+            <h2>What service are you looking for?</h2>
+            <p>Choose the perfect spa experience for your pet.</p>
+          </div>
+
+          <div class="bk-service-grid">
+            <div
+              class="bk-service-card"
+              data-service="grooming"
+              data-name="Full Grooming"
+              data-price="75"
+              data-duration="2-3 hrs"
+            >
+              <div class="bk-service-card__icon">✂️</div>
+
+              <h3>Full Grooming</h3>
+
+              <p>
+                Complete grooming package including bath, haircut, nail trim and
+                styling.
+              </p>
+
+              <div class="bk-service-card__footer">
+                <strong>$75</strong>
+                <span class="bk-service-card__duration">2-3 hrs</span>
+              </div>
+            </div>
+
+            <div
+              class="bk-service-card"
+              data-service="bath"
+              data-name="Luxury Bath"
+              data-price="45"
+              data-duration="1 hr"
+            >
+              <div class="bk-service-card__icon">🛁</div>
+
+              <h3>Luxury Bath</h3>
+
+              <p>
+                Deep cleansing bath with premium shampoo and coat conditioning.
+              </p>
+
+              <div class="bk-service-card__footer">
+                <strong>$45</strong>
+                <span class="bk-service-card__duration">1 hr</span>
+              </div>
+            </div>
+
+            <div
+              class="bk-service-card"
+              data-service="nails"
+              data-name="Nail & Paw Care"
+              data-price="30"
+              data-duration="45 min"
+            >
+              <div class="bk-service-card__icon">🐾</div>
+
+              <h3>Nail & Paw Care</h3>
+
+              <p>Paw treatment, nail trimming and moisturizing care package.</p>
+
+              <div class="bk-service-card__footer">
+                <strong>$30</strong>
+                <span class="bk-service-card__duration">45 min</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="bk-panel" id="bk-step-2">
+          <div class="bk-panel__header">
+            <span class="eyebrow">Step 2 of 5</span>
+            <h2>Tell us about your pet</h2>
+            <p>This helps us prepare the best care experience.</p>
+          </div>
+
+          <div class="bk-pet-section">
+            <div>
+              <label class="bk-label">Pet Type</label>
+
+              <div class="bk-type-grid">
+                <button class="bk-type-btn" data-type="dog">🐶 Dog</button>
+                <button class="bk-type-btn" data-type="cat">🐱 Cat</button>
+                <button class="bk-type-btn" data-type="rabbit">
+                  🐰 Rabbit
+                </button>
+                <button class="bk-type-btn" data-type="other">🐾 Other</button>
+              </div>
+            </div>
+
+            <div id="bk-size-group">
+              <label class="bk-label">Pet Size</label>
+
+              <div class="bk-size-grid">
+                <button class="bk-size-btn" data-size="small">Small</button>
+                <button class="bk-size-btn" data-size="medium">Medium</button>
+                <button class="bk-size-btn" data-size="large">Large</button>
+                <button class="bk-size-btn" data-size="xlarge">XL</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="bk-label">Pet Age</label>
+
+              <div class="bk-age-grid">
+                <button class="bk-age-btn" data-age="puppy">Young</button>
+                <button class="bk-age-btn" data-age="adult">Adult</button>
+                <button class="bk-age-btn" data-age="senior">Senior</button>
+              </div>
+            </div>
+
+            <div>
+              <label class="bk-label">Pet Name</label>
+              <input
+                type="text"
+                class="bk-input"
+                id="bk-pet-name"
+                placeholder="Enter pet name"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="bk-panel" id="bk-step-3">
+          <div class="bk-panel__header">
+            <span class="eyebrow">Step 3 of 5</span>
+            <h2>Choose date & time</h2>
+            <p>Select an available appointment slot.</p>
+          </div>
+
+          <div class="bk-datetime-grid">
+            <div class="bk-calendar">
+              <div class="bk-calendar__nav">
+                <button class="bk-cal-nav" id="bk-prev-month">‹</button>
+                <h3 id="bk-month-label"></h3>
+                <button class="bk-cal-nav" id="bk-next-month">›</button>
+              </div>
+
+              <div class="bk-calendar__weekdays">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+
+              <div class="bk-calendar__grid" id="bk-cal-grid"></div>
+            </div>
+
+            <div class="bk-slots-wrap">
+              <div class="bk-slots-empty" id="bk-slots-empty">
+                <p>Select a date to view available time slots</p>
+              </div>
+
+              <div class="bk-slots" id="bk-slots" style="display: none">
+                <h3 class="bk-slots__day" id="bk-slots-day"></h3>
+
+                <div>
+                  <p class="bk-label">Morning</p>
+                  <div class="bk-slot-grid" id="bk-morning-slots"></div>
+                </div>
+
+                <div>
+                  <p class="bk-label">Afternoon</p>
+                  <div class="bk-slot-grid" id="bk-afternoon-slots"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="bk-panel" id="bk-step-4">
+          <div class="bk-panel__header">
+            <span class="eyebrow">Step 4 of 5</span>
+            <h2>Your details</h2>
+            <p>We’ll use this information to confirm your booking.</p>
+          </div>
+
+          <div class="bk-form">
+            <div class="bk-form__row">
+              <input class="bk-input" id="bk-first" placeholder="First name" />
+              <input class="bk-input" id="bk-last" placeholder="Last name" />
+            </div>
+
+            <div class="bk-form__row">
+              <input
+                class="bk-input"
+                id="bk-email"
+                placeholder="Email address"
+              />
+              <input
+                class="bk-input"
+                id="bk-phone"
+                placeholder="Phone number"
+              />
+            </div>
+
+            <input
+              class="bk-input"
+              id="bk-breed"
+              placeholder="Breed (optional)"
+            />
+
+            <textarea
+              class="bk-input"
+              id="bk-notes"
+              rows="5"
+              placeholder="Additional notes"
+            ></textarea>
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="bk-panel" id="bk-step-5">
+          <div class="bk-panel__header">
+            <span class="eyebrow">Step 5 of 5</span>
+            <h2>Review and confirm</h2>
+            <p>Please check your details before confirming your appointment.</p>
+          </div>
+
+          <div class="bk-confirm-grid">
+            <div class="bk-summary">
+              <div class="bk-summary__section">
+                <span class="bk-summary__label">Service</span>
+                <div class="bk-summary__row">
+                  <strong id="sum-service">Veterinary Consultation</strong>
+                  <span id="sum-price" class="bk-summary__price">From $75</span>
+                </div>
+                <span id="sum-duration" class="bk-summary__meta">45 min</span>
+              </div>
+              <div class="bk-summary__section">
+                <span class="bk-summary__label">Your Pet</span>
+                <strong id="sum-pet">"ssss" — Small Puppy</strong>
+              </div>
+              <div class="bk-summary__section">
+                <span class="bk-summary__label">Date &amp; Time</span>
+                <strong id="sum-datetime"
+                  >Monday, May 18, 2026 at 1:00 PM</strong
+                >
+              </div>
+              <div class="bk-summary__section">
+                <span class="bk-summary__label">Contact</span>
+                <strong id="sum-name">hai phuong</strong>
+                <span id="sum-email" class="bk-summary__meta"
+                  >luaherry@gmail.com</span
+                >
+                <span id="sum-phone" class="bk-summary__meta"
+                  >+84901234567</span
+                >
+              </div>
+              <div class="bk-summary__total">
+                <span>Estimated total</span>
+                <strong id="sum-total">From </strong>
+              </div>
+            </div>
+
+            <div class="bk-confirm-aside">
+              <div class="bk-confirm-callout">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <div>
+                  <strong>Free cancellation</strong>
+                  <p>
+                    Cancel or reschedule up to 24 hours before your appointment
+                    at no charge.
+                  </p>
+                </div>
+              </div>
+              <div class="bk-confirm-callout">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18a2 2 0 0 1 1.89-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                <div>
+                  <strong>Confirmation by email</strong>
+                  <p>
+                    You'll receive a confirmation and reminder 24 hours before
+                    your visit.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUCCESS -->
+        <section class="bk-panel" id="bk-success">
+          <div class="bk-success">
+            <div class="bk-success__icon">✓</div>
+
+            <h2>Booking Confirmed</h2>
+
+            <p>
+              Thank you for booking with Pet Care Spa. We’ve sent confirmation
+              details to
+              <strong id="success-email"></strong>.
+            </p>
+
+            <div class="bk-success__details" id="success-details"></div>
+
+            <button href="../index.html" class="btn btn-primary">
+              Back to Home
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER NAV -->
+    <div class="bk-footer-nav" id="bk-footer-nav">
+      <div class="bk-footer-nav__inner">
+        <button class="btn btn-secondary" id="bk-back">Back</button>
+
+        <div id="bk-step-info">Step 1 of 5</div>
+
+        <button class="btn btn-primary" id="bk-next" disabled>Continue</button>
+      </div>
+    </div>
+
+    <script>
+      const state = {
+        step: 1,
+        totalSteps: 5,
+        service: null,
+        serviceName: '',
+        servicePrice: 0,
+        serviceDuration: '',
+        petType: null,
+        petSize: null,
+        petAge: null,
+        petName: '',
+        date: null,
+        time: null,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+      };
+
+      let calYear, calMonth;
+
+      const today = new Date();
+      calYear = today.getFullYear();
+      calMonth = today.getMonth();
+
+      const steps = document.querySelectorAll('.bk-step');
+      const lines = document.querySelectorAll('.bk-step-line');
+      const panels = document.querySelectorAll('.bk-panel');
+      const nextBtn = document.getElementById('bk-next');
+      const backBtn = document.getElementById('bk-back');
+
+      function goTo(n) {
+        state.step = n;
+
+        panels.forEach((p) => p.classList.remove('active'));
+
+        const target = document.getElementById(
+          n <= state.totalSteps ? `bk-step-${n}` : 'bk-success'
+        );
+
+        target.classList.add('active');
+
+        steps.forEach((s, i) => {
+          s.classList.remove('active', 'done');
+
+          if (i + 1 < n) s.classList.add('done');
+          if (i + 1 === n) s.classList.add('active');
+        });
+
+        lines.forEach((l, i) => {
+          l.classList.toggle('done', i + 1 < n);
+        });
+
+        backBtn.style.visibility = n > 1 ? 'visible' : 'hidden';
+
+        document.getElementById('bk-step-info').innerText =
+          n <= state.totalSteps ? `Step ${n} of ${state.totalSteps}` : '';
+
+        if (n === 5) renderSummary();
+        if (n > state.totalSteps) renderSuccess();
+
+        validateStep();
+      }
+
+      function validateStep() {
+        let valid = false;
+
+        switch (state.step) {
+          case 1:
+            valid = !!state.service;
+            break;
+
+          case 2:
+            valid = !!state.petType && !!state.petAge;
+            break;
+
+          case 3:
+            valid = !!state.date && !!state.time;
+            break;
+
+          case 4:
+            valid =
+              document.getElementById('bk-first').value &&
+              document.getElementById('bk-last').value &&
+              document.getElementById('bk-email').value &&
+              document.getElementById('bk-phone').value;
+            break;
+
+          case 5:
+            valid = true;
+            break;
+        }
+
+        nextBtn.disabled = !valid;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (state.step === state.totalSteps) {
+          confirmBooking();
+          return;
+        }
+
+        goTo(state.step + 1);
+      });
+
+      backBtn.addEventListener('click', () => {
+        goTo(state.step - 1);
+      });
+
+      /* SERVICES */
+      document.querySelectorAll('.bk-service-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          document
+            .querySelectorAll('.bk-service-card')
+            .forEach((c) => c.classList.remove('selected'));
+
+          card.classList.add('selected');
+
+          state.service = card.dataset.service;
+          state.serviceName = card.dataset.name;
+          state.servicePrice = card.dataset.price;
+          state.serviceDuration = card.dataset.duration;
+
+          validateStep();
+        });
+      });
+
+      /* PET */
+      document.querySelectorAll('.bk-type-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.bk-type-btn')
+            .forEach((b) => b.classList.remove('selected'));
+
+          btn.classList.add('selected');
+
+          state.petType = btn.dataset.type;
+
+          validateStep();
+        });
+      });
+
+      document.querySelectorAll('.bk-size-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.bk-size-btn')
+            .forEach((b) => b.classList.remove('selected'));
+
+          btn.classList.add('selected');
+
+          state.petSize = btn.dataset.size;
+        });
+      });
+
+      document.querySelectorAll('.bk-age-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.bk-age-btn')
+            .forEach((b) => b.classList.remove('selected'));
+
+          btn.classList.add('selected');
+
+          state.petAge = btn.dataset.age;
+
+          validateStep();
+        });
+      });
+
+      /* FORM */
+      ['bk-first', 'bk-last', 'bk-email', 'bk-phone'].forEach((id) => {
+        document.getElementById(id).addEventListener('input', validateStep);
+      });
+
+      /* CALENDAR */
+      const MONTHS = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+
+      function renderCalendar() {
+        const grid = document.getElementById('bk-cal-grid');
+
+        grid.innerHTML = '';
+
+        document.getElementById(
+          'bk-month-label'
+        ).innerText = `${MONTHS[calMonth]} ${calYear}`;
+
+        const firstDay = new Date(calYear, calMonth, 1);
+        const lastDay = new Date(calYear, calMonth + 1, 0);
+
+        let offset = (firstDay.getDay() + 6) % 7;
+
+        for (let i = 0; i < offset; i++) {
+          const d = new Date(calYear, calMonth, -offset + i + 1);
+          grid.appendChild(makeDay(d, true));
+        }
+
+        for (let d = 1; d <= lastDay.getDate(); d++) {
+          grid.appendChild(makeDay(new Date(calYear, calMonth, d), false));
+        }
+      }
+
+      function makeDay(date, otherMonth) {
+        const btn = document.createElement('button');
+
+        btn.className = 'bk-cal-day';
+
+        btn.innerText = date.getDate();
+
+        const isPast =
+          date <
+          new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+        const isSun = date.getDay() === 0;
+
+        if (otherMonth) btn.disabled = true;
+        if (isPast) btn.disabled = true;
+        if (isSun) btn.disabled = true;
+
+        if (date.toDateString() === today.toDateString()) {
+          btn.classList.add('today');
+        }
+
+        if (state.date && state.date.toDateString() === date.toDateString()) {
+          btn.classList.add('selected');
+        }
+
+        btn.addEventListener('click', () => {
+          state.date = date;
+          state.time = null;
+
+          renderCalendar();
+          renderSlots(date);
+
+          validateStep();
+        });
+
+        return btn;
+      }
+
+      function renderSlots(date) {
+        document.getElementById('bk-slots-empty').style.display = 'none';
+        document.getElementById('bk-slots').style.display = 'flex';
+
+        document.getElementById('bk-slots-day').innerText =
+          date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+          });
+
+        const morning = [
+          '9:00 AM',
+          '9:30 AM',
+          '10:00 AM',
+          '10:30 AM',
+          '11:00 AM',
+        ];
+
+        const afternoon = [
+          '1:00 PM',
+          '1:30 PM',
+          '2:00 PM',
+          '2:30 PM',
+          '3:00 PM',
+          '4:00 PM',
+        ];
+
+        const mornWrap = document.getElementById('bk-morning-slots');
+        const aftWrap = document.getElementById('bk-afternoon-slots');
+
+        mornWrap.innerHTML = '';
+        aftWrap.innerHTML = '';
+
+        morning.forEach((t) => mornWrap.appendChild(makeSlot(t)));
+        afternoon.forEach((t) => aftWrap.appendChild(makeSlot(t)));
+      }
+
+      function makeSlot(time) {
+        const btn = document.createElement('button');
+
+        btn.className = 'bk-slot';
+        btn.innerText = time;
+
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.bk-slot')
+            .forEach((s) => s.classList.remove('selected'));
+
+          btn.classList.add('selected');
+
+          state.time = time;
+
+          validateStep();
+        });
+
+        return btn;
+      }
+
+      document.getElementById('bk-prev-month').addEventListener('click', () => {
+        calMonth--;
+
+        if (calMonth < 0) {
+          calMonth = 11;
+          calYear--;
+        }
+
+        renderCalendar();
+      });
+
+      document.getElementById('bk-next-month').addEventListener('click', () => {
+        calMonth++;
+
+        if (calMonth > 11) {
+          calMonth = 0;
+          calYear++;
+        }
+
+        renderCalendar();
+      });
+
+      /* SUMMARY */
+      function renderSummary() {
+        state.firstName = document.getElementById('bk-first').value;
+
+        state.lastName = document.getElementById('bk-last').value;
+
+        state.email = document.getElementById('bk-email').value;
+
+        state.phone = document.getElementById('bk-phone').value;
+
+        document.getElementById('sum-service').innerText = state.serviceName;
+
+        document.getElementById('sum-price').innerText =
+          '$' + state.servicePrice;
+
+        document.getElementById('sum-duration').innerText =
+          state.serviceDuration;
+
+        document.getElementById('sum-pet').innerText = `${
+          state.petType || ''
+        } ${state.petSize || ''}`;
+
+        document.getElementById(
+          'sum-datetime'
+        ).innerText = `${state.date.toDateString()} at ${state.time}`;
+
+        document.getElementById(
+          'sum-name'
+        ).innerText = `${state.firstName} ${state.lastName}`;
+
+        document.getElementById('sum-email').innerText = state.email;
+
+        document.getElementById('sum-phone').innerText = state.phone;
+
+        document.getElementById('sum-total').innerText =
+          '$' + state.servicePrice;
+      }
+
+      /* SUCCESS */
+      function confirmBooking() {
+        nextBtn.disabled = true;
+        nextBtn.innerText = 'Confirming...';
+
+        setTimeout(() => {
+          goTo(6);
+
+          nextBtn.style.display = 'none';
+          backBtn.style.display = 'none';
+        }, 1200);
+      }
+
+      function renderSuccess() {
+        document.getElementById('success-email').innerText = state.email;
+
+        document.getElementById('success-details').innerHTML = `
+      <strong>${state.serviceName}</strong><br>
+      ${state.date.toDateString()} at ${state.time}<br>
+      ${state.firstName} ${state.lastName}<br>
+      ${state.phone}
+    `;
+      }
+
+      /* INIT */
+      renderCalendar();
+      goTo(1);
+    </script>
+  </body>
+</html>

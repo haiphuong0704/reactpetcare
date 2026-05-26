@@ -1,0 +1,195 @@
+<div
+  class="promo-overlay hidden"
+  id="promoOverlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="promoTitle"
+>
+
+  <div class="promo-modal" role="document">
+
+    <!-- LEFT -->
+    <div class="promo-left">
+
+      <div class="promo-paw">
+        🐾
+      </div>
+
+      <div class="promo-badge">
+        Ưu đãi có hạn
+      </div>
+
+      <div class="promo-discount">
+
+        <span class="big">
+          20%
+        </span>
+
+        <span class="sublabel">
+          cho lần đầu tiên
+        </span>
+
+      </div>
+
+      <div class="promo-expiry">
+        Kết thúc sau
+      </div>
+
+      <div class="promo-countdown">
+
+        <div class="countdown-box">
+          <span class="countdown-num" id="cd-h">02</span>
+          <span class="countdown-lbl">giờ</span>
+        </div>
+
+        <div class="countdown-box">
+          <span class="countdown-num" id="cd-m">47</span>
+          <span class="countdown-lbl">phút</span>
+        </div>
+
+        <div class="countdown-box">
+          <span class="countdown-num" id="cd-s">30</span>
+          <span class="countdown-lbl">giây</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="promo-right">
+
+      <!-- CLOSE -->
+      <button
+        class="promo-close"
+        type="button"
+        onclick="closePromo()"
+        aria-label="Đóng popup"
+      >
+        ✕
+      </button>
+
+      <h2 id="promoTitle">
+        Chào mừng đến<br>
+        <em>Petcare Spa!</em>
+      </h2>
+
+      <p class="promo-desc">
+        Nhận ngay ưu đãi độc quyền —
+        giảm 20% tất cả dịch vụ spa &
+        grooming cho lần đặt đầu tiên của bạn.
+      </p>
+
+      <ul class="promo-perks">
+
+        <li>
+          <div class="perk-icon">✂️</div>
+          Grooming & Spa cao cấp
+        </li>
+
+        <li>
+          <div class="perk-icon">🏨</div>
+          Boarding & Daycare 24/7
+        </li>
+
+        <li>
+          <div class="perk-icon">🌿</div>
+          Thức ăn organic PawFeast
+        </li>
+
+        <li>
+          <div class="perk-icon">🚚</div>
+          Giao hàng miễn phí
+        </li>
+
+      </ul>
+
+      <!-- FORM -->
+      <div class="form-state" id="promoFormState">
+
+        <div class="promo-input-group">
+
+          <input
+            class="promo-input"
+            type="text"
+            id="promoName"
+            placeholder="Tên của bạn"
+            autocomplete="name"
+          >
+
+          <input
+            class="promo-input"
+            type="email"
+            id="promoEmail"
+            placeholder="Email để nhận mã giảm giá"
+            autocomplete="email"
+          >
+
+        </div>
+
+        <button
+          class="promo-cta"
+          type="button"
+          onclick="claimOffer()"
+        >
+          🎁 Nhận ưu đãi ngay
+        </button>
+
+        <button
+          class="promo-skip"
+          type="button"
+          onclick="closePromo()"
+        >
+          Không, cảm ơn
+        </button>
+
+        <div class="promo-terms">
+          Điều khoản áp dụng.
+          Mã có hiệu lực trong 7 ngày.
+        </div>
+
+      </div>
+
+      <!-- SUCCESS -->
+      <div
+        class="success-state hidden"
+        id="promoSuccess"
+      >
+
+        <div class="success-icon">
+          🎉
+        </div>
+
+        <div class="success-title">
+          Chúc mừng!
+        </div>
+
+        <div class="success-sub">
+          Mã giảm giá của bạn:
+        </div>
+
+        <div class="success-code">
+          PAWSPA20
+        </div>
+
+        <div class="success-note">
+          Dùng khi đặt lịch —
+          hết hạn sau 7 ngày
+        </div>
+
+        <button 
+            class="promo-cta"
+            type="button"
+            onclick="window.location.href='?page=services'"
+            style="max-width:200px;margin:0 auto;"
+            >
+            Đặt lịch ngay →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
