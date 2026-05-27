@@ -37,9 +37,9 @@ async function showPage(page) {
     window.location.href = './pages/booking.html';
     return;
   }
-  if (page === 'terms') {                        // ← thêm
-    window.location.href = '/pages/terms.html';  // ← thêm
-    return;                                       // ← thêm
+  if (page === 'terms') {
+    window.location.href = '/pages/terms.html';
+    return;
   }
   loaderStart();
   const app = document.getElementById("app");
@@ -88,8 +88,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("cart-container",   "/components/cart.html");
   Cart.render();
 
-  // Lấy page từ URL path
-   const hash = location.hash.replace('#', '');
+  const hash = location.hash.replace('#', '');
   const page = hash || 'home';
   showPage(page);
 
@@ -294,6 +293,7 @@ function initPawfeastPage() {
 
   $$('.s1-tab').forEach(t => t.addEventListener('click', () => activateType(t.dataset.s1)));
   $$('.s2-tab').forEach(t => t.addEventListener('click', () => activateRecipe(t.dataset.s2)));
+
   // Swipe support mobile
   const carousel = document.querySelector('.s3-carousel');
   if (carousel) {
@@ -301,7 +301,6 @@ function initPawfeastPage() {
     carousel.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
     }, { passive: true });
-
     carousel.addEventListener('touchend', (e) => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) {
@@ -316,13 +315,15 @@ function initPawfeastPage() {
     }, { passive: true });
   }
 
-  activateType('unkibble'); // dòng này đã có sẵn
+  activateType('unkibble');
 }
 
 // ===============================
 // MEMBER PAGE INIT
 // ===============================
 function initMemberPage() {
+
+  // ── Testimonial tabs (dog / cat) ──
   function switchPetTab(tab, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -334,6 +335,7 @@ function initMemberPage() {
   }
   window.switchPetTab = switchPetTab;
 
+  // ── Life-stage selector ──
   function switchStage(tab, stage, el) {
     const container = document.getElementById(tab + '-stages');
     if (!container) return;
@@ -355,6 +357,30 @@ function initMemberPage() {
     }
   }
   window.switchStage = switchStage;
+
+  // ── Membership Plans billing toggle ──
+  function mpSetBilling(mode, btn) {
+    // Update toggle buttons
+    document.querySelectorAll('.mp-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Update prices
+    document.querySelectorAll('.mp-price-val').forEach(el => {
+      el.textContent = mode === 'yearly' ? el.dataset.y : el.dataset.m;
+    });
+
+    // Update "billed annually" note
+    document.querySelectorAll('.mp-billing-note').forEach(el => {
+      el.textContent = mode === 'yearly' ? '(billed annually)' : '';
+    });
+
+    // Update strikethrough original price on Plus card
+    const orig = document.querySelector('.mp-price-orig');
+    if (orig) {
+      orig.textContent = mode === 'yearly' ? orig.dataset.y : orig.dataset.m;
+    }
+  }
+  window.mpSetBilling = mpSetBilling;
 }
 
 // ===============================
