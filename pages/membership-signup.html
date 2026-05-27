@@ -469,17 +469,213 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     opacity:1;
 }
     /* ── SUCCESS ── */
-    .success-screen { display: none; text-align: center; padding: 60px 24px; animation: stepIn .5s ease; }
-    .success-screen.active { display: block; }
-    .success-icon { width: 90px; height: 90px; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 2.5rem; box-shadow: 0 12px 36px rgba(45,212,191,.3); animation: popIn .6s cubic-bezier(.34,1.56,.64,1) .2s both; }
-    @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .success-title { font-family: var(--font-display); font-size: 2.2rem; color: var(--brown); margin-bottom: 14px; }
-    .success-title em { color: var(--pink); font-style: italic; }
-    .success-desc { font-size: .95rem; color: var(--brown-mid); line-height: 1.7; max-width: 440px; margin: 0 auto 32px; }
-    .success-details { display: inline-flex; flex-direction: column; gap: 10px; background: #fff; border: 1.5px solid #f0dde6; border-radius: 18px; padding: 20px 32px; margin-bottom: 36px; text-align: left; }
-    .success-detail-row { display: flex; align-items: center; gap: 12px; font-size: .88rem; }
-    .success-detail-row strong { color: var(--brown); }
-    .success-detail-row span:last-child { color: var(--brown-mid); }
+    .success-screen{
+    text-align:center;
+    padding: 50px 20px 80px;
+    animation: fadeUp .5s ease;
+}
+
+.success-confetti{
+    font-size: 18px;
+    margin-bottom: 12px;
+    opacity: .8;
+    letter-spacing: 6px;
+}
+
+.success-icon-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom: 20px;
+}
+
+.success-icon{
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2dd4bf,
+            #0ea5a4
+        );
+
+    color:#fff;
+    font-size: 40px;
+    font-weight: 900;
+
+    box-shadow:
+        0 20px 40px rgba(45,212,191,.28),
+        0 0 0 10px rgba(45,212,191,.10);
+}
+
+.success-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding: 8px 16px;
+    border-radius: 999px;
+
+    background:#f0fdfa;
+    color:#0f766e;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+.success-title{
+    font-family: var(--font-display);
+    font-size: clamp(2rem,4vw,3rem);
+    line-height: 1.1;
+    color: var(--brown);
+    margin-bottom: 14px;
+}
+
+.success-title em{
+    color: var(--pink);
+    font-style: italic;
+}
+
+.success-desc{
+    max-width: 560px;
+    margin: 0 auto 34px;
+
+    font-size: .96rem;
+    line-height: 1.8;
+    color: var(--brown-mid);
+}
+
+.success-details{
+    max-width: 620px;
+    margin: 0 auto 34px;
+
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(249,184,208,.45);
+    border-radius: 28px;
+
+    padding: 10px;
+
+    box-shadow:
+        0 20px 50px rgba(166,53,88,.08);
+}
+
+.success-detail-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding: 18px 20px;
+    border-bottom: 1px solid #f6e4ec;
+}
+
+.success-detail-row:last-child{
+    border-bottom:none;
+}
+
+.success-detail-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.success-detail-left span{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#fff4f8;
+
+    font-size: 18px;
+}
+
+.success-detail-left p{
+    font-size: .82rem;
+    color: var(--brown-light);
+    margin:0;
+}
+
+.success-detail-row strong{
+    color: var(--brown);
+    font-size: .95rem;
+}
+
+.success-actions{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn-home{
+    padding: 14px 32px;
+    border-radius: 999px;
+    text-decoration:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            #c43d71
+        );
+
+    color:#fff;
+    font-weight:800;
+
+    box-shadow:
+        0 12px 28px rgba(166,53,88,.22);
+
+    transition:.25s;
+}
+
+.btn-home:hover{
+    transform: translateY(-2px);
+}
+
+.btn-secondary{
+    padding: 14px 28px;
+    border-radius: 999px;
+
+    border: 1.5px solid #f3d9e6;
+    background:#fff;
+
+    font-weight:700;
+    color: var(--brown);
+
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-secondary:hover{
+    border-color: var(--pink);
+    color: var(--pink);
+    transform: translateY(-2px);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
 
     /* ── BUTTONS ── */
     .btn-row { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
@@ -890,18 +1086,90 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     </div>
 
     <!-- ── SUCCESS ── -->
-    <div class="success-screen" id="success">
-      <div class="success-icon">🎉</div>
-      <h2 class="success-title">Welcome to <em>Petcare Spa!</em></h2>
-      <p class="success-desc">Your membership is confirmed. We've sent a welcome email with everything you need to get started. Your first visit is on us! 🐾</p>
-      <div class="success-details">
-        <div class="success-detail-row"><span>📋</span><span>Plan: <strong id="success-plan">Plus</strong></span></div>
-        <div class="success-detail-row"><span>👤</span><span>Member: <strong id="success-name">—</strong></span></div>
-        <div class="success-detail-row"><span>🐾</span><span>Pet: <strong id="success-pet">—</strong></span></div>
-        <div class="success-detail-row"><span>🎁</span><span><strong>14-day free trial</strong> has started</span></div>
-      </div>
-      <a href="/index.html" class="btn-home">Go to My Dashboard 🐾</a>
+    <div class="success-screen active" id="success">
+
+  <div class="success-confetti">
+    ✨ 🐾 ✨
+  </div>
+
+  <div class="success-icon-wrap">
+    <div class="success-icon">
+      ✓
     </div>
+  </div>
+
+  <div class="success-badge">
+    Membership Activated
+  </div>
+
+  <h2 class="success-title">
+    Welcome to <em>Petcare Spa</em>
+  </h2>
+
+  <p class="success-desc">
+    Your membership has been successfully activated.
+    We’ve sent your welcome details and membership information to your email.
+  </p>
+
+  <div class="success-details">
+
+    <div class="success-detail-row">
+      <div class="success-detail-left">
+        <span>📋</span>
+        <p>Selected Plan</p>
+      </div>
+
+      <strong id="success-plan">
+        Premium
+      </strong>
+    </div>
+
+    <div class="success-detail-row">
+      <div class="success-detail-left">
+        <span>👤</span>
+        <p>Member</p>
+      </div>
+
+      <strong id="success-name">
+        hai phuong
+      </strong>
+    </div>
+
+    <div class="success-detail-row">
+      <div class="success-detail-left">
+        <span>🐶</span>
+        <p>Pet</p>
+      </div>
+
+      <strong id="success-pet">
+        Benny (SS)
+      </strong>
+    </div>
+
+    <div class="success-detail-row">
+      <div class="success-detail-left">
+        <span>🎁</span>
+        <p>Free Trial</p>
+      </div>
+
+      <strong>
+        14 Days
+      </strong>
+    </div>
+
+  </div>
+
+  <div class="success-actions">
+    <a href="/index.html" class="btn-home">
+      Go to Dashboard
+    </a>
+
+    <button class="btn-secondary">
+      Book First Visit
+    </button>
+  </div>
+
+</div>
 
   </div><!-- /signup-card -->
 
