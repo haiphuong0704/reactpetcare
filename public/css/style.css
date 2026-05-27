@@ -1007,10 +1007,16 @@ nav {
   white-space: nowrap;
   line-height: 1;
 }
+/*
 .lang-sel__btn:hover{
   background:#EAF6FF;
   border-color:#8CCBFF;
   color:#1496E8;
+}*/
+.lang-sel__btn:hover {
+  background: #FDEAF4;
+  border-color: #F5A8CF;
+  color: #D94F93;
 }
 .lang-sel__btn svg {
   width: 13px;
