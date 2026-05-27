@@ -212,7 +212,7 @@ function initShopPage() {
       const id    = p.id || ('prod-' + idx);
       const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
       return `
-        <div class="product-card">
+         <div class="product-card" onclick="window.location.href='/pages/product-detail.html'" style="cursor:pointer">
           <div class="product-img-wrap" style="position:relative;">
             ${badge}
             <img src="${p.img}" alt="${p.name}">
