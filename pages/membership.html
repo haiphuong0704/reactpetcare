@@ -269,8 +269,9 @@
 }
 
   .testimonials h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 500;
     text-align: center;
     color: #c0593b;
     margin-bottom: 32px;
@@ -388,7 +389,7 @@
   }
   .review-photo img {
     width: 100%; 
-    height: 240px;
+    height: 242px;
     object-fit: cover;
     display: block;
   }
@@ -402,15 +403,15 @@
     flex: 1;
     background: #ffffff;
     border-radius: 0 16px 16px 0;
-    padding: 32px 32px 28px;
+    padding: 28px 28px 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     animation: fadeIn .35s ease;
   }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  .review-name {
+  .review-name span.paw { color: #c0593b; font-size: 1.1rem; }
+  /*.review-name {
     font-weight: 700;
     font-size: 1.05rem;
     color: #3b1a0e;
@@ -419,7 +420,6 @@
     align-items: center;
     gap: 8px;
   }
-  .review-name span.paw { color: #c0593b; font-size: 1.1rem; }
   .review-meta {
     font-size: .82rem;
     color: #9b7060;
@@ -434,6 +434,35 @@
   .review-savings {
     font-weight: 700;
     font-size: 1rem;
+    color: #c0593b;
+  }
+    */
+  .review-name {
+    font-weight: 700;
+    font-family: var(--font-hand);
+    font-size: 23px;
+    color: #3b1a0e;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .review-meta {
+    font-size: 17px;
+    font-family: var(--font-hand);
+    color: #9b7060;
+    margin-bottom: 16px;
+  }
+  .review-text {
+    font-size: 20px;
+    line-height: 1.2;
+    color: #5a3525;
+    font-family: var(--font-hand);
+  }
+  .review-savings {
+    font-weight: 700;
+    font-family: var(--font-hand);
+    font-size: 22px;
     color: #c0593b;
   }
 
@@ -466,7 +495,7 @@
     .stage-selector { gap: 0; }
     .stage-item { width: 100px; }
   }
-    /* ─── Membership Plans Section ─────────────────────────────────── */
+  /* ─── Membership Plans Section ─────────────────────────────────── */
   .mb-tiers {
     padding: 80px 40px;
     background: linear-gradient(160deg, #fffafb 0%, #fff1f5 100%);
@@ -503,7 +532,8 @@
  
   .mb-tiers .section-header h2 em {
     font-style: italic;
-    color: #a63558;
+    /*color: #a63558;*/
+      color: #d4317e
   }
  
   .mb-tiers .section-header p {
@@ -516,9 +546,9 @@
  
   .mb-tiers .section-hand {
     display: block;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-hand);
     font-style: italic;
-    font-size: .9rem;
+    font-size: 26px;
     color: #a63558;
     opacity: .6;
     margin-top: 6px;
@@ -553,7 +583,6 @@
  
   /* Featured */
   .mb-tier-card--featured {
-    background: linear-gradient(160deg, #fff0f5 0%, #fce4ee 100%);
     border: 2px solid #f9b8d0;
     box-shadow: 0 16px 48px rgba(166,53,88,.15);
     transform: translateY(-10px) scale(1.02);
@@ -566,7 +595,9 @@
  
   /* Badge */
   .mb-tier-card__badge {
-    display: inline-block;
+    position: absolute;
+    top: -14px;
+    left: 28px;
     background: #2dd4bf;
     color: #fff;
     font-size: .72rem;
@@ -575,8 +606,6 @@
     text-transform: uppercase;
     padding: 5px 16px;
     border-radius: 30px;
-    margin-bottom: 18px;
-    width: fit-content;
   }
  
   /* Header */
