@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Membership — PetCare Spa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --pink:        #d4317e;
+      --pink-deep:   #a8185a;
+      --pink-dark:   #7c2341;
+      --pink-pale:   #fdf2f8;
+      --pink-border: #e3cdd5;
+      --teal:        #2dd4bf;
+      --teal-dark:   #0e9f8e;
+      --gold:        #f59e0b;
+      --white:       #fff;
+      --dark:        #1a0e12;
+      --gray:        #6b7280;
+      --border:      #f0e6ec;
+      --font-body:   'Manrope', sans-serif;
+      --font-display:'Playfair Display', Georgia, serif;
+      --font-hand:   'Caveat', cursive;
+      --ease:        cubic-bezier(0.22,1,0.36,1);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:var(--font-body);color:var(--dark);background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+    /* ── HEADER ── */
+    .ms-header{
+      position:sticky;top:0;z-index:999;
+      height:68px;
+      background:#fff;
+      border-bottom:1.5px solid var(--border);
+      box-shadow:0 2px 20px rgba(212,49,126,.07);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 32px;
+    }
+    .ms-logo{
+      font-family:var(--font-display);
+      font-size:1.35rem;font-weight:500;
+      letter-spacing:1.5px;text-transform:uppercase;
+      color:var(--dark);text-decoration:none;
+    }
+    .ms-logo span{color:var(--pink);}
+
+    /* stepper */
+    .ms-stepper{display:flex;align-items:center;gap:0;}
+    .ms-step{display:flex;flex-direction:column;align-items:center;gap:5px;}
+    .ms-step__num{
+      width:32px;height:32px;border-radius:50%;
+      border:1.5px solid var(--pink-border);
+      background:#f8f4f6;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.78rem;font-weight:800;color:#887278;
+      transition:.3s;
+    }
+    .ms-step__label{font-size:.7rem;font-weight:700;color:#887278;transition:.3s;}
+    .ms-step.active .ms-step__num{background:var(--pink);border-color:var(--pink);color:#fff;}
+    .ms-step.active .ms-step__label{color:var(--pink);}
+    .ms-step.done .ms-step__num{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);}
+    .ms-step-line{width:48px;height:2px;background:var(--pink-border);margin:0 6px 18px;transition:.3s;}
+    .ms-step-line.done{background:var(--pink);}
+
+    .ms-exit{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:.82rem;font-weight:700;color:var(--gray);
+      text-decoration:none;padding:7px 16px;
+      border:1.5px solid var(--border);border-radius:999px;
+      transition:.2s;
+    }
+    .ms-exit:hover{color:var(--pink);border-color:var(--pink-border);background:var(--pink-pale);}
+
+    /* ── MAIN ── */
+    .ms-main{min-height:calc(100vh - 68px - 76px);}
+
+    /* panels */
+    .ms-panel{display:none;animation:fadeUp .35s var(--ease);}
+    .ms-panel.active{display:block;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+    .ms-panel__inner{
+      max-width:1100px;margin:0 auto;
+      padding:56px 32px 40px;
+    }
+    .ms-panel__inner--wide{max-width:1200px;}
+    .ms-panel__inner--split{
+      max-width:1100px;margin:0 auto;
+      padding:56px 32px 40px;
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:48px;
+      align-items:start;
+    }
+
+    .ms-panel__hd{margin-bottom:40px;}
+    .ms-panel__hd h1{
+      font-family:var(--font-display);
+      font-size:clamp(1.8rem,3.5vw,2.6rem);
+      font-weight:400;letter-spacing:-.025em;
+      color:var(--dark);margin-bottom:10px;line-height:1.15;
+    }
+    .ms-panel__hd p{font-size:.95rem;color:var(--gray);line-height:1.75;max-width:520px;}
+
+    /* ── PLAN CARDS ── */
+    .ms-plans-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .ms-plan-card{
+      background:#fff;
+      border:1.5px solid var(--border);
+      border-radius:28px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+      position:relative;
+      display:flex;flex-direction:column;
+    }
+    .ms-plan-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 48px rgba(212,49,126,.12);
+      border-color:var(--pink-border);
+    }
+    .ms-plan-card.selected{
+      border-color:var(--pink);
+      box-shadow:0 0 0 3px rgba(212,49,126,.15),0 20px 48px rgba(212,49,126,.12);
+    }
+    .ms-plan-card--featured{
+      background:linear-gradient(160deg,#1a0e12 0%,#2b1620 60%,#3c1228 100%);
+      border-color:transparent;
+    }
+    .ms-plan-card--featured .ms-plan-card__tier{color:var(--teal);}
+    .ms-plan-card--featured .ms-plan-card__price strong{color:#fff;}
+    .ms-plan-card--featured .ms-plan-card__price span{color:rgba(255,255,255,.5);}
+    .ms-plan-card--featured .ms-plan-card__tagline{color:rgba(255,255,255,.6);}
+    .ms-plan-card--featured .ms-plan-card__features li{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.08);}
+    .ms-plan-card--featured .ms-plan-card__features li::before{background:rgba(255,255,255,.15);color:#fff;}
+    .ms-plan-card--featured .ms-plan-card__footer{border-color:rgba(255,255,255,.1);}
+    .ms-plan-card--featured .ms-plan-card__select-label{color:rgba(255,255,255,.5);}
+    .ms-plan-card--featured .ms-plan-card__selected-label{color:#fff;}
+    .ms-plan-card--featured.selected{border-color:var(--teal);box-shadow:0 0 0 3px rgba(45,212,191,.2),0 20px 48px rgba(0,0,0,.3);}
+
+    .ms-plan-card__badge{
+      position:absolute;top:18px;right:18px;
+      background:var(--teal);color:#fff;
+      font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+      padding:4px 12px;border-radius:999px;
+    }
+    .ms-plan-card__header{padding:28px 26px 20px;}
+    .ms-plan-card__tier{
+      display:block;font-size:.72rem;font-weight:800;
+      letter-spacing:.14em;text-transform:uppercase;
+      color:var(--pink);margin-bottom:12px;
+    }
+    .ms-plan-card__price{display:flex;align-items:baseline;gap:4px;margin-bottom:10px;}
+    .ms-plan-card__price strong{font-family:var(--font-display);font-size:1.7rem;font-weight:500;color:var(--dark);}
+    .ms-plan-card__price span{font-size:.82rem;color:var(--gray);}
+    .ms-plan-card__tagline{font-size:.84rem;color:var(--gray);line-height:1.6;}
+
+    .ms-plan-card__features{
+      list-style:none;padding:0 26px;flex:1;
+      display:flex;flex-direction:column;gap:8px;
+      margin-bottom:24px;
+    }
+    .ms-plan-card__features li{
+      font-size:.84rem;color:#4a3840;
+      display:flex;align-items:center;gap:10px;
+      padding-bottom:8px;border-bottom:1px solid var(--border);
+      line-height:1.5;
+    }
+    .ms-plan-card__features li:last-child{border-bottom:none;}
+    .ms-plan-card__features li::before{
+      content:'✓';
+      width:18px;height:18px;border-radius:50%;
+      background:var(--pink-pale);color:var(--pink);
+      font-size:.7rem;font-weight:900;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+
+    .ms-plan-card__footer{
+      padding:18px 26px;
+      border-top:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .ms-plan-card__select-label{font-size:.82rem;font-weight:700;color:var(--gray);}
+    .ms-plan-card__selected-label{
+      font-size:.82rem;font-weight:800;color:var(--pink);
+      display:none;align-items:center;gap:6px;
+    }
+    .ms-plan-card.selected .ms-plan-card__select-label{display:none;}
+    .ms-plan-card.selected .ms-plan-card__selected-label{display:flex;}
+
+    .ms-plans-note{
+      text-align:center;margin-top:24px;
+      font-size:.8rem;color:var(--gray);
+    }
+
+    /* ── FORM ── */
+    .ms-form-section{display:flex;flex-direction:column;gap:22px;}
+    .ms-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .ms-form-group{display:flex;flex-direction:column;gap:7px;}
+    .ms-label{font-size:.78rem;font-weight:700;color:#4a3840;letter-spacing:.02em;}
+    .ms-label-opt{font-weight:400;color:var(--gray);}
+    .ms-input{
+      width:100%;padding:13px 16px;
+      border:1.5px solid var(--pink-border);border-radius:14px;
+      font-family:var(--font-body);font-size:.92rem;color:var(--dark);
+      background:#fff;outline:none;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .ms-input::placeholder{color:#bba8ae;}
+    .ms-input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(212,49,126,.08);}
+    .ms-input.error{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.1);}
+
+    /* btn group */
+    .ms-btn-group{display:flex;gap:10px;flex-wrap:wrap;}
+    .ms-select-btn{
+      padding:10px 18px;border-radius:12px;
+      border:1.5px solid var(--pink-border);background:#fff;
+      font-family:var(--font-body);font-size:.85rem;font-weight:700;
+      color:#4a3840;cursor:pointer;
+      display:flex;align-items:center;gap:7px;
+      transition:.2s;
+    }
+    .ms-select-btn:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-pale);}
+    .ms-select-btn.active{background:var(--pink-pale);border-color:var(--pink);color:var(--pink);}
+
+    .ms-privacy-note{
+      font-size:.78rem;color:var(--gray);line-height:1.6;
+      display:flex;align-items:flex-start;gap:7px;margin-top:4px;
+    }
+    .ms-privacy-note a{color:var(--pink);text-decoration:none;}
+    .ms-privacy-note svg{flex-shrink:0;margin-top:2px;}
+
+    /* ── SUMMARY ── */
+    .ms-summary{
+      position:sticky;top:88px;
+      background:#fff;
+      border:1.5px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 8px 32px rgba(26,14,18,.06);
+    }
+    .ms-summary__inner{padding:28px;}
+    .ms-summary__label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:8px;}
+    .ms-summary__plan{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--dark);margin-bottom:4px;}
+    .ms-summary__price{font-size:.88rem;font-weight:700;color:var(--pink);margin-bottom:0;}
+    .ms-summary__divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
+    .ms-summary__row{display:flex;justify-content:space-between;margin-bottom:10px;font-size:.84rem;}
+    .ms-summary__row span{color:var(--gray);}
+    .ms-summary__row strong{color:var(--dark);}
+    .ms-summary__perks-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px;}
+    .ms-summary__perks{list-style:none;display:flex;flex-direction:column;gap:7px;}
+    .ms-summary__perks li{font-size:.8rem;color:#4a3840;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+    .ms-summary__perks li::before{content:'🐾';font-size:.72rem;flex-shrink:0;margin-top:1px;}
+    .ms-summary__footer{font-size:.75rem;color:var(--gray);text-align:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);}
+
+    /* ── SUCCESS ── */
+    .ms-success{
+      max-width:600px;margin:0 auto;
+      padding:64px 32px 80px;
+      text-align:center;
+    }
+    .ms-success__icon{
+      width:72px;height:72px;border-radius:50%;
+      background:linear-gradient(145deg,var(--pink),var(--pink-dark));
+      color:#fff;font-size:1.8rem;
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 24px;
+      box-shadow:0 12px 40px rgba(212,49,126,.35);
+    }
+    .ms-success__eyebrow{
+      font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--teal-dark);display:block;margin-bottom:12px;
+    }
+    .ms-success__heading{
+      font-family:var(--font-display);
+      font-size:clamp(2rem,4vw,3rem);font-weight:400;
+      letter-spacing:-.03em;color:var(--dark);margin-bottom:12px;
+      line-height:1.1;
+    }
+    .ms-success__heading span{color:var(--pink);font-style:italic;}
+    .ms-success__sub{font-size:.95rem;color:var(--gray);line-height:1.75;margin-bottom:28px;}
+    .ms-success__member-id{
+      display:inline-block;
+      background:var(--pink-pale);border:1.5px dashed var(--pink-border);
+      border-radius:12px;padding:10px 24px;
+      font-family:var(--font-display);font-size:1.1rem;font-weight:500;
+      color:var(--pink);letter-spacing:.06em;margin-bottom:40px;
+    }
+    .ms-success__next{text-align:left;margin-bottom:40px;}
+    .ms-success__next-label{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:18px;}
+    .ms-success__steps{display:flex;flex-direction:column;gap:16px;}
+    .ms-success__step{display:flex;gap:16px;align-items:flex-start;}
+    .ms-success__step-num{
+      width:28px;height:28px;border-radius:50%;flex-shrink:0;
+      background:var(--pink-pale);border:1.5px solid var(--pink-border);
+      color:var(--pink);font-size:.78rem;font-weight:800;
+      display:flex;align-items:center;justify-content:center;margin-top:2px;
+    }
+    .ms-success__step strong{display:block;font-size:.9rem;margin-bottom:4px;color:var(--dark);}
+    .ms-success__step p{font-size:.83rem;color:var(--gray);line-height:1.6;margin:0;}
+    .ms-success__actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+    /* ── BUTTONS ── */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      font-family:var(--font-body);font-size:.88rem;font-weight:700;
+      border:1.5px solid transparent;border-radius:999px;
+      padding:.85rem 1.75rem;white-space:nowrap;
+      text-decoration:none;cursor:pointer;
+      transition:background .2s,transform .15s,box-shadow .2s;
+    }
+    .btn-primary{background:var(--pink);color:#fff;border-color:var(--pink);box-shadow:0 4px 16px rgba(212,49,126,.25);}
+    .btn-primary:hover{background:var(--pink-deep);transform:translateY(-1px);box-shadow:0 8px 24px rgba(212,49,126,.32);}
+    .btn-light{background:#fff;color:var(--dark);border-color:var(--border);}
+    .btn-light:hover{border-color:var(--pink-border);background:var(--pink-pale);}
+    .btn-lg{padding:1rem 2.2rem;font-size:.95rem;}
+
+    /* ── FOOTER NAV ── */
+    .ms-footer-nav{
+      position:sticky;bottom:0;
+      background:#fff;border-top:1.5px solid var(--border);
+      padding:16px 32px;
+      display:flex;align-items:center;justify-content:flex-end;
+      gap:12px;
+      box-shadow:0 -4px 20px rgba(26,14,18,.06);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .ms-plans-grid{grid-template-columns:1fr;}
+      .ms-panel__inner--split{grid-template-columns:1fr;}
+      .ms-summary{position:static;}
+    }
+    @media(max-width:600px){
+      .ms-header{padding:0 16px;}
+      .ms-step__label{display:none;}
+      .ms-step-line{width:28px;}
+      .ms-panel__inner,.ms-panel__inner--wide,.ms-panel__inner--split{padding:32px 16px 32px;}
+      .ms-form-row{grid-template-columns:1fr;}
+      .ms-footer-nav{padding:12px 16px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ms-header">
+  <a href="/" class="ms-logo">Petcare <span>Spa</span></a>
+
+  <div class="ms-stepper" id="ms-stepper">
+    <div class="ms-step active" data-step="1">
+      <div class="ms-step__num">1</div>
+      <span class="ms-step__label">Plan</span>
+    </div>
+    <div class="ms-step-line" id="line-1-2"></div>
+    <div class="ms-step" data-step="2">
+      <div class="ms-step__num">2</div>
+      <span class="ms-step__label">Your pet</span>
+    </div>
+    <div class="ms-step-line" id="line-2-3"></div>
+    <div class="ms-step" data-step="3">
+      <div class="ms-step__num">3</div>
+      <span class="ms-step__label">Details</span>
+    </div>
+  </div>
+
+  <a href="/" class="ms-exit">
+    <i class="fa fa-times" style="font-size:.75rem;"></i> Exit
+  </a>
+</header>
+
+<!-- MAIN -->
+<main class="ms-main" id="ms-main">
+
+  <!-- STEP 1: PLAN -->
+  <div class="ms-panel active" id="ms-panel-1">
+    <div class="ms-panel__inner ms-panel__inner--wide">
+      <div class="ms-panel__hd">
+        <h1>Choose your wellness plan</h1>
+        <p>Start on any plan. Upgrade, pause, or cancel anytime — no contracts, no hidden fees.</p>
+      </div>
+
+      <div class="ms-plans-grid">
+
+        <!-- Essential -->
+        <div class="ms-plan-card" data-plan="essential" data-price="1.390.000₫" onclick="selectPlan(this)">
+          <div class="ms-plan-card__header">
+            <span class="ms-plan-card__tier">Essential</span>
+            <div class="ms-plan-card__price">
+              <strong>1.390.000₫</strong><span>/ month</span>
+            </div>
+            <p class="ms-plan-card__tagline">Solid preventive care for healthy adult pets.</p>
+          </div>
+          <ul class="ms-plan-card__features">
+            <li>Annual comprehensive health exam</li>
+            <li>2 vet consultations / year</li>
+            <li>Core vaccination review</li>
+            <li>Dental health screening</li>
+            <li>10% grooming discount</li>
+            <li>Email support</li>
+          </ul>
+          <div class="ms-plan-card__footer">
+            <span class="ms-plan-card__select-label">Select plan</span>
+            <span class="ms-plan-card__selected-label">
+              <i class="fa fa-check"></i> Selected
+            </span>
+          </div>
+        </div>
+
+        <!-- Premium -->
+        <div class="ms-plan-card ms-plan-card--featured selected" data-plan="premium" data-price="2.190.000₫" onclick="selectPlan(this)">
+          <div class="ms-plan-card__badge">Most Popular</div>
+          <div class="ms-plan-card__header">
+            <span class="ms-plan-card__tier">Premium</span>
+            <div class="ms-plan-card__price">
+              <strong>2.190.000₫</strong><span>/ month</span>
+            </div>
+            <p class="ms-plan-card__tagline">Comprehensive care for pets at every life stage.</p>
+          </div>
+          <ul class="ms-plan-card__features">
+            <li>Quarterly health reviews</li>
+            <li>6 vet consultations / year</li>
+            <li>Full vaccination schedule</li>
+            <li>Nutrition consultation</li>
+            <li>Dental cleaning (1×/year)</li>
+            <li>20% grooming discount</li>
+            <li>Priority booking</li>
+            <li>24/7 phone support</li>
+          </ul>
+          <div class="ms-plan-card__footer">
+            <span class="ms-plan-card__select-label">Select plan</span>
+            <span class="ms-plan-card__selected-label">
+              <i class="fa fa-check"></i> Selected
+            </span>
+          </div>
+        </div>
+
+        <!-- Elite -->
+        <div class="ms-plan-card" data-plan="elite" data-price="3.290.000₫" onclick="selectPlan(this)">
+          <div class="ms-plan-card__header">
+            <span class="ms-plan-card__tier">Elite</span>
+            <div class="ms-plan-card__price">
+              <strong>3.290.000₫</strong><span>/ month</span>
+            </div>
+            <p class="ms-plan-card__tagline">Concierge-level care with zero compromises.</p>
+          </div>
+          <ul class="ms-plan-card__features">
+            <li>Monthly wellness check-ins</li>
+            <li>Unlimited vet consultations</li>
+            <li>Full vaccination + parasite plan</li>
+            <li>Personalized nutrition plan</li>
+            <li>Unlimited dental cleanings</li>
+            <li>Free grooming sessions</li>
+            <li>Dedicated wellness specialist</li>
+            <li>Same-day appointments</li>
+            <li>Concierge 24/7 support</li>
+          </ul>
+          <div class="ms-plan-card__footer">
+            <span class="ms-plan-card__select-label">Select plan</span>
+            <span class="ms-plan-card__selected-label">
+              <i class="fa fa-check"></i> Selected
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <p class="ms-plans-note">All plans billed monthly · No contracts · Cancel anytime</p>
+    </div>
+  </div>
+
+  <!-- STEP 2: PET -->
+  <div class="ms-panel" id="ms-panel-2">
+    <div class="ms-panel__inner">
+      <div class="ms-panel__hd">
+        <h1>Tell us about your pet</h1>
+        <p>This helps us personalise your wellness plan from day one.</p>
+      </div>
+      <div class="ms-form-section">
+
+        <div class="ms-form-group">
+          <label class="ms-label" for="ms-pet-name">Pet's name</label>
+          <input class="ms-input" type="text" id="ms-pet-name" placeholder="e.g. Luna" autocomplete="off"/>
+        </div>
+
+        <div class="ms-form-group">
+          <label class="ms-label">Pet type</label>
+          <div class="ms-btn-group" id="ms-pet-type-group">
+            <button class="ms-select-btn" type="button" data-value="dog" onclick="selectBtn(this,'ms-pet-type-group')">🐶 Dog</button>
+            <button class="ms-select-btn" type="button" data-value="cat" onclick="selectBtn(this,'ms-pet-type-group')">🐱 Cat</button>
+            <button class="ms-select-btn" type="button" data-value="rabbit" onclick="selectBtn(this,'ms-pet-type-group')">🐰 Rabbit</button>
+            <button class="ms-select-btn" type="button" data-value="other" onclick="selectBtn(this,'ms-pet-type-group')">Other</button>
+          </div>
+        </div>
+
+        <div class="ms-form-group">
+          <label class="ms-label" for="ms-pet-breed">Breed <span class="ms-label-opt">(optional)</span></label>
+          <input class="ms-input" type="text" id="ms-pet-breed" placeholder="e.g. Golden Retriever"/>
+        </div>
+
+        <div class="ms-form-group">
+          <label class="ms-label">Age</label>
+          <div class="ms-btn-group" id="ms-age-group">
+            <button class="ms-select-btn" type="button" data-value="puppy" onclick="selectBtn(this,'ms-age-group')">Under 2 yrs</button>
+            <button class="ms-select-btn" type="button" data-value="adult" onclick="selectBtn(this,'ms-age-group')">2–6 yrs</button>
+            <button class="ms-select-btn" type="button" data-value="senior" onclick="selectBtn(this,'ms-age-group')">7+ yrs</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: DETAILS -->
+  <div class="ms-panel" id="ms-panel-3">
+    <div class="ms-panel__inner ms-panel__inner--split">
+
+      <div class="ms-panel__form">
+        <div class="ms-panel__hd">
+          <h1>Your details</h1>
+          <p>We'll use this to set up your member account and send your welcome pack.</p>
+        </div>
+        <div class="ms-form-section">
+
+          <div class="ms-form-row">
+            <div class="ms-form-group">
+              <label class="ms-label" for="ms-first-name">First name</label>
+              <input class="ms-input" type="text" id="ms-first-name" placeholder="First name" autocomplete="given-name"/>
+            </div>
+            <div class="ms-form-group">
+              <label class="ms-label" for="ms-last-name">Last name</label>
+              <input class="ms-input" type="text" id="ms-last-name" placeholder="Last name" autocomplete="family-name"/>
+            </div>
+          </div>
+
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-email">Email</label>
+            <input class="ms-input" type="email" id="ms-email" placeholder="your@email.com" autocomplete="email"/>
+          </div>
+
+          <div class="ms-form-group">
+            <label class="ms-label" for="ms-phone">Phone <span class="ms-label-opt">(optional)</span></label>
+            <input class="ms-input" type="tel" id="ms-phone" placeholder="+84 000 000 0000" autocomplete="tel"/>
+          </div>
+
+          <p class="ms-privacy-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Your data is encrypted and never shared.
+            <a href="/pages/terms.html?tab=privacy">Privacy policy</a>
+          </p>
+
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <aside class="ms-summary" id="ms-summary">
+        <div class="ms-summary__inner">
+          <p class="ms-summary__label">Your plan</p>
+          <div class="ms-summary__plan" id="ms-summary-plan">Premium</div>
+          <div class="ms-summary__price" id="ms-summary-price">2.190.000₫ / month</div>
+          <div class="ms-summary__divider"></div>
+          <div class="ms-summary__row"><span>Pet</span><strong id="ms-summary-pet-name">—</strong></div>
+          <div class="ms-summary__row"><span>Type</span><strong id="ms-summary-pet-type">—</strong></div>
+          <div class="ms-summary__row"><span>Age</span><strong id="ms-summary-pet-age">—</strong></div>
+          <div class="ms-summary__divider"></div>
+          <p class="ms-summary__perks-label">What's included</p>
+          <ul class="ms-summary__perks" id="ms-summary-perks"></ul>
+          <p class="ms-summary__footer">No contract · Cancel anytime</p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="ms-panel" id="ms-panel-success">
+    <div class="ms-panel__inner ms-success">
+      <div class="ms-success__icon">🐾</div>
+      <span class="ms-success__eyebrow">Welcome to Petcare Spa</span>
+      <h1 class="ms-success__heading">You're in, <span id="ms-success-name">there</span>.</h1>
+      <p class="ms-success__sub">
+        Your <strong id="ms-success-plan">Premium</strong> plan is now active for <strong id="ms-success-pet">your pet</strong>.
+      </p>
+      <div class="ms-success__member-id">Member #<span id="ms-success-id">PCS-00000</span></div>
+
+      <div class="ms-success__next">
+        <p class="ms-success__next-label">What happens next</p>
+        <div class="ms-success__steps">
+          <div class="ms-success__step">
+            <span class="ms-success__step-num">1</span>
+            <div><strong>Welcome email on its way</strong><p>Your plan details and member guide will arrive within a few minutes.</p></div>
+          </div>
+          <div class="ms-success__step">
+            <span class="ms-success__step-num">2</span>
+            <div><strong>Book your first visit</strong><p>Schedule your pet's initial health assessment — included in your plan.</p></div>
+          </div>
+          <div class="ms-success__step">
+            <span class="ms-success__step-num">3</span>
+            <div><strong>Meet your wellness specialist</strong><p>We'll assign a dedicated specialist to your pet's care within 24 hours.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-success__actions">
+        <a href="/pages/booking.html" class="btn btn-primary btn-lg">Book first appointment</a>
+        <a href="/" class="btn btn-light btn-lg">Back to home</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER NAV -->
+<div class="ms-footer-nav" id="ms-footer-nav">
+  <button class="btn btn-light" id="ms-back" style="display:none" onclick="prevStep()">
+    <i class="fa fa-arrow-left"></i> Back
+  </button>
+  <button class="btn btn-primary" id="ms-continue" onclick="nextStep()">
+    Continue <i class="fa fa-arrow-right"></i>
+  </button>
+</div>
+
+<script>
+  const PLANS = {
+    essential: {
+      name: 'Essential', price: '1.390.000₫',
+      perks: ['Annual health exam','2 vet consultations / year','Core vaccination review','Dental health screening','10% grooming discount','Email support']
+    },
+    premium: {
+      name: 'Premium', price: '2.190.000₫',
+      perks: ['Quarterly health reviews','6 vet consultations / year','Full vaccination schedule','Nutrition consultation','Dental cleaning (1×/year)','20% grooming discount','Priority booking','24/7 phone support']
+    },
+    elite: {
+      name: 'Elite', price: '3.290.000₫',
+      perks: ['Monthly wellness check-ins','Unlimited vet consultations','Full vaccination + parasite plan','Personalized nutrition plan','Unlimited dental cleanings','Free grooming sessions','Dedicated wellness specialist','Same-day appointments','Concierge 24/7 support']
+    }
+  };
+
+  let currentStep = 1;
+  let selectedPlan = 'premium';
+
+  function selectPlan(card) {
+    document.querySelectorAll('.ms-plan-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedPlan = card.dataset.plan;
+  }
+
+  function selectBtn(btn, groupId) {
+    document.querySelectorAll(`#${groupId} .ms-select-btn`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function updateSummary() {
+    const plan = PLANS[selectedPlan];
+    document.getElementById('ms-summary-plan').textContent = plan.name;
+    document.getElementById('ms-summary-price').textContent = plan.price + ' / month';
+
+    const petName = document.getElementById('ms-pet-name')?.value || '—';
+    const petTypeBtn = document.querySelector('#ms-pet-type-group .ms-select-btn.active');
+    const petAgeBtn  = document.querySelector('#ms-age-group .ms-select-btn.active');
+
+    document.getElementById('ms-summary-pet-name').textContent = petName || '—';
+    document.getElementById('ms-summary-pet-type').textContent = petTypeBtn ? petTypeBtn.textContent.trim() : '—';
+    document.getElementById('ms-summary-pet-age').textContent  = petAgeBtn  ? petAgeBtn.textContent.trim()  : '—';
+
+    const perksEl = document.getElementById('ms-summary-perks');
+    perksEl.innerHTML = plan.perks.slice(0,5).map(p => `<li>${p}</li>`).join('');
+  }
+
+  function validateStep(step) {
+    if (step === 2) {
+      const name = document.getElementById('ms-pet-name').value.trim();
+      const typeBtn = document.querySelector('#ms-pet-type-group .ms-select-btn.active');
+      const ageBtn  = document.querySelector('#ms-age-group .ms-select-btn.active');
+      if (!name) { document.getElementById('ms-pet-name').classList.add('error'); document.getElementById('ms-pet-name').focus(); return false; }
+      if (!typeBtn) { alert('Please select your pet type.'); return false; }
+      if (!ageBtn)  { alert('Please select your pet\'s age.'); return false; }
+    }
+    if (step === 3) {
+      const first = document.getElementById('ms-first-name').value.trim();
+      const last  = document.getElementById('ms-last-name').value.trim();
+      const email = document.getElementById('ms-email').value.trim();
+      let ok = true;
+      [['ms-first-name',first],['ms-last-name',last],['ms-email',email]].forEach(([id,val]) => {
+        if (!val) { document.getElementById(id).classList.add('error'); ok = false; }
+        else document.getElementById(id).classList.remove('error');
+      });
+      if (!ok) return false;
+      if (!email.includes('@')) { document.getElementById('ms-email').classList.add('error'); return false; }
+    }
+    return true;
+  }
+
+  function nextStep() {
+    if (!validateStep(currentStep)) return;
+
+    if (currentStep === 3) {
+      // Show success
+      goToPanel('success');
+      document.getElementById('ms-footer-nav').style.display = 'none';
+
+      const firstName = document.getElementById('ms-first-name').value.trim();
+      const petName   = document.getElementById('ms-pet-name').value.trim();
+      const plan      = PLANS[selectedPlan];
+      const memberId  = 'PCS-' + Math.floor(10000 + Math.random() * 90000);
+
+      document.getElementById('ms-success-name').textContent = firstName;
+      document.getElementById('ms-success-plan').textContent = plan.name;
+      document.getElementById('ms-success-pet').textContent  = petName || 'your pet';
+      document.getElementById('ms-success-id').textContent   = memberId;
+      return;
+    }
+
+    currentStep++;
+    goToPanel(currentStep);
+    updateStepper();
+    if (currentStep === 3) updateSummary();
+  }
+
+  function prevStep() {
+    if (currentStep <= 1) return;
+    currentStep--;
+    goToPanel(currentStep);
+    updateStepper();
+  }
+
+  function goToPanel(id) {
+    document.querySelectorAll('.ms-panel').forEach(p => p.classList.remove('active'));
+    const target = id === 'success' ? document.getElementById('ms-panel-success') : document.getElementById('ms-panel-' + id);
+    if (target) target.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+
+    const backBtn = document.getElementById('ms-back');
+    const continueBtn = document.getElementById('ms-continue');
+    backBtn.style.display = (currentStep > 1) ? 'inline-flex' : 'none';
+    continueBtn.textContent = currentStep === 3 ? '🐾 Complete signup' : 'Continue →';
+  }
+
+  function updateStepper() {
+    document.querySelectorAll('.ms-step').forEach(s => {
+      const n = parseInt(s.dataset.step);
+      s.classList.remove('active','done');
+      if (n === currentStep) s.classList.add('active');
+      if (n < currentStep)  s.classList.add('done');
+    });
+    const line1 = document.getElementById('line-1-2');
+    const line2 = document.getElementById('line-2-3');
+    if (line1) line1.classList.toggle('done', currentStep > 1);
+    if (line2) line2.classList.toggle('done', currentStep > 2);
+  }
+
+  // Remove error on input
+  document.addEventListener('input', e => {
+    if (e.target.classList.contains('ms-input')) e.target.classList.remove('error');
+  });
+</script>
+</body>
+</html>
