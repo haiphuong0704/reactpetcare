@@ -342,7 +342,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 /* ACTIVE COLORS */
 .pet-type-btn.selected .pet-type-btn__label,
 .pet-type-btn.selected .pet-type-btn__icon i{
-    color:#3b1a0e;
+    color:#ec4899;
 }
 
 /* HOVER */
@@ -350,14 +350,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     transform:translateY(-1px);
 }
     .pet-type-btn { border: 1.5px solid #f3d9e6; background: rgba(255,255,255,.92); border-radius: 22px; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
-    .pet-type-btn:hover { transform: translateY(-4px); border-color: #2dd4bf; background: #f8fffe; box-shadow: 0 14px 30px rgba(45,212,191,.10), 0 8px 18px rgba(236,72,153,.08); }
+    .pet-type-btn:hover { transform: translateY(-4px); border-color: #ec4899; background: #f8fffe; box-shadow: 0 14px 30px rgba(45,212,191,.10), 0 8px 18px rgba(236,72,153,.08); }
     .pet-type-btn.selected { border-color: #ec4899; background: linear-gradient(145deg, #fff 0%, #fdf2f8 100%); box-shadow: 0 0 0 4px rgba(236,72,153,.10), 0 18px 34px rgba(236,72,153,.12); }
     .pet-type-btn__icon i { font-size: 28px; color: #3b1a0e; line-height: 1; }
     .pet-type-btn:hover .pet-type-btn__icon i { color: #ec4899; }
     .pet-type-btn__label { font-size: .95rem; font-weight: 700; color: #1f1720; }
 
     /* ── STEP 4: PAYMENT ── */
-    .order-summary { background: linear-gradient(135deg, #fff0f5, #fce4ee); border: 1.5px solid var(--pink-mid); border-radius: 20px; padding: 24px 28px; margin-bottom: 24px; }
+    .order-summary {
+        background: linear-gradient(135deg, #fff0f5, #fce4ee);
+        border: 1.5px solid var(--pink-mid);
+        border-radius: 20px;
+        max-width: 720px;
+        padding: 24px 28px;
+        margin: 0 auto 28px;
+    }
     .order-summary__title { font-family: var(--font-display); font-size: 1.1rem; color: var(--brown); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
     .order-row { display: flex; justify-content: space-between; align-items: center; font-size: .88rem; color: var(--brown-mid); padding: 6px 0; border-bottom: 1px solid rgba(249,184,208,.4); }
     .order-row:last-child { border-bottom: none; }
@@ -374,10 +381,89 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     .pay-method.selected .pay-method__label { color: var(--teal-dark); }
 
     /* Terms */
-    .terms-check { display: flex; align-items: flex-start; gap: 12px; font-size: .82rem; color: var(--brown-mid); line-height: 1.5; margin-bottom: 24px; }
-    .terms-check input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; accent-color: var(--teal); padding: 0; }
-    .terms-check a { color: var(--pink); font-weight: 700; text-decoration: none; }
+.terms-check{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
 
+    font-size:.82rem;
+    line-height:1.5;
+
+    color:var(--brown-mid);
+
+    margin:0 auto 28px;
+    max-width:720px;
+}
+
+/* Custom checkbox */
+.terms-check input[type="checkbox"]{
+    appearance:none;
+    -webkit-appearance:none;
+
+    width:20px;
+    height:20px;
+
+    flex-shrink:0;
+    margin-top:2px;
+
+    border-radius:50%;
+
+    background:#2dd4bf;
+    border:2px solid #fff;
+
+    cursor:pointer;
+
+    position:relative;
+
+    box-shadow:
+      0 0 0 1.5px rgba(45,212,191,.35);
+
+    transition:
+      transform .2s ease,
+      box-shadow .2s ease;
+}
+
+/* Tick */
+.terms-check input[type="checkbox"]::after{
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    width:5px;
+    height:9px;
+
+    border:2px solid #fff;
+    border-top:none;
+    border-left:none;
+
+    transform:
+      translate(-50%,-58%)
+      rotate(45deg);
+
+    opacity:0;
+}
+
+/* Show tick */
+.terms-check input[type="checkbox"]:checked::after{
+    opacity:1;
+}
+
+/* Hover */
+.terms-check input[type="checkbox"]:hover{
+    transform:scale(1.05);
+
+    box-shadow:
+      0 0 0 4px rgba(45,212,191,.12);
+}
+
+.terms-check a{
+    color:var(--pink);
+    font-weight:700;
+    text-decoration:none;
+}
     /* ── SUCCESS ── */
     .success-screen { display: none; text-align: center; padding: 60px 24px; animation: stepIn .5s ease; }
     .success-screen.active { display: block; }
