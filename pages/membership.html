@@ -442,31 +442,327 @@
     display: none;
   }
 
-.tab-panel.active {
-  display: block !important;
-}
+  .tab-panel.active {
+    display: block !important;
+  }
 
-    .stage-icon svg {
-    color: #c59aa5;
-}
+      .stage-icon svg {
+      color: #c59aa5;
+  }
 
-.stage-item.active .stage-icon svg {
-    color: #6b3f33;
-}
+  .stage-item.active .stage-icon svg {
+      color: #6b3f33;
+  }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero { padding: 24px 20px 40px; }
-      .hero__inner { flex-direction: column; gap: 32px; }
-      .hero__img, .hero__img-placeholder { width: 100%; flex: none; }
-      .testimonials { margin: 0 8px 40px; padding: 36px 16px; }
-      .review-area { flex-direction: column; }
-      .review-photo { border-radius: 16px 16px 0 0; flex: none; height: 200px; }
-      .review-card { border-radius: 0 0 16px 16px; }
-      .stage-selector { gap: 0; }
-      .stage-item { width: 100px; }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero { padding: 24px 20px 40px; }
+    .hero__inner { flex-direction: column; gap: 32px; }
+    .hero__img, .hero__img-placeholder { width: 100%; flex: none; }
+    .testimonials { margin: 0 8px 40px; padding: 36px 16px; }
+    .review-area { flex-direction: column; }
+    .review-photo { border-radius: 16px 16px 0 0; flex: none; height: 200px; }
+    .review-card { border-radius: 0 0 16px 16px; }
+    .stage-selector { gap: 0; }
+    .stage-item { width: 100px; }
+  }
+  /* ─── Membership Plans Section ─────────────────────────────────── */
+  .mb-tiers {
+    padding: 80px 40px;
+    background: linear-gradient(160deg, #fffafb 0%, #fff1f5 100%);
+  }
+ 
+  .mb-tiers .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  /* Section header */
+  .mb-tiers .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+ 
+  .mb-tiers .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #a63558;
+    margin-bottom: 14px;
+  }
+ 
+  .mb-tiers .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: #1a1a2e;
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+ 
+  .mb-tiers .section-header h2 em {
+    font-style: italic;
+    color: #c0593b;
+  }
+ 
+  .mb-tiers .section-header p {
+    font-size: .97rem;
+    color: #7a5c50;
+    max-width: 520px;
+    margin: 0 auto 10px;
+    line-height: 1.7;
+  }
+ 
+  .mb-tiers .section-hand {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: .9rem;
+    color: #c0593b;
+    opacity: .7;
+    margin-top: 6px;
+  }
+ 
+  /* Grid */
+  .mb-tiers__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+ 
+  /* Card base */
+  .mb-tier-card {
+    position: relative;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    border: 1.5px solid rgba(255,255,255,.8);
+    padding: 36px 30px 32px;
+    box-shadow: 0 10px 32px rgba(59,26,14,.07);
+    transition: transform .3s ease, box-shadow .3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+ 
+  .mb-tier-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(59,26,14,.13);
+  }
+ 
+  /* Featured / most popular */
+  .mb-tier-card--featured {
+    background: #3b1a0e;
+    border-color: #c0593b;
+    box-shadow: 0 16px 48px rgba(59,26,14,.22);
+    transform: translateY(-8px) scale(1.02);
+  }
+ 
+  .mb-tier-card--featured:hover {
+    transform: translateY(-14px) scale(1.02);
+    box-shadow: 0 28px 64px rgba(59,26,14,.28);
+  }
+ 
+  /* Badge */
+  .mb-tier-card__badge {
+    display: inline-block;
+    background: #c0593b;
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+    width: fit-content;
+  }
+ 
+  /* Header */
+  .mb-tier-card__header {
+    margin-bottom: 28px;
+  }
+ 
+  .mb-tier-card__name {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #3b1a0e;
+    margin-bottom: 12px;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__name {
+    color: #fff;
+  }
+ 
+  .mb-tier-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+ 
+  .mb-tier-card__price strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #c0593b;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__price strong {
+    color: #f4b394;
+  }
+ 
+  .mb-tier-card__price span {
+    font-size: .85rem;
+    color: #9b7060;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__price span {
+    color: #c9a090;
+  }
+ 
+  .mb-tier-card__tagline {
+    font-size: .875rem;
+    color: #7a5c50;
+    line-height: 1.5;
+    margin: 0;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__tagline {
+    color: #c9a090;
+  }
+ 
+  /* Divider */
+  .mb-tier-card__header::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: rgba(192,89,59,.3);
+    border-radius: 2px;
+    margin-top: 20px;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__header::after {
+    background: rgba(244,179,148,.35);
+  }
+ 
+  /* Features list */
+  .mb-tier-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    flex: 1;
+  }
+ 
+  .mb-tier-card__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: .875rem;
+    color: #5a3525;
+    line-height: 1.45;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__features li {
+    color: #e8c8b8;
+  }
+ 
+  .mb-tier-card__features li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: #2dd4bf url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6l2.8 2.8L10 3' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat;
+  }
+ 
+  /* CTA button */
+  .mb-tier-card__cta {
+    display: block;
+    text-align: center;
+    padding: 13px 24px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: .93rem;
+    text-decoration: none;
+    transition: background .2s, color .2s, border-color .2s;
+    margin-bottom: 14px;
+  }
+ 
+  /* outline variant (Essential & Elite) */
+  .mb-tier-card:not(.mb-tier-card--featured) .btn-outline {
+    border: 2px solid #c0593b;
+    color: #c0593b;
+    background: transparent;
+  }
+ 
+  .mb-tier-card:not(.mb-tier-card--featured) .btn-outline:hover {
+    background: #c0593b;
+    color: #fff;
+  }
+ 
+  /* solid variant (Premium) */
+  .mb-tier-card--featured .btn-primary {
+    background: #2dd4bf;
+    color: #fff;
+    border: 2px solid #2dd4bf;
+  }
+ 
+  .mb-tier-card--featured .btn-primary:hover {
+    background: #0e9f8e;
+    border-color: #0e9f8e;
+  }
+ 
+  /* Note */
+  .mb-tier-card__note {
+    font-size: .75rem;
+    color: #9b7060;
+    text-align: center;
+    margin: 0;
+  }
+ 
+  .mb-tier-card--featured .mb-tier-card__note {
+    color: #a07060;
+  }
+ 
+  /* Footnote */
+  .mb-tiers__footnote {
+    text-align: center;
+    font-size: .82rem;
+    color: #9b7060;
+    margin-top: 40px;
+  }
+ 
+  /* ─── Responsive ──────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .mb-tiers {
+      padding: 60px 20px;
     }
-  </style>
+ 
+    .mb-tiers__grid {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+ 
+    .mb-tier-card--featured {
+      transform: none;
+    }
+ 
+    .mb-tier-card--featured:hover {
+      transform: translateY(-6px);
+    }
+  }
+</style>
 
 <!-- ════════════════════════════════════════
      SECTION 1 – Hero / Membership intro
@@ -934,7 +1230,7 @@
         </div>
 </section>
 
-<!-- BENEFITS TABLE -->
+<!-- BENEFITS TABLE 
 <section class="benefits-section">
     <div style="max-width: 1000px; margin: 0 auto" class="fade-up">
         <div style="text-align: center; margin-bottom: 8px">
@@ -1034,4 +1330,102 @@
             </button>
         </div>
     </div>
+</section>-->
+
+<!-- ═══════════════════════════════════════
+     HTML – Section Membership Plans
+     Paste vào body của trang membership
+════════════════════════════════════════ -->
+<section class="mb-tiers" id="plans">
+  <div class="container">
+ 
+    <div class="section-header fade-up">
+      <span class="eyebrow">Membership Plans</span>
+      <h2>Simple plans, serious <em>results.</em></h2>
+      <p>Choose the level of care that fits your pet's life. All plans include core benefits, no hidden fees, and no long-term contracts.</p>
+      <span class="section-hand">— care made simple</span>
+    </div>
+ 
+    <div class="mb-tiers__grid">
+ 
+      <!-- Essential -->
+      <div class="mb-tier-card fade-up">
+        <div class="mb-tier-card__header">
+          <span class="mb-tier-card__name">Essential</span>
+          <div class="mb-tier-card__price">
+            <strong>1.390.000₫</strong><span>/ month</span>
+          </div>
+          <p class="mb-tier-card__tagline">Solid preventive care for healthy adult pets.</p>
+        </div>
+        <ul class="mb-tier-card__features">
+          <li>Annual comprehensive health exam</li>
+          <li>2 vet consultations per year</li>
+          <li>Core vaccination review</li>
+          <li>Dental health screening</li>
+          <li>10% grooming discount</li>
+          <li>Free Spa Bites delivery</li>
+          <li>Email support</li>
+        </ul>
+        <a href="/pages/membership-signup.html?plan=essential" class="mb-tier-card__cta btn-outline">Get started</a>
+        <p class="mb-tier-card__note">No contract · Cancel anytime</p>
+      </div>
+ 
+      <!-- Premium (featured) -->
+      <div class="mb-tier-card mb-tier-card--featured fade-up">
+        <div class="mb-tier-card__badge">Most Popular</div>
+        <div class="mb-tier-card__header">
+          <span class="mb-tier-card__name">Premium</span>
+          <div class="mb-tier-card__price">
+            <strong>2.190.000₫</strong><span>/ month</span>
+          </div>
+          <p class="mb-tier-card__tagline">Comprehensive care for pets at every life stage.</p>
+        </div>
+        <ul class="mb-tier-card__features">
+          <li>Quarterly health reviews</li>
+          <li>6 vet consultations per year</li>
+          <li>Full vaccination schedule</li>
+          <li>Nutrition consultation</li>
+          <li>Dental cleaning (1×/year)</li>
+          <li>20% grooming discount</li>
+          <li>Free Spa Bites delivery</li>
+          <li>Priority booking</li>
+          <li>24/7 phone support</li>
+        </ul>
+        <a href="/pages/membership-signup.html?plan=premium" class="mb-tier-card__cta btn-primary">Get started</a>
+        <p class="mb-tier-card__note">No contract · Cancel anytime</p>
+      </div>
+ 
+      <!-- Elite -->
+      <div class="mb-tier-card fade-up">
+        <div class="mb-tier-card__header">
+          <span class="mb-tier-card__name">Elite</span>
+          <div class="mb-tier-card__price">
+            <strong>3.290.000₫</strong><span>/ month</span>
+          </div>
+          <p class="mb-tier-card__tagline">Concierge-level care with zero compromises.</p>
+        </div>
+        <ul class="mb-tier-card__features">
+          <li>Monthly wellness check-ins</li>
+          <li>Unlimited vet consultations</li>
+          <li>Full vaccination + parasite plan</li>
+          <li>Personalized nutrition plan</li>
+          <li>Unlimited dental cleanings</li>
+          <li>Free grooming sessions</li>
+          <li>Free Spa Bites + meal planning</li>
+          <li>Dedicated wellness specialist</li>
+          <li>Same-day appointments</li>
+          <li>Concierge 24/7 support</li>
+        </ul>
+        <a href="/pages/membership-signup.html?plan=elite" class="mb-tier-card__cta btn-outline">Get started</a>
+        <p class="mb-tier-card__note">No contract · Cancel anytime</p>
+      </div>
+ 
+    </div><!-- /grid -->
+ 
+    <p class="mb-tiers__footnote">
+      All plans billed monthly · Annual billing available at 15% off · Cancel anytime with no penalty
+    </p>
+ 
+  </div>
 </section>
+ 
