@@ -218,7 +218,25 @@
 
     /* Summary service preview */
     .bk-sum-svc{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:16px;}
-    .bk-sum-svc__icon{width:44px;height:44px;border-radius:14px;background:var(--pink-pale);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .bk-sum-svc__icon{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background:var(--pink-pale);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      flex-shrink:0;
+      overflow:hidden;
+    }
+
+    .bk-sum-svc__icon img{
+      width:24px;
+      height:24px;
+      object-fit:contain;
+      display:block;
+    }
     .bk-sum-svc__name{font-weight:800;font-size:.9rem;color:var(--dark);}
     .bk-sum-svc__dur{font-size:.72rem;color:var(--gray);margin-top:2px;}
     .bk-sum-row{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;margin-bottom:10px;}
@@ -339,7 +357,7 @@
         <p>Choose the perfect experience. All sessions use premium organic products.</p>
       </div>
       <div class="bk-svc-grid">
-        <div class="bk-svc-card" data-service="grooming" data-name="Full Grooming" data-price="75" data-dur="2–3 hrs" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="grooming" data-name="Full Grooming" data-price="75" data-dur="2–3 hrs" data-icon="/public/assets/grooming.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/grooming.png" alt="fullgrooming">
@@ -355,7 +373,7 @@
             <span class="bk-svc-card__dur">2–3 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="bath" data-name="Luxury Bath" data-price="45" data-dur="1 hr" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="bath" data-name="Luxury Bath" data-price="45" data-dur="1 hr" data-icon="/public/assets/pet-grooming.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/pet-grooming.png" alt="bath">
@@ -371,7 +389,7 @@
             <span class="bk-svc-card__dur">1 hr</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="nails" data-name="Nail & Paw Care" data-price="30" data-dur="45 min" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="nails" data-name="Nail & Paw Care" data-price="30" data-dur="45 min" data-icon="/public/assets/clothespeg.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/clothespeg.png" alt="nails">
@@ -387,7 +405,7 @@
             <span class="bk-svc-card__dur">45 min</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="spa" data-name="Spa & Wellness" data-price="90" data-dur="3 hrs" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="spa" data-name="Spa & Wellness" data-price="90" data-dur="3 hrs" data-icon="/public/assets/pet-shampoo.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/pet-shampoo.png" alt="spa">
@@ -403,7 +421,7 @@
             <span class="bk-svc-card__dur">3 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="rehab" data-name="Rehabilitation" data-price="110" data-dur="1.5 hrs" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="rehab" data-name="Rehabilitation" data-price="110" data-dur="1.5 hrs" data-icon="/public/assets/stethoscope.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/stethoscope.png" alt="Rehabilitation">
@@ -419,7 +437,7 @@
             <span class="bk-svc-card__dur">1.5 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="boarding" data-name="Luxury Boarding" data-price="80" data-dur="/ night" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="boarding" data-name="Luxury Boarding" data-price="80" data-dur="/ night" data-icon="/public/assets/service.png" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
               <img src="/public/assets/service.png" alt="boarding">
@@ -716,7 +734,8 @@
     state.serviceDur = card.dataset.dur;
     state.serviceIcon = card.dataset.icon;
     // update summary
-    document.getElementById('sum-icon').textContent = state.serviceIcon;
+    document.getElementById('sum-icon').innerHTML =
+    `<img src="${state.serviceIcon}" alt="${state.serviceName}">`;
     document.getElementById('sum-svc-name').textContent = state.serviceName;
     document.getElementById('sum-svc-dur').textContent = state.serviceDur;
     document.getElementById('sum-total').textContent = '$' + state.servicePrice;
