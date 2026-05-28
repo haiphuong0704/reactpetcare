@@ -738,8 +738,9 @@
     `<img src="${state.serviceIcon}" alt="${state.serviceName}">`;
     document.getElementById('sum-svc-name').textContent = state.serviceName;
     document.getElementById('sum-svc-dur').textContent = state.serviceDur;
-    document.getElementById('sum-total').textContent = state.servicePrice + 'Đ';
-    validate();
+    document.getElementById('sum-total').textContent =
+    (parseInt(state.servicePrice) * 1000).toLocaleString('vi-VN') + 'đ';
+      validate();
   }
 
   // BUTTONS
