@@ -104,8 +104,30 @@
     .bk-svc-card:hover{transform:translateY(-3px);border-color:var(--pink-border);box-shadow:0 8px 28px rgba(212,49,126,.1);}
     .bk-svc-card.selected{border-color:var(--pink);background:var(--pink-pale);box-shadow:0 0 0 3px rgba(212,49,126,.12);}
     .bk-svc-card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-    .bk-svc-card__icon{width:48px;height:48px;border-radius:16px;background:var(--pink-pale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:.2s;}
-    .bk-svc-card.selected .bk-svc-card__icon{background:rgba(212,49,126,.15);}
+    .bk-svc-card__icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:var(--pink-pale);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.3rem;
+      flex-shrink:0;
+      transition:.2s;
+      overflow:hidden;
+    }
+
+    .bk-svc-card.selected .bk-svc-card__icon{
+      background:rgba(212,49,126,.15);
+    }
+
+    .bk-svc-card__icon img{
+      width:26px;
+      height:26px;
+      object-fit:contain;
+      display:block;
+    }
     .bk-svc-card__check{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s;}
     .bk-svc-card.selected .bk-svc-card__check{background:var(--pink);border-color:var(--pink);color:#fff;}
     .bk-svc-card h3{font-size:.95rem;font-weight:800;color:var(--dark);margin-bottom:4px;}
@@ -317,10 +339,10 @@
         <p>Choose the perfect experience. All sessions use premium organic products.</p>
       </div>
       <div class="bk-svc-grid">
-        <div class="bk-svc-card" data-service="grooming" data-name="Full Grooming" data-price="75" data-dur="2–3 hrs" data-icon="✂️" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="grooming" data-name="Full Grooming" data-price="75" data-dur="2–3 hrs" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/grooming.png" alt="fullgrooming">
+              <img src="public/assets/grooming.png" alt="fullgrooming">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -333,10 +355,10 @@
             <span class="bk-svc-card__dur">2–3 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="bath" data-name="Luxury Bath" data-price="45" data-dur="1 hr" data-icon="🛁" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="bath" data-name="Luxury Bath" data-price="45" data-dur="1 hr" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/pet-grooming.png" alt="bath">
+              <img src="public/assets/pet-grooming.png" alt="bath">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -349,10 +371,10 @@
             <span class="bk-svc-card__dur">1 hr</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="nails" data-name="Nail & Paw Care" data-price="30" data-dur="45 min" data-icon="🐾" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="nails" data-name="Nail & Paw Care" data-price="30" data-dur="45 min" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/clothespeg.png" alt="nails">
+              <img src="public/assets/clothespeg.png" alt="nails">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -365,10 +387,10 @@
             <span class="bk-svc-card__dur">45 min</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="spa" data-name="Spa & Wellness" data-price="90" data-dur="3 hrs" data-icon="🌿" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="spa" data-name="Spa & Wellness" data-price="90" data-dur="3 hrs" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/pet-shampoo.png" alt="spa">
+              <img src="public/assets/pet-shampoo.png" alt="spa">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -381,10 +403,10 @@
             <span class="bk-svc-card__dur">3 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="rehab" data-name="Rehabilitation" data-price="110" data-dur="1.5 hrs" data-icon="💪" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="rehab" data-name="Rehabilitation" data-price="110" data-dur="1.5 hrs" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/stethoscope.png" alt="Rehabilitation">
+              <img src="public/assets/stethoscope.png" alt="Rehabilitation">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -397,10 +419,10 @@
             <span class="bk-svc-card__dur">1.5 hrs</span>
           </div>
         </div>
-        <div class="bk-svc-card" data-service="boarding" data-name="Luxury Boarding" data-price="80" data-dur="/ night" data-icon="🏨" onclick="selectService(this)">
+        <div class="bk-svc-card" data-service="boarding" data-name="Luxury Boarding" data-price="80" data-dur="/ night" onclick="selectService(this)">
           <div class="bk-svc-card__top">
             <div class="bk-svc-card__icon">
-              <img src="./public/assets/service.png" alt="boarding">
+              <img src="public/assets/service.png" alt="boarding">
             </div>
             <div class="bk-svc-card__check"><i class="fa fa-check" style="font-size:.65rem;"></i></div>
           </div>
@@ -427,10 +449,10 @@
         <div>
           <div class="bk-field-label">Pet type</div>
           <div class="bk-btn-row" id="type-group">
-            <button class="bk-sel-btn" data-val="dog" onclick="selBtn(this,'type-group')">🐶 Dog</button>
-            <button class="bk-sel-btn" data-val="cat" onclick="selBtn(this,'type-group')">🐱 Cat</button>
-            <button class="bk-sel-btn" data-val="rabbit" onclick="selBtn(this,'type-group')">🐰 Rabbit</button>
-            <button class="bk-sel-btn" data-val="other" onclick="selBtn(this,'type-group')">🐾 Other</button>
+            <button class="bk-sel-btn" data-val="dog" onclick="selBtn(this,'type-group')"> Dog</button>
+            <button class="bk-sel-btn" data-val="cat" onclick="selBtn(this,'type-group')"> Cat</button>
+            <button class="bk-sel-btn" data-val="rabbit" onclick="selBtn(this,'type-group')"> Rabbit</button>
+            <button class="bk-sel-btn" data-val="other" onclick="selBtn(this,'type-group')"> Other</button>
           </div>
         </div>
         <div>
