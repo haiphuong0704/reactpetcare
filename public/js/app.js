@@ -136,33 +136,224 @@ window.addEventListener("popstate", () => {
   showPage(hash || 'home');
 });
 
+// cart //
 function initCartPage() {
-  // Đọc items từ localStorage (dùng cùng key 'pcs_cart' với Cart drawer)
+  const FREE_SHIP_THRESHOLD = 300000;
+ 
+  // ── Đọc items từ localStorage ──
   let items = [];
   try {
     const raw = localStorage.getItem('pcs_cart');
     if (raw) items = JSON.parse(raw);
-  } catch(e) {}
-
+  } catch (e) {}
+ 
+  // ── DOM refs ──
   const container = document.getElementById('cp-items');
   const layout    = document.getElementById('cp-layout');
   const empty     = document.getElementById('cp-empty');
-
   if (!container) return;
-
-  if (items.length === 0) {
-    if (layout) layout.style.display = 'none';
-    if (empty)  empty.style.display  = 'flex';
-    return;
+ 
+  // ── Render toàn bộ items ──
+  renderCartItems(items);
+  recalcCart();
+ 
+  // ── Voucher logic (scope riêng cho cart page) ──
+  const VOUCHERS = {
+    'PETCARE10': { label: 'PETCARE10', value: 50000  },
+    'WELCOME20': { label: 'WELCOME20', value: 100000 },
+    'FREESHIP':  { label: 'FREESHIP',  value: 30000  },
+  };
+  let appliedDiscount = 0;
+ 
+  window.cpApplyVoucher = function () {
+    const input = document.getElementById('cp-voucher-input');
+    const msg   = document.getElementById('cp-voucher-msg');
+    if (!input || !msg) return;
+    const code = input.value.trim().toUpperCase();
+    if (!code) { cpSetMsg(msg, 'Vui lòng nhập mã voucher.', false); return; }
+    const v = VOUCHERS[code];
+    if (v) {
+      appliedDiscount = v.value;
+      const discountRow = document.getElementById('cp-discount-row');
+      const discountVal = document.getElementById('cp-discount-val');
+      const voucherTag  = document.getElementById('cp-voucher-tag');
+      if (discountRow) discountRow.style.display = 'flex';
+      if (discountVal) discountVal.textContent = '−' + cpFmt(v.value);
+      if (voucherTag)  voucherTag.textContent  = v.label;
+      cpSetMsg(msg, '✓ Đã áp dụng — giảm ' + cpFmt(v.value), true);
+      input.disabled = true;
+      recalcCart();
+    } else {
+      cpSetMsg(msg, '✗ Mã không hợp lệ hoặc đã hết hạn.', false);
+    }
+  };
+ 
+  function cpSetMsg(el, text, ok) {
+    el.textContent = text;
+    el.className   = 'cp-voucher__msg ' + (ok ? 'ok' : 'err');
   }
-
-  // Render từng item vào .cp-items
-  container.innerHTML = items.map(item => `
-    <div class="cp-row" data-id="${item.id}"
-         data-price="${parseFloat(String(item.price).replace(/[^0-9.]/g,''))||0}">
-      ...
-    </div>
-  `).join('');
+ 
+  // Enter key on voucher input
+  const voucherInput = document.getElementById('cp-voucher-input');
+  if (voucherInput) {
+    voucherInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); cpApplyVoucher(); }
+    });
+  }
+ 
+  // ── changeQty / removeItem / clearCart — scoped to cart page ──
+  window.cpChangeQty = function (btn, delta) {
+    const row   = btn.closest('.cp-row');
+    const id    = row.dataset.id;
+    const valEl = row.querySelector('.cp-qty-val');
+    let qty = parseInt(valEl.textContent) + delta;
+ 
+    if (qty < 1) {
+      // Xoá khỏi Cart object (localStorage) và DOM
+      Cart.remove(id);
+      row.style.transition = 'opacity .25s, transform .25s';
+      row.style.opacity    = '0';
+      row.style.transform  = 'translateX(24px)';
+      setTimeout(() => { row.remove(); recalcCart(); }, 270);
+      return;
+    }
+ 
+    valEl.textContent = qty;
+    Cart.setQty(id, qty); // đồng bộ vào localStorage
+    recalcCart();
+  };
+ 
+  window.cpRemoveItem = function (btn) {
+    const row = btn.closest('.cp-row');
+    const id  = row.dataset.id;
+    Cart.remove(id); // đồng bộ localStorage
+    row.style.transition = 'opacity .25s, transform .25s';
+    row.style.opacity    = '0';
+    row.style.transform  = 'translateX(24px)';
+    setTimeout(() => { row.remove(); recalcCart(); }, 270);
+  };
+ 
+  window.cpClearCart = function () {
+    document.querySelectorAll('.cp-row').forEach(row => {
+      Cart.remove(row.dataset.id);
+      row.style.transition = 'opacity .2s, transform .2s';
+      row.style.opacity    = '0';
+      row.style.transform  = 'translateX(24px)';
+    });
+    setTimeout(() => {
+      document.querySelectorAll('.cp-row').forEach(r => r.remove());
+      recalcCart();
+    }, 250);
+  };
+ 
+  // ── Helper: format VND ──
+  function cpFmt(n) {
+    return n.toLocaleString('vi-VN') + '₫';
+  }
+ 
+  // ── Render items từ mảng ──
+  function renderCartItems(itemArr) {
+    if (!container) return;
+ 
+    if (itemArr.length === 0) {
+      if (layout) layout.style.display = 'none';
+      if (empty)  empty.classList.add('show');
+      container.innerHTML = '';
+      return;
+    }
+ 
+    if (layout) layout.style.display = '';
+    if (empty)  empty.classList.remove('show');
+ 
+    container.innerHTML = itemArr.map((item, i) => {
+      const price    = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+      const qty      = item.qty || 1;
+      const lineTotal = price * qty;
+      const imgEl    = item.img
+        ? `<img class="cp-item-img" src="${item.img}" alt="${item.name}">`
+        : `<div class="cp-item-img" style="display:flex;align-items:center;justify-content:center;font-size:2rem;">🛍️</div>`;
+ 
+      return `
+        <div class="cp-row" data-id="${item.id}" data-price="${price}"
+             style="animation-delay:${i * 0.05}s">
+          <div class="cp-cell cp-cell--product">
+            ${imgEl}
+            <div class="cp-item-info">
+              <div class="cp-item-name">${item.name}</div>
+              <div class="cp-item-cat">${item.cat || ''}</div>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--price">${cpFmt(price)}</div>
+          <div class="cp-cell cp-cell--qty">
+            <div class="cp-qty">
+              <button class="cp-qty-btn" onclick="cpChangeQty(this,-1)">−</button>
+              <span class="cp-qty-val">${qty}</span>
+              <button class="cp-qty-btn" onclick="cpChangeQty(this,1)">+</button>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--total cp-line-total">${cpFmt(lineTotal)}</div>
+          <div class="cp-cell cp-cell--del">
+            <button class="cp-del-btn" onclick="cpRemoveItem(this)" title="Xoá">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+ 
+  // ── Recalculate totals + meta ──
+  function recalcCart() {
+    let subtotal = 0;
+    const rows = document.querySelectorAll('.cp-row');
+ 
+    rows.forEach(row => {
+      const price = parseInt(row.dataset.price) || 0;
+      const qty   = parseInt(row.querySelector('.cp-qty-val')?.textContent) || 1;
+      const line  = price * qty;
+      subtotal += line;
+      const lineEl = row.querySelector('.cp-line-total');
+      if (lineEl) lineEl.textContent = cpFmt(line);
+    });
+ 
+    const n = rows.length;
+    const grandTotal = Math.max(0, subtotal - appliedDiscount);
+ 
+    // Summary values
+    const el = id => document.getElementById(id);
+    if (el('cp-subtotal'))    el('cp-subtotal').textContent    = cpFmt(subtotal);
+    if (el('cp-grand-total')) el('cp-grand-total').textContent = cpFmt(grandTotal);
+    if (el('sum-count'))      el('sum-count').textContent      = n;
+ 
+    // Strip + hero + navbar
+    if (el('strip-count'))    el('strip-count').textContent    = n + ' sản phẩm trong giỏ';
+    if (el('nav-item-count')) el('nav-item-count').textContent = n + ' sản phẩm';
+    if (el('hero-meta'))      el('hero-meta').textContent      = n + ' sản phẩm được chọn';
+ 
+    // Free shipping bar
+    const pct = Math.min(100, Math.round((subtotal / FREE_SHIP_THRESHOLD) * 100));
+    if (el('ship-fill')) el('ship-fill').style.width = pct + '%';
+    if (subtotal >= FREE_SHIP_THRESHOLD) {
+      if (el('ship-remaining')) el('ship-remaining').textContent = '✓ Đã đủ!';
+      if (el('ship-msg'))       el('ship-msg').textContent       = 'Bạn được miễn phí giao hàng!';
+    } else {
+      const remain = FREE_SHIP_THRESHOLD - subtotal;
+      if (el('ship-remaining')) el('ship-remaining').textContent = cpFmt(remain) + ' nữa';
+      if (el('ship-msg'))       el('ship-msg').textContent       = 'Mua thêm ' + cpFmt(remain) + ' để miễn phí ship';
+    }
+ 
+    // Empty state
+    if (n === 0) {
+      if (layout) layout.style.display = 'none';
+      if (empty)  empty.classList.add('show');
+    } else {
+      if (layout) layout.style.display = '';
+      if (empty)  empty.classList.remove('show');
+    }
+  }
 }
 // ===============================
 // ABOUT PAGE INIT
@@ -608,7 +799,7 @@ window.handleRegister = handleRegister;
 // ===============================
 // CART
 // ===============================
-var Cart = (function () {
+/*var Cart = (function () {
   var items = [];
   function find(id) { return items.findIndex(function (i) { return i.id === id; }); }
   function add(product) {
@@ -699,7 +890,7 @@ function renderProducts(containerId, items) {
   }).join('');
 }
 window.renderProducts = renderProducts;
-
+*/
 // ===============================
 // TOP LOADER
 // ===============================
