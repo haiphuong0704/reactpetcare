@@ -1,0 +1,634 @@
+<!-- ============================================================
+     CART PAGE  —  drop inside your page template
+     Usage: replace <?php ... ?> blocks with your data layer
+     ============================================================ -->
+
+<!-- Page header (reuse .page-header-bar từ site) -->
+<div class="page-header-bar">
+  <h1>Giỏ Hàng</h1>
+</div>
+
+<div class="cp-wrap">
+
+  <!-- ══════════════════════════════════════
+       EMPTY STATE
+       Remove this block when cart has items
+  ══════════════════════════════════════ -->
+  <div class="cp-empty" id="cp-empty" style="display:none">
+    <div class="cp-empty__icon">🛒</div>
+    <h2 class="cp-empty__title">Giỏ hàng đang trống</h2>
+    <p class="cp-empty__sub">Hãy thêm sản phẩm để tiếp tục mua sắm nhé!</p>
+    <a href="?url=shop" class="cp-btn-primary">
+      <i class="fa fa-arrow-left"></i> Đi đến cửa hàng
+    </a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CART LAYOUT  (table + summary)
+  ══════════════════════════════════════ -->
+  <div class="cp-layout" id="cp-layout">
+
+    <!-- ── LEFT: CART TABLE ── -->
+    <div class="cp-table-col">
+
+      <!-- Table header -->
+      <div class="cp-table-head">
+        <span class="cp-th cp-th--product">Sản phẩm</span>
+        <span class="cp-th cp-th--price">Đơn giá</span>
+        <span class="cp-th cp-th--qty">Số lượng</span>
+        <span class="cp-th cp-th--total">Thành tiền</span>
+        <span class="cp-th cp-th--del"></span>
+      </div>
+
+      <!-- Items -->
+      <div class="cp-items" id="cp-items">
+
+        <!-- ITEM ROW — repeat for each product -->
+        <div class="cp-row" data-id="1" data-price="250000">
+          <div class="cp-cell cp-cell--product">
+            <img
+              class="cp-item-img"
+              src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=160&q=80"
+              alt="Royal Canin Adult"
+            >
+            <div class="cp-item-info">
+              <div class="cp-item-name">Royal Canin Adult Dog Food 2kg</div>
+              <div class="cp-item-variant">Loại: 2kg · Dành cho chó trưởng thành</div>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--price">250.000₫</div>
+          <div class="cp-cell cp-cell--qty">
+            <div class="cp-qty">
+              <button class="cp-qty-btn" onclick="changeQty(this, -1)">−</button>
+              <span class="cp-qty-val">1</span>
+              <button class="cp-qty-btn" onclick="changeQty(this, 1)">+</button>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--total cp-line-total">250.000₫</div>
+          <div class="cp-cell cp-cell--del">
+            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="cp-row" data-id="2" data-price="85000">
+          <div class="cp-cell cp-cell--product">
+            <img
+              class="cp-item-img"
+              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=160&q=80"
+              alt="Stylish Cat Collar"
+            >
+            <div class="cp-item-info">
+              <div class="cp-item-name">Stylish Cat Collar</div>
+              <div class="cp-item-variant">Màu: Hồng · Size: S</div>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--price">85.000₫</div>
+          <div class="cp-cell cp-cell--qty">
+            <div class="cp-qty">
+              <button class="cp-qty-btn" onclick="changeQty(this, -1)">−</button>
+              <span class="cp-qty-val">2</span>
+              <button class="cp-qty-btn" onclick="changeQty(this, 1)">+</button>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--total cp-line-total">170.000₫</div>
+          <div class="cp-cell cp-cell--del">
+            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="cp-row" data-id="3" data-price="120000">
+          <div class="cp-cell cp-cell--product">
+            <img
+              class="cp-item-img"
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=160&q=80"
+              alt="Herbal Pet Shampoo"
+            >
+            <div class="cp-item-info">
+              <div class="cp-item-name">Biogroom Herbal Pet Shampoo</div>
+              <div class="cp-item-variant">Dung tích: 355ml</div>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--price">120.000₫</div>
+          <div class="cp-cell cp-cell--qty">
+            <div class="cp-qty">
+              <button class="cp-qty-btn" onclick="changeQty(this, -1)">−</button>
+              <span class="cp-qty-val">1</span>
+              <button class="cp-qty-btn" onclick="changeQty(this, 1)">+</button>
+            </div>
+          </div>
+          <div class="cp-cell cp-cell--total cp-line-total">120.000₫</div>
+          <div class="cp-cell cp-cell--del">
+            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /cp-items -->
+
+      <!-- Continue shopping -->
+      <div class="cp-table-footer">
+        <a href="?url=shop" class="cp-continue-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Tiếp tục mua sắm
+        </a>
+      </div>
+
+    </div><!-- /cp-table-col -->
+
+    <!-- ── RIGHT: SUMMARY ── -->
+    <div class="cp-summary-col">
+      <div class="cp-summary">
+
+        <h3 class="cp-summary__title">Tóm tắt đơn hàng</h3>
+
+        <!-- Rows -->
+        <div class="cp-sum-rows">
+          <div class="cp-sum-row">
+            <span>Tạm tính</span>
+            <span id="cp-subtotal">540.000₫</span>
+          </div>
+          <div class="cp-sum-row">
+            <span>Phí vận chuyển</span>
+            <span class="cp-free-ship">Miễn phí</span>
+          </div>
+          <!-- Voucher discount row — hidden by default -->
+          <div class="cp-sum-row cp-sum-row--discount" id="cp-discount-row" style="display:none">
+            <span>
+              Giảm giá voucher
+              <span class="cp-voucher-code-tag" id="cp-voucher-tag"></span>
+            </span>
+            <span class="cp-discount-val" id="cp-discount-val">−0₫</span>
+          </div>
+        </div>
+
+        <!-- Voucher input -->
+        <div class="cp-voucher">
+          <div class="cp-voucher__label">Mã voucher</div>
+          <div class="cp-voucher__row">
+            <input
+              class="cp-voucher__input"
+              id="cp-voucher-input"
+              type="text"
+              placeholder="Nhập mã voucher..."
+              autocomplete="off"
+            >
+            <button class="cp-voucher__btn" onclick="applyVoucher()">Áp dụng</button>
+          </div>
+          <div class="cp-voucher__msg" id="cp-voucher-msg"></div>
+        </div>
+
+        <!-- Divider -->
+        <div class="cp-sum-divider"></div>
+
+        <!-- Total -->
+        <div class="cp-sum-total">
+          <span>Tổng cộng</span>
+          <strong id="cp-grand-total">540.000₫</strong>
+        </div>
+
+        <!-- CTA -->
+        <a href="?url=cart/checkout" class="cp-checkout-btn">
+          Tiến hành thanh toán
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <!-- Guarantees -->
+        <div class="cp-guarantees">
+          <div class="cp-guarantee"><i class="fa fa-lock"></i> Thanh toán bảo mật</div>
+          <div class="cp-guarantee"><i class="fa fa-rotate-left"></i> Đổi trả miễn phí 30 ngày</div>
+          <div class="cp-guarantee"><i class="fa fa-truck"></i> Giao hàng toàn quốc</div>
+        </div>
+
+      </div>
+    </div><!-- /cp-summary-col -->
+
+  </div><!-- /cp-layout -->
+
+</div><!-- /cp-wrap -->
+
+
+<!-- ══════════════════════════════════════
+     CART PAGE STYLES
+     Scoped to .cp-* — no conflicts
+══════════════════════════════════════ -->
+<style>
+/* ── Variables (inherit from PetCare Spa root) ── */
+.cp-wrap {
+  --pk: var(--pink, #d4317e);
+  --pk-deep: var(--pink-deep, #a8185a);
+  --pk-pale: var(--pink-pale, #fdf2f8);
+  --pk-border: var(--pink-border, #e3cdd5);
+  --teal: var(--teal, #2dd4bf);
+  --dark: var(--dark, #1a0e12);
+  --gray: var(--gray, #6b7280);
+  --bdr: var(--border, #f0e6ec);
+  --surf: var(--surface, #f8f4f6);
+  --ease: cubic-bezier(0.22,1,0.36,1);
+  --font-d: var(--font-display, 'Playfair Display', Georgia, serif);
+  --font-b: var(--font-body, 'Manrope', sans-serif);
+}
+
+.cp-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  font-family: var(--font-b);
+}
+
+/* ── EMPTY STATE ── */
+.cp-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 80px 24px; text-align: center; gap: 14px;
+}
+.cp-empty__icon {
+  font-size: 4rem; margin-bottom: 8px;
+  animation: cpFloat 3s ease-in-out infinite;
+}
+@keyframes cpFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.cp-empty__title {
+  font-family: var(--font-d);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400; color: var(--dark); letter-spacing: -.02em;
+}
+.cp-empty__sub { font-size: .9rem; color: var(--gray); line-height: 1.7; }
+.cp-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 999px;
+  background: var(--pk); color: #fff;
+  font-family: var(--font-b); font-size: .88rem; font-weight: 700;
+  text-decoration: none; margin-top: 12px;
+  box-shadow: 0 6px 20px rgba(212,49,126,.28);
+  transition: .2s;
+}
+.cp-btn-primary:hover { background: var(--pk-deep); transform: translateY(-1px); }
+
+/* ── LAYOUT ── */
+.cp-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── TABLE COL ── */
+.cp-table-col {
+  background: #fff;
+  border: 1.5px solid var(--bdr);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(26,14,18,.05);
+}
+
+/* Table head */
+.cp-table-head {
+  display: grid;
+  grid-template-columns: 1fr 110px 130px 120px 44px;
+  padding: 14px 24px;
+  background: var(--surf);
+  border-bottom: 1.5px solid var(--bdr);
+  gap: 8px;
+}
+.cp-th {
+  font-size: .68rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gray);
+}
+.cp-th--price,
+.cp-th--qty,
+.cp-th--total { text-align: center; }
+
+/* Rows */
+.cp-row {
+  display: grid;
+  grid-template-columns: 1fr 110px 130px 120px 44px;
+  padding: 18px 24px;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid var(--bdr);
+  transition: background .15s;
+  animation: cpRowIn .35s var(--ease);
+}
+@keyframes cpRowIn { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+.cp-row:last-child { border-bottom: none; }
+.cp-row:hover { background: var(--surf); }
+
+/* Cells */
+.cp-cell { display: flex; align-items: center; }
+.cp-cell--price,
+.cp-cell--qty,
+.cp-cell--total { justify-content: center; }
+.cp-cell--del { justify-content: flex-end; }
+
+/* Product cell */
+.cp-cell--product { gap: 14px; }
+.cp-item-img {
+  width: 72px; height: 72px;
+  object-fit: cover; border-radius: 16px;
+  border: 1.5px solid var(--bdr);
+  flex-shrink: 0; background: var(--surf);
+}
+.cp-item-name {
+  font-size: .88rem; font-weight: 800; color: var(--dark);
+  line-height: 1.35; margin-bottom: 4px;
+}
+.cp-item-variant {
+  font-size: .72rem; color: var(--gray); font-weight: 600; line-height: 1.5;
+}
+
+/* Price cell */
+.cp-cell--price {
+  font-size: .88rem; font-weight: 700; color: var(--gray);
+}
+
+/* Qty */
+.cp-qty {
+  display: inline-flex; align-items: center;
+  border: 1.5px solid var(--pk-border); border-radius: 12px;
+  overflow: hidden; background: #fff;
+}
+.cp-qty-btn {
+  width: 32px; height: 32px; border: none; background: transparent;
+  cursor: pointer; font-size: 1rem; font-weight: 700; color: var(--gray);
+  transition: .15s; display: flex; align-items: center; justify-content: center;
+}
+.cp-qty-btn:hover { background: var(--pk-pale); color: var(--pk); }
+.cp-qty-val {
+  min-width: 32px; text-align: center;
+  font-size: .85rem; font-weight: 800; color: var(--dark);
+  border-left: 1px solid var(--pk-border);
+  border-right: 1px solid var(--pk-border);
+  line-height: 32px;
+}
+
+/* Line total */
+.cp-line-total {
+  font-family: var(--font-d);
+  font-size: .98rem; font-weight: 500; color: var(--pk);
+  justify-content: center;
+}
+
+/* Delete btn */
+.cp-del-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid var(--bdr); background: #fff;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: #c4b0b8; transition: .2s;
+}
+.cp-del-btn:hover { border-color: #ef4444; color: #ef4444; background: #fef2f2; }
+
+/* Table footer */
+.cp-table-footer {
+  padding: 16px 24px;
+  background: var(--surf);
+  border-top: 1.5px solid var(--bdr);
+}
+.cp-continue-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .8rem; font-weight: 700; color: var(--gray);
+  text-decoration: none; transition: .15s;
+}
+.cp-continue-link:hover { color: var(--pk); }
+
+/* ── SUMMARY COL ── */
+.cp-summary-col { position: sticky; top: 88px; }
+.cp-summary {
+  background: #fff;
+  border: 1.5px solid var(--bdr);
+  border-radius: 24px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 24px rgba(26,14,18,.05);
+}
+.cp-summary__title {
+  font-family: var(--font-d);
+  font-size: 1.2rem; font-weight: 500;
+  color: var(--dark); letter-spacing: -.015em;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--bdr);
+}
+
+/* Summary rows */
+.cp-sum-rows { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.cp-sum-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .84rem; font-weight: 600; color: var(--gray);
+}
+.cp-sum-row span:last-child { color: var(--dark); font-weight: 700; }
+.cp-free-ship { color: #16a34a !important; }
+.cp-sum-row--discount span:last-child { color: var(--pk) !important; }
+.cp-voucher-code-tag {
+  display: inline-block; margin-left: 6px;
+  background: var(--pk-pale); color: var(--pk);
+  font-size: .65rem; font-weight: 800;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 6px;
+  border: 1px solid var(--pk-border);
+}
+
+/* Voucher input */
+.cp-voucher { margin-bottom: 20px; }
+.cp-voucher__label {
+  font-size: .7rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--gray); margin-bottom: 8px;
+}
+.cp-voucher__row { display: flex; gap: 8px; }
+.cp-voucher__input {
+  flex: 1; padding: 11px 14px;
+  border: 1.5px solid var(--pk-border); border-radius: 12px;
+  font-family: var(--font-b); font-size: .84rem; color: var(--dark);
+  background: #fff; outline: none; transition: .2s;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.cp-voucher__input::placeholder { text-transform: none; letter-spacing: 0; color: #bba8ae; }
+.cp-voucher__input:focus { border-color: var(--pk); box-shadow: 0 0 0 4px rgba(212,49,126,.08); }
+.cp-voucher__btn {
+  padding: 11px 16px; border-radius: 12px;
+  background: var(--pk-pale); color: var(--pk);
+  border: 1.5px solid var(--pk-border);
+  font-family: var(--font-b); font-size: .8rem; font-weight: 800;
+  cursor: pointer; white-space: nowrap; transition: .2s;
+}
+.cp-voucher__btn:hover { background: var(--pk); color: #fff; }
+.cp-voucher__msg {
+  font-size: .75rem; font-weight: 700; margin-top: 6px;
+  min-height: 18px; transition: .2s;
+}
+.cp-voucher__msg.ok { color: #16a34a; }
+.cp-voucher__msg.err { color: #ef4444; }
+
+/* Divider + total */
+.cp-sum-divider { height: 1.5px; background: var(--bdr); margin-bottom: 18px; }
+.cp-sum-total {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.cp-sum-total span { font-size: .84rem; font-weight: 700; color: var(--gray); }
+.cp-sum-total strong {
+  font-family: var(--font-d);
+  font-size: 1.6rem; color: var(--pk);
+}
+
+/* Checkout button */
+.cp-checkout-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 15px;
+  background: var(--pk); color: #fff;
+  border: none; border-radius: 999px;
+  font-family: var(--font-b); font-size: .92rem; font-weight: 700;
+  text-decoration: none; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(212,49,126,.3);
+  transition: .2s; margin-bottom: 20px;
+}
+.cp-checkout-btn:hover { background: var(--pk-deep); transform: translateY(-1px); box-shadow: 0 10px 32px rgba(212,49,126,.38); }
+
+/* Guarantees */
+.cp-guarantees { display: flex; flex-direction: column; gap: 9px; }
+.cp-guarantee {
+  display: flex; align-items: center; gap: 9px;
+  font-size: .75rem; font-weight: 700; color: var(--gray);
+}
+.cp-guarantee i { color: var(--teal); width: 13px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .cp-layout { grid-template-columns: 1fr; }
+  .cp-summary-col { position: static; }
+  .cp-wrap { padding: 24px 16px 60px; }
+}
+@media (max-width: 640px) {
+  .cp-table-head { display: none; }
+  .cp-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    gap: 10px; padding: 16px;
+  }
+  .cp-cell--product { grid-column: 1 / -1; }
+  .cp-cell--price { display: none; }
+  .cp-cell--qty { justify-content: flex-start; }
+  .cp-cell--total { font-size: .9rem; }
+  .cp-cell--del { grid-row: 2; }
+}
+</style>
+
+
+<!-- ══════════════════════════════════════
+     CART PAGE JAVASCRIPT
+     (Handles qty, remove, voucher, totals)
+══════════════════════════════════════ -->
+<script>
+(function () {
+
+  // ── Demo vouchers (replace with server-side check for production)
+  const VOUCHERS = {
+    'PETCARE10': { label: 'PETCARE10', value: 50000 },
+    'WELCOME20': { label: 'WELCOME20', value: 100000 },
+    'FREESHIP':  { label: 'FREESHIP',  value: 30000 },
+  };
+
+  let appliedDiscount = 0;
+
+  // ── Parse price string → number
+  function parsePrice(str) {
+    return parseInt(String(str).replace(/[^0-9]/g, '')) || 0;
+  }
+
+  // ── Format number → VND string
+  function fmt(n) {
+    return n.toLocaleString('vi-VN') + '₫';
+  }
+
+  // ── Recalculate totals
+  function recalc() {
+    let subtotal = 0;
+
+    document.querySelectorAll('.cp-row').forEach(row => {
+      const price = parseInt(row.dataset.price) || 0;
+      const qty   = parseInt(row.querySelector('.cp-qty-val').textContent) || 1;
+      const line  = price * qty;
+      subtotal += line;
+      row.querySelector('.cp-line-total').textContent = fmt(line);
+    });
+
+    document.getElementById('cp-subtotal').textContent = fmt(subtotal);
+
+    const grandTotal = Math.max(0, subtotal - appliedDiscount);
+    document.getElementById('cp-grand-total').textContent = fmt(grandTotal);
+
+    // Check empty
+    const items = document.querySelectorAll('.cp-row');
+    if (items.length === 0) {
+      document.getElementById('cp-layout').style.display = 'none';
+      document.getElementById('cp-empty').style.display  = 'flex';
+    }
+  }
+
+  // ── Change qty
+  window.changeQty = function (btn, delta) {
+    const row    = btn.closest('.cp-row');
+    const valEl  = row.querySelector('.cp-qty-val');
+    let qty = parseInt(valEl.textContent) + delta;
+    if (qty < 1) { removeItem(row.querySelector('.cp-del-btn')); return; }
+    valEl.textContent = qty;
+    recalc();
+    // 🔗 For PHP backend: fetch(`?url=cart/${ delta > 0 ? 'increase' : 'decrease' }/${row.dataset.id}`)
+  };
+
+  // ── Remove item
+  window.removeItem = function (btn) {
+    const row = btn.closest('.cp-row');
+    row.style.transition = 'opacity .25s, transform .25s';
+    row.style.opacity = '0';
+    row.style.transform = 'translateX(20px)';
+    setTimeout(() => { row.remove(); recalc(); }, 260);
+    // 🔗 For PHP backend: window.location.href = `?url=cart/remove/${row.dataset.id}`
+  };
+
+  // ── Apply voucher
+  window.applyVoucher = function () {
+    const input  = document.getElementById('cp-voucher-input');
+    const msg    = document.getElementById('cp-voucher-msg');
+    const code   = input.value.trim().toUpperCase();
+
+    if (!code) { setMsg(msg, 'Vui lòng nhập mã voucher.', false); return; }
+
+    const v = VOUCHERS[code];
+    if (v) {
+      appliedDiscount = v.value;
+
+      // Show discount row
+      document.getElementById('cp-discount-row').style.display = 'flex';
+      document.getElementById('cp-discount-val').textContent    = '−' + fmt(v.value);
+      document.getElementById('cp-voucher-tag').textContent      = v.label;
+
+      setMsg(msg, `✓ Đã áp dụng! Giảm ${fmt(v.value)}`, true);
+      input.disabled = true;
+      recalc();
+
+      // 🔗 For PHP backend: submit a form POST to ?url=cart/applyVoucher
+    } else {
+      setMsg(msg, '✗ Mã không hợp lệ hoặc đã hết hạn.', false);
+    }
+  };
+
+  function setMsg(el, text, isOk) {
+    el.textContent  = text;
+    el.className    = 'cp-voucher__msg ' + (isOk ? 'ok' : 'err');
+  }
+
+  // Allow Enter key in voucher input
+  document.getElementById('cp-voucher-input')?.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); applyVoucher(); }
+  });
+
+  // Init
+  recalc();
+
+})();
+</script>
