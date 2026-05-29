@@ -17,7 +17,7 @@
 
 
   "home_badge": "🐾 Waltham's Premier Pet Resort",
-  "home_hero_h1": "Our Facility They'll Love It Here",
+  "home_hero_h1": "Our Facility<br/><span>They'll Love</span><br/>It Here",
   "home_hero_desc": "Luxurious lodging suites, spacious play parks, a full-service spa, and a state-of-the-art Physical Rehabilitation Center added in 2023.",
   "home_btn_register": "Register Now",
   "home_btn_login": "Existing Client Login",
@@ -76,13 +76,14 @@
   "home_play_outdoor_2": "Enjoy fresh air and sunshine",
   "home_play_outdoor_3": "Underground dig-proof mesh",
   "home_play_note": "Daycare is included with every boarding stay",
+  "home_play_note_desc": "đảm bảo mỗi bé cún đều được vận động, vui chơi và giao lưu suốt cả ngày.",
 
   "home_pf_pill": "🌿 PAWFEAST — 100% ORGANIC",
   "home_pf_title": "Meal plans formulated for",
   "home_pf_lbl1": "Single protein recipes",
   "home_pf_lbl2": "Fresh, whole vegetables",
-  "home_pf_lbl3": "Essential vitamins and minerals",
-  "home_pf_lbl4": "Grain and grain-free options",
+  "home_pf_lbl3": "Essential vitamins <br> and minerals",
+  "home_pf_lbl4": "Grain and <br> grain-free options",
   "home_pf_cta": "View the Petcare Spa menu →",
 
   "home_reviews_eyebrow": "Happy Clients",

@@ -15,8 +15,8 @@
   "nav_account": "Tài khoản",
 
    
-   "home_badge": "🐾 Khu nghỉ dưỡng thú cưng hàng đầu Waltham",
-  "home_hero_h1": "Không gian chúng tôi — Nơi thú cưng yêu thích",
+  "home_badge": "🐾 Khu nghỉ dưỡng thú cưng hàng đầu Waltham",
+  "home_hero_h1": "Không gian của chúng tôi<br/><span>Thú cưng sẽ yêu thích</span><br/>nơi đây",
   "home_hero_desc": "Phòng nghỉ sang trọng, công viên vui chơi rộng rãi, spa toàn dịch vụ và Trung tâm Phục hồi chức năng hiện đại khai trương năm 2023.",
   "home_btn_register": "Đăng ký ngay",
   "home_btn_login": "Khách hàng cũ đăng nhập",
@@ -75,13 +75,14 @@
   "home_play_outdoor_2": "Tận hưởng không khí trong lành và ánh nắng",
   "home_play_outdoor_3": "Lưới chống đào ngầm",
   "home_play_note": "Daycare được bao gồm trong mọi lượt lưu trú",
+  "home_play_note_desc": "đảm bảo mỗi bé cún đều được vận động, vui chơi và giao lưu suốt cả ngày.",
 
   "home_pf_pill": "🌿 PAWFEAST — 100% HỮU CƠ",
   "home_pf_title": "Thực đơn được thiết kế cho",
   "home_pf_lbl1": "Công thức đơn protein",
   "home_pf_lbl2": "Rau củ tươi nguyên chất",
-  "home_pf_lbl3": "Vitamin và khoáng chất thiết yếu",
-  "home_pf_lbl4": "Tùy chọn có và không có ngũ cốc",
+  "home_pf_lbl3": "Vitamin thiết yếu <br> và khoáng chất cần thiết",
+  "home_pf_lbl4": "Có ngũ cốc <br> và không ngũ cốc",
   "home_pf_cta": "Xem thực đơn Petcare Spa →",
 
   "home_reviews_eyebrow": "Khách hàng hài lòng",
