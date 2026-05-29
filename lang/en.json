@@ -16,6 +16,95 @@
   "nav_account": "Account",
 
 
+  "home_badge": "🐾 Waltham's Premier Pet Resort",
+  "home_hero_h1": "Our Facility They'll Love It Here",
+  "home_hero_desc": "Luxurious lodging suites, spacious play parks, a full-service spa, and a state-of-the-art Physical Rehabilitation Center added in 2023.",
+  "home_btn_register": "Register Now",
+  "home_btn_login": "Existing Client Login",
+  "home_card1_title": "Luxury Lodging",
+  "home_card1_desc": "Spacious suites with cozy bedding and nightly check-ins",
+  "home_card2_title": "All-Day Daycare",
+  "home_card2_desc": "Indoor & outdoor play parks, supervised 24/7",
+  "home_card3_title": "Organic Nutrition",
+  "home_card3_desc": "Premium organic food & treats, free delivery available",
+
+  "home_hours_daycare": "📞 Daycare Line",
+  "home_hours_monFri": "Mon–Fri Lobby",
+  "home_hours_sat": "Saturday",
+  "home_hours_sun": "Sunday",
+  "home_hours_rehab": "Rehab Hours",
+  "home_hours_rehab_val": "Mon–Fri (Appt Only)",
+
+  "home_since": "Since 2018 🐾",
+  "home_story_eyebrow": "Our Story",
+  "home_story_title": "A Place Where Dogs Truly Feel at Home",
+  "home_story_p1": "Founded in 2018, Petcare Spa began as a dream brought to life by Jalene with the help of her family — Ed, Michael, Halle — and their beloved rescues, Matzha Ball the Cockapoo and Sawyer the kitty.",
+  "home_story_p2": "Today, Petcare Spa is a 20,000-square-foot facility designed with dogs' comfort, safety, and happiness at the heart of every detail. Our team has grown to over 40 dedicated staff members.",
+  "home_story_p3": "Our high-flow air quality system equipped with UV sanitizing light eliminates 99.9% of viruses, bacteria, mold, and other pathogens.",
+
+  "home_diff_eyebrow": "What Sets Us Apart",
+  "home_diff_title": "Petcare Spa Difference",
+  "home_diff1_title": "All Inclusive Pet Retreat",
+  "home_diff1_desc": "From daycare to lodging, grooming to physical rehab, we've got every need covered in one location.",
+  "home_diff2_title": "Staffed 24/7",
+  "home_diff2_desc": "Day or night, our team is on-site watching over every bark, yawn, and playful jump.",
+  "home_diff3_title": "High Safety Standards",
+  "home_diff3_desc": "Clean, comfortable spaces with attentive supervision. Staff-to-dog ratio of 1:12–15.",
+  "home_diff4_title": "State-Of-The-Art Facility",
+  "home_diff4_desc": "High-flow air quality system with UV sanitizing lights. Kills 99.9% of viruses, bacteria, and mold.",
+  "home_diff5_title": "Organic Nutrition & Free Delivery",
+  "home_diff5_desc": "Our PawFeast line offers 100% certified organic food, fresh ingredients, and free delivery on every order above 300k₫.",
+
+  "home_flip1_title": "Dog Care",
+  "home_flip1_desc": "Professional care tips for your pet's health and happiness.",
+  "home_flip2_title": "Rehabilitation",
+  "home_flip2_desc": "Helping pets recover with modern therapy solutions.",
+  "home_flip3_title": "Grooming",
+  "home_flip3_desc": "Premium grooming for a clean and stylish look.",
+  "home_flip4_title": "Play & Fun",
+  "home_flip4_desc": "Safe and fun environments for pets to play.",
+
+  "home_play_eyebrow": "Daycare Paradise",
+  "home_play_title": "A Playground Paradise For Every Pup",
+  "home_play_desc": "Multiple play parks designed to support all play styles and energy levels.",
+  "home_play_indoor_title": "🏠 Indoor Play Park",
+  "home_play_indoor_1": "Cushioned flooring to reduce joint strain",
+  "home_play_indoor_2": "Cozy cots for mid-day naps",
+  "home_play_indoor_3": "Climbing structures for enrichment",
+  "home_play_outdoor_title": "🌳 Outdoor Play Parks",
+  "home_play_outdoor_1": "Run and play with friends",
+  "home_play_outdoor_2": "Enjoy fresh air and sunshine",
+  "home_play_outdoor_3": "Underground dig-proof mesh",
+  "home_play_note": "Daycare is included with every boarding stay",
+
+  "home_pf_pill": "🌿 PAWFEAST — 100% ORGANIC",
+  "home_pf_title": "Meal plans formulated for",
+  "home_pf_lbl1": "Single protein recipes",
+  "home_pf_lbl2": "Fresh, whole vegetables",
+  "home_pf_lbl3": "Essential vitamins and minerals",
+  "home_pf_lbl4": "Grain and grain-free options",
+  "home_pf_cta": "View the Petcare Spa menu →",
+
+  "home_reviews_eyebrow": "Happy Clients",
+  "home_reviews_title": "Customer Reviews",
+  "home_reviews_count": "Based On 379 Reviews",
+  "home_review1_text": "Our 11-year-old Havanese, Lulu, has been a weekly visitor to the Physical Rehabilitation Center since January 2024. Amy, Kate and their crew gave Lulu her life back.",
+  "home_review2_text": "Everyone on the rehab team is so kind. Our old girl absolutely LOVES them! They've been crucial in improving her mobility and building strength to maintain quality of life!",
+  "home_review3_text": "We have used Petcare Spa for several years, both for day care and grooming. Ed and Jalene and their staff are wonderful. We highly recommend them!",
+
+  "home_blog_eyebrow": "From Our Blog",
+  "home_blog_title": "Tips, Stories & Updates",
+  "home_blog1_tag": "Care Tips",
+  "home_blog1_title": "How to Prepare Your Dog for Their First Boarding Stay",
+  "home_blog1_meta": "May 10, 2026 · 5 min read",
+  "home_blog2_tag": "Rehabilitation",
+  "home_blog2_title": "What is Canine Physical Rehabilitation and Who Needs It?",
+  "home_blog2_meta": "April 28, 2026 · 7 min read",
+  "home_blog3_tag": "Nutrition",
+  "home_blog3_title": "Why Organic Food Is the Best Choice for Your Pet's Health",
+  "home_blog3_meta": "April 15, 2026 · 4 min read",
+
+  "common_view_more": "View More",
 
 
 
@@ -26,7 +115,9 @@
 
 
 
-  
+
+
+
 
   "footer_desc": "Whether your pet is here for a day or a month, they are part of our family. Premium care, organic nutrition, free delivery.",
   "footer_explore": "Explore",
