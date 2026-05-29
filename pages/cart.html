@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Giỏ Hàng — Petcare Spa</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet"/>
 
 <style>
 /* ════════════════════════════════════════
-   ROOT TOKENS
+   ROOT TOKENS — giữ nguyên từ design system
 ════════════════════════════════════════ */
 :root {
   --pink:        #d4317e;
@@ -33,7 +23,6 @@
   --font-body:    'Manrope', system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-hand:    'Caveat', cursive;
-
   --surface:     #faf7f9;
   --card-bg:     #ffffff;
   --ease:        cubic-bezier(0.22, 1, 0.36, 1);
@@ -49,88 +38,7 @@ body {
 }
 
 /* ════════════════════════════════════════
-   NAVBAR
-════════════════════════════════════════ */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 40px;
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: var(--dark);
-  text-decoration: none;
-  letter-spacing: -.01em;
-}
-.nav-logo span { color: var(--pink); font-style: italic; }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--gray);
-  text-decoration: none;
-  letter-spacing: .03em;
-  transition: color .2s;
-}
-.nav-links a:hover { color: var(--pink); }
-.nav-links a.active { color: var(--pink); }
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.nav-cart-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--pink);
-  color: #fff;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 700;
-  cursor: default;
-  letter-spacing: .02em;
-}
-.nav-cart-pill i { font-size: .9rem; }
-.nav-back {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--gray);
-  text-decoration: none;
-  padding: 8px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 999px;
-  transition: .2s;
-}
-.nav-back:hover { color: var(--pink); border-color: var(--pink-border); background: var(--pink-pale); }
-
-/* ════════════════════════════════════════
-   PAGE HERO
+   HERO
 ════════════════════════════════════════ */
 .cart-hero {
   background: linear-gradient(135deg, var(--pink-pale) 0%, #fff4fb 50%, #f0faf9 100%);
@@ -154,10 +62,7 @@ body {
   letter-spacing: -.03em;
   line-height: 1;
 }
-.cart-hero__title em {
-  color: var(--pink);
-  font-style: italic;
-}
+.cart-hero__title em { color: var(--pink); font-style: italic; }
 .cart-hero__meta {
   font-size: .8rem;
   font-weight: 600;
@@ -174,16 +79,21 @@ body {
   border: 1.5px dashed var(--pink-border);
   border-radius: 999px;
   padding: 6px 20px;
-  letter-spacing: .01em;
 }
 
 /* ════════════════════════════════════════
-   MAIN LAYOUT
+   WRAP + LAYOUT
 ════════════════════════════════════════ */
 .cp-wrap {
   max-width: 1200px;
   margin: 0 auto;
   padding: 36px 40px 80px;
+}
+.cp-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: start;
 }
 
 /* ════════════════════════════════════════
@@ -200,13 +110,10 @@ body {
 }
 .cp-empty.show { display: flex; }
 .cp-empty__icon {
-  width: 100px;
-  height: 100px;
+  width: 100px; height: 100px;
   background: var(--pink-pale);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-size: 2.8rem;
   animation: floatIcon 3s ease-in-out infinite;
   border: 2px dashed var(--pink-border);
@@ -217,43 +124,20 @@ body {
 }
 .cp-empty__title {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--dark);
-  letter-spacing: -.02em;
+  font-size: 2rem; font-weight: 400;
+  color: var(--dark); letter-spacing: -.02em;
 }
-.cp-empty__sub {
-  font-size: .9rem;
-  color: var(--gray);
-  line-height: 1.7;
-}
+.cp-empty__sub { font-size: .9rem; color: var(--gray); line-height: 1.7; }
 .cp-btn-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 30px;
-  border-radius: 999px;
-  background: var(--pink);
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: .88rem;
-  font-weight: 700;
-  text-decoration: none;
-  margin-top: 8px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 30px; border-radius: 999px;
+  background: var(--pink); color: #fff;
+  font-family: var(--font-body); font-size: .88rem; font-weight: 700;
+  text-decoration: none; margin-top: 8px;
   box-shadow: 0 6px 24px rgba(212,49,126,.28);
   transition: .2s;
 }
-.cp-btn-back:hover { background: var(--pink-deep); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(212,49,126,.35); }
-
-/* ════════════════════════════════════════
-   CART LAYOUT
-════════════════════════════════════════ */
-.cp-layout {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 24px;
-  align-items: start;
-}
+.cp-btn-back:hover { background: var(--pink-deep); transform: translateY(-2px); }
 
 /* ════════════════════════════════════════
    TABLE COLUMN
@@ -264,8 +148,6 @@ body {
   border-radius: 28px;
   overflow: hidden;
 }
-
-/* Table header */
 .cp-table-head {
   display: grid;
   grid-template-columns: 1fr 110px 140px 110px 44px;
@@ -275,45 +157,26 @@ body {
   gap: 8px;
 }
 .cp-th {
-  font-size: .65rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--gray);
+  font-size: .65rem; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--gray);
 }
 .cp-th--price, .cp-th--qty, .cp-th--total { text-align: center; }
 
-/* Progress / item count strip */
+/* strip */
 .cp-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 10px 28px;
   background: rgba(212,49,126,.03);
   border-bottom: 1px solid var(--border);
 }
-.cp-strip__count {
-  font-size: .75rem;
-  font-weight: 700;
-  color: var(--pink);
-  letter-spacing: .04em;
-}
-.cp-strip__ship {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--green-dark);
-}
-.cp-strip__ship i { font-size: .8rem; }
+.cp-strip__count { font-size: .75rem; font-weight: 700; color: var(--pink); letter-spacing: .04em; }
+.cp-strip__ship  { display: flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 700; color: var(--green-dark); }
 
-/* Row */
+/* row */
 .cp-row {
   display: grid;
   grid-template-columns: 1fr 110px 140px 110px 44px;
-  padding: 22px 28px;
-  gap: 8px;
+  padding: 22px 28px; gap: 8px;
   align-items: center;
   border-bottom: 1px solid var(--border);
   transition: background .15s;
@@ -323,16 +186,18 @@ body {
 .cp-row:last-child { border-bottom: none; }
 .cp-row:hover { background: var(--surface); }
 
-/* Cells */
+/* cells */
 .cp-cell { display: flex; align-items: center; }
 .cp-cell--price, .cp-cell--qty, .cp-cell--total { justify-content: center; }
 .cp-cell--del { justify-content: flex-end; }
+.cp-cell--product { 
+   overflow: hidden;
+   gap: 16px; 
+   min-width: 0;
+}
 
-/* Product cell */
-.cp-cell--product { gap: 16px; }
 .cp-item-img {
-  width: 80px;
-  height: 80px;
+  width: 80px; height: 80px;
   object-fit: cover;
   border-radius: 18px;
   border: 1.5px solid var(--border);
@@ -343,133 +208,83 @@ body {
 .cp-row:hover .cp-item-img { transform: scale(1.04); }
 .cp-item-info { min-width: 0; }
 .cp-item-name {
-  font-size: .88rem;
-  font-weight: 800;
-  color: var(--dark);
-  line-height: 1.4;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: .88rem; font-weight: 800; color: var(--dark);
+  line-height: 1.4; margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 240px;
 }
 .cp-item-cat {
   display: inline-block;
-  font-size: .62rem;
-  font-weight: 800;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--pink);
-  background: var(--pink-pale);
-  padding: 2px 8px;
-  border-radius: 6px;
+  font-size: .62rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--pink); background: var(--pink-pale);
+  padding: 2px 8px; border-radius: 6px;
   border: 1px solid var(--pink-border);
 }
+.cp-cell--price { font-size: .84rem; font-weight: 700; color: var(--gray); }
 
-/* Price cell */
-.cp-cell--price {
-  font-size: .84rem;
-  font-weight: 700;
-  color: var(--gray);
-}
-
-/* Qty stepper */
+/* qty stepper */
 .cp-qty {
-  display: inline-flex;
-  align-items: center;
+  display: inline-flex; align-items: center;
   border: 1.5px solid var(--pink-border);
-  border-radius: 14px;
-  overflow: hidden;
+  border-radius: 14px; overflow: hidden;
   background: #fff;
 }
 .cp-qty-btn {
-  width: 34px;
-  height: 34px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: .15s;
-  line-height: 1;
+  width: 34px; height: 34px;
+  border: none; background: transparent; cursor: pointer;
+  font-size: 1.1rem; font-weight: 500; color: var(--gray);
+  display: flex; align-items: center; justify-content: center;
+  transition: .15s; line-height: 1;
 }
 .cp-qty-btn:hover { background: var(--pink-pale); color: var(--pink); }
 .cp-qty-val {
-  min-width: 34px;
-  text-align: center;
-  font-size: .85rem;
-  font-weight: 800;
-  color: var(--dark);
+  min-width: 34px; text-align: center;
+  font-size: .85rem; font-weight: 800; color: var(--dark);
   border-left: 1px solid var(--pink-border);
   border-right: 1px solid var(--pink-border);
-  line-height: 34px;
-  padding: 0 2px;
+  line-height: 34px; padding: 0 2px;
 }
 
-/* Line total */
+/* line total */
 .cp-line-total {
   font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--pink);
+  font-size: 1rem; color: var(--pink);
   justify-content: center;
 }
 
-/* Delete */
+/* delete btn */
 .cp-del-btn {
-  width: 34px;
-  height: 34px;
+  width: 34px; height: 34px;
   border-radius: 50%;
   border: 1.5px solid var(--border);
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #c8b4be;
-  transition: .2s;
-  flex-shrink: 0;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #c8b4be; transition: .2s; flex-shrink: 0;
 }
 .cp-del-btn:hover {
-  border-color: #fca5a5;
-  color: #ef4444;
-  background: #fef2f2;
-  transform: scale(1.1);
+  border-color: #fca5a5; color: #ef4444;
+  background: #fef2f2; transform: scale(1.1);
 }
 
-/* Table footer */
+/* table footer */
 .cp-table-footer {
   padding: 16px 28px;
   background: var(--surface);
   border-top: 1.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .cp-continue-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .78rem;
-  font-weight: 700;
-  color: var(--gray);
-  text-decoration: none;
-  transition: .15s;
-  letter-spacing: .02em;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .78rem; font-weight: 700;
+  color: var(--gray); text-decoration: none;
+  transition: .15s; letter-spacing: .02em;
 }
 .cp-continue-link:hover { color: var(--pink); gap: 10px; }
 .cp-clear-btn {
-  font-size: .72rem;
-  font-weight: 700;
-  color: #e5a0a0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  letter-spacing: .04em;
-  text-transform: uppercase;
+  font-size: .72rem; font-weight: 700;
+  color: #e5a0a0; background: none; border: none;
+  cursor: pointer; letter-spacing: .04em; text-transform: uppercase;
   transition: .15s;
 }
 .cp-clear-btn:hover { color: #ef4444; }
@@ -478,285 +293,133 @@ body {
    SUMMARY COLUMN
 ════════════════════════════════════════ */
 .cp-summary-col {
-  position: sticky;
-  top: 88px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  position: sticky; top: 88px;
+  display: flex; flex-direction: column; gap: 16px;
 }
 
-/* Free ship progress bar */
+/* free ship card */
 .cp-ship-card {
   background: var(--card-bg);
   border: 1.5px solid var(--border);
-  border-radius: 22px;
-  padding: 20px 22px;
-  overflow: hidden;
+  border-radius: 22px; padding: 20px 22px; overflow: hidden;
 }
 .cp-ship-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
 }
-.cp-ship-label span {
-  font-size: .75rem;
-  font-weight: 700;
-  color: var(--gray);
-}
-.cp-ship-label strong {
-  font-size: .75rem;
-  font-weight: 800;
-  color: var(--green-dark);
-}
-.cp-ship-bar {
-  height: 6px;
-  background: var(--border);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.cp-ship-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--teal), var(--green));
-  border-radius: 999px;
-  transition: width .6s var(--ease);
-}
-.cp-ship-msg {
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--teal-dark);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+.cp-ship-label span  { font-size: .75rem; font-weight: 700; color: var(--gray); }
+.cp-ship-label strong { font-size: .75rem; font-weight: 800; color: var(--green-dark); }
+.cp-ship-bar { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+.cp-ship-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--green)); border-radius: 999px; transition: width .6s var(--ease); }
+.cp-ship-msg { font-size: .72rem; font-weight: 700; color: var(--teal-dark); display: flex; align-items: center; gap: 5px; }
 
-/* Main summary card */
+/* summary card */
 .cp-summary {
   background: var(--card-bg);
   border: 1.5px solid var(--border);
-  border-radius: 28px;
-  padding: 28px 24px;
-  position: relative;
-  overflow: hidden;
+  border-radius: 28px; padding: 28px 24px;
+  position: relative; overflow: hidden;
 }
 .cp-summary::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 120px;
-  height: 120px;
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 120px; height: 120px;
   background: radial-gradient(circle, rgba(212,49,126,.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+  border-radius: 50%; pointer-events: none;
 }
-
 .cp-summary__title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: var(--dark);
-  letter-spacing: -.02em;
-  margin-bottom: 22px;
-  padding-bottom: 18px;
+  font-size: 1.25rem; font-weight: 400; color: var(--dark);
+  letter-spacing: -.02em; margin-bottom: 22px; padding-bottom: 18px;
   border-bottom: 1.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .cp-summary__title i {
-  font-size: .8rem;
-  color: var(--pink);
-  background: var(--pink-pale);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: .8rem; color: var(--pink); background: var(--pink-pale);
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
 }
 
-/* Sum rows */
-.cp-sum-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  margin-bottom: 22px;
-}
+/* sum rows */
+.cp-sum-rows { display: flex; flex-direction: column; gap: 13px; margin-bottom: 22px; }
 .cp-sum-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--gray);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .82rem; font-weight: 600; color: var(--gray);
 }
 .cp-sum-row .val { color: var(--dark); font-weight: 800; }
 .cp-sum-row .free { color: var(--green-dark); font-weight: 800; display: flex; align-items: center; gap: 5px; }
 .cp-sum-row.discount .val { color: var(--pink); }
 
-/* Voucher */
+/* voucher */
 .cp-voucher { margin-bottom: 22px; }
-.cp-voucher__label {
-  font-size: .65rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  color: var(--gray);
-  margin-bottom: 9px;
-}
-.cp-voucher__row {
-  display: flex;
-  gap: 8px;
-  align-items: stretch;
-}
+.cp-voucher__label { font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--gray); margin-bottom: 9px; }
+.cp-voucher__row { display: flex; gap: 8px; align-items: stretch; }
 .cp-voucher__input {
-  flex: 1;
-  padding: 11px 15px;
-  border: 1.5px solid var(--pink-border);
-  border-radius: 14px;
-  font-family: var(--font-body);
-  font-size: .82rem;
-  color: var(--dark);
-  background: #fff;
-  outline: none;
-  transition: .2s;
-  text-transform: uppercase;
-  letter-spacing: .06em;
+  flex: 1; padding: 11px 15px;
+  border: 1.5px solid var(--pink-border); border-radius: 14px;
+  font-family: var(--font-body); font-size: .82rem; color: var(--dark);
+  background: #fff; outline: none; transition: .2s;
+  text-transform: uppercase; letter-spacing: .06em;
 }
 .cp-voucher__input::placeholder { text-transform: none; letter-spacing: 0; color: #c9b0bc; }
-.cp-voucher__input:focus {
-  border-color: var(--pink);
-  box-shadow: 0 0 0 4px rgba(212,49,126,.08);
-}
+.cp-voucher__input:focus { border-color: var(--pink); box-shadow: 0 0 0 4px rgba(212,49,126,.08); }
 .cp-voucher__btn {
-  padding: 11px 16px;
-  border-radius: 14px;
-  background: var(--dark);
-  color: #fff;
-  border: none;
-  font-family: var(--font-body);
-  font-size: .78rem;
-  font-weight: 800;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: .2s;
-  letter-spacing: .03em;
+  padding: 11px 16px; border-radius: 14px;
+  background: var(--dark); color: #fff; border: none;
+  font-family: var(--font-body); font-size: .78rem; font-weight: 800;
+  cursor: pointer; white-space: nowrap; transition: .2s; letter-spacing: .03em;
 }
 .cp-voucher__btn:hover { background: var(--pink); transform: translateY(-1px); }
-.cp-voucher__msg {
-  font-size: .73rem;
-  font-weight: 700;
-  margin-top: 7px;
-  min-height: 16px;
-}
+.cp-voucher__msg { font-size: .73rem; font-weight: 700; margin-top: 7px; min-height: 16px; }
 .cp-voucher__msg.ok { color: var(--green-dark); }
 .cp-voucher__msg.err { color: #ef4444; }
 
-/* Divider */
-.cp-sum-divider {
-  height: 1.5px;
-  background: var(--border);
-  margin: 0 0 20px;
-}
+/* divider + grand total */
+.cp-sum-divider { height: 1.5px; background: var(--border); margin: 0 0 20px; }
+.cp-sum-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; }
+.cp-sum-total span { font-size: .82rem; font-weight: 700; color: var(--gray); }
+.cp-sum-total strong { font-family: var(--font-display); font-size: 1.9rem; color: var(--pink); letter-spacing: -.02em; line-height: 1; }
 
-/* Grand total */
-.cp-sum-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 22px;
-}
-.cp-sum-total span {
-  font-size: .82rem;
-  font-weight: 700;
-  color: var(--gray);
-}
-.cp-sum-total strong {
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-  color: var(--pink);
-  letter-spacing: -.02em;
-  line-height: 1;
-}
-
-/* Checkout btn */
+/* checkout btn */
 .cp-checkout-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 16px;
-  background: var(--dark);
-  color: #fff;
-  border: none;
-  border-radius: 18px;
-  font-family: var(--font-body);
-  font-size: .9rem;
-  font-weight: 800;
-  text-decoration: none;
-  cursor: pointer;
-  transition: .25s var(--ease);
-  letter-spacing: .03em;
-  margin-bottom: 12px;
-  position: relative;
-  overflow: hidden;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 16px;
+  background: var(--dark); color: #fff; border: none; border-radius: 18px;
+  font-family: var(--font-body); font-size: .9rem; font-weight: 800;
+  text-decoration: none; cursor: pointer; transition: .25s var(--ease);
+  letter-spacing: .03em; margin-bottom: 12px;
+  position: relative; overflow: hidden;
 }
 .cp-checkout-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--pink-deep), var(--pink));
-  opacity: 0;
-  transition: opacity .25s;
+  opacity: 0; transition: opacity .25s;
 }
 .cp-checkout-btn:hover::before { opacity: 1; }
 .cp-checkout-btn span, .cp-checkout-btn i { position: relative; z-index: 1; }
 .cp-checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(26,26,46,.25); }
 
-.cp-pay-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  opacity: .55;
-}
-.cp-pay-icons i {
-  font-size: 1.3rem;
-  color: var(--gray);
-}
+/* pay icons */
+.cp-pay-icons { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 20px; opacity: .55; }
+.cp-pay-icons i { font-size: 1.3rem; color: var(--gray); }
 
-/* Guarantees */
-.cp-guarantees {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-top: 16px;
-  border-top: 1.5px solid var(--border);
-}
-.cp-guarantee {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: .74rem;
-  font-weight: 700;
-  color: var(--gray);
-}
+/* guarantees */
+.cp-guarantees { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1.5px solid var(--border); }
+.cp-guarantee { display: flex; align-items: center; gap: 10px; font-size: .74rem; font-weight: 700; color: var(--gray); }
 .cp-guarantee-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 10px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  width: 28px; height: 28px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .cp-guarantee-icon i { font-size: .75rem; color: var(--teal-dark); }
+
+/* ════════════════════════════════════════
+   NO-ITEMS placeholder in table
+════════════════════════════════════════ */
+.cp-no-items {
+  padding: 40px 28px;
+  text-align: center;
+  font-size: .85rem; font-weight: 600; color: var(--gray);
+  font-style: italic;
+}
 
 /* ════════════════════════════════════════
    RESPONSIVE
@@ -766,15 +429,13 @@ body {
   .cp-summary-col { position: static; }
   .cp-wrap { padding: 24px 20px 60px; }
   .cart-hero { padding: 32px 20px 28px; }
-  .navbar { padding: 0 20px; }
-  .nav-links { display: none; }
 }
 @media (max-width: 640px) {
   .cp-table-head { display: none; }
   .cp-row {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
-    padding: 18px 18px;
+    padding: 18px;
     gap: 12px;
   }
   .cp-cell--product { grid-column: 1 / -1; }
@@ -786,202 +447,111 @@ body {
   .cp-strip { padding: 10px 18px; }
   .cp-table-footer { padding: 14px 18px; }
 }
-    .bk-nav__logo{font-family:var(--font-display);font-size:1.35rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark);text-decoration:none;}
-    .bk-nav__logo span{color:var(--pink);}
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════
-     NAVBAR
-════════════════════════════════════ -->
-<!--<nav class="navbar">
-  <div class="nav-inner">
-    <a href="/" class="bk-nav__logo">Petcare <span>Spa</span></a>
-
-    <div class="nav-right">
-      <a href="#" onclick="history.back(); return false;">
-        <i class="fa fa-arrow-left"></i> Tiếp tục mua
-      </a>
-      <div class="nav-cart-pill">
-        <i class="fa fa-bag-shopping"></i>
-        <span id="nav-item-count">3 sản phẩm</span>
-      </div>
-    </div>
-  </div>
-</nav>
--->
 <!-- ════════════════════════════════════
      HERO
 ════════════════════════════════════ -->
 <div class="cart-hero">
   <div class="cart-hero__inner">
     <div>
-      <h1 class="cart-hero__title">Giỏ <em>hàng</em> của bạn</h1>
-      <p class="cart-hero__meta" id="hero-meta">3 sản phẩm được chọn</p>
+      <h1 class="cart-hero__title">Your <em>Cart</em></h1>
+      <p class="cart-hero__meta" id="hero-meta">Loading...</p>
     </div>
-    <div class="cart-hero__badge">🐾 Giao hàng nhanh toàn quốc</div>
+    <div class="cart-hero__badge">🐾 Fast delivery nationwide</div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════
-     MAIN CONTENT
+     MAIN
 ════════════════════════════════════ -->
 <div class="cp-wrap">
 
-  <!-- Empty state -->
+  <!-- Empty state — hiện khi không có sản phẩm -->
   <div class="cp-empty" id="cp-empty">
     <div class="cp-empty__icon">🛒</div>
-    <h2 class="cp-empty__title">Giỏ hàng đang trống</h2>
-    <p class="cp-empty__sub">Hãy thêm sản phẩm để tiếp tục mua sắm nhé!</p>
+    <h2 class="cp-empty__title">Your cart is empty</h2>
+    <p class="cp-empty__sub">Add some products and come back here to checkout!</p>
     <a href="#shop" class="cp-btn-back">
-      <i class="fa fa-arrow-left"></i> Đi đến cửa hàng
+      <i class="fa fa-arrow-left"></i> Back to shop
     </a>
   </div>
 
-  <!-- Cart layout -->
-  <div class="cp-layout" id="cp-layout">
+  <!-- Cart layout — hiện khi có sản phẩm -->
+  <div class="cp-layout" id="cp-layout" style="display:none">
 
     <!-- ── LEFT: TABLE ── -->
     <div class="cp-table-col">
 
       <div class="cp-table-head">
-        <span class="cp-th">Sản phẩm</span>
-        <span class="cp-th cp-th--price">Đơn giá</span>
-        <span class="cp-th cp-th--qty">Số lượng</span>
-        <span class="cp-th cp-th--total">Thành tiền</span>
+        <span class="cp-th">Product</span>
+        <span class="cp-th cp-th--price">Unit Price</span>
+        <span class="cp-th cp-th--qty">Quantity</span>
+        <span class="cp-th cp-th--total">Subtotal</span>
         <span class="cp-th"></span>
       </div>
 
-      <!-- Item count + free ship notice -->
       <div class="cp-strip">
-        <span class="cp-strip__count" id="strip-count">3 sản phẩm trong giỏ</span>
+        <span class="cp-strip__count" id="strip-count">0 items in cart</span>
         <span class="cp-strip__ship">
-          <i class="fa fa-truck"></i> Đủ điều kiện miễn phí giao hàng
+          <i class="fa fa-truck"></i>
+          <span id="strip-ship-msg">Calculating...</span>
         </span>
       </div>
 
-      <!-- Items -->
+      <!-- Items — dynamically rendered by JS -->
       <div class="cp-items" id="cp-items">
-
-        <div class="cp-row" data-id="1" data-price="250000">
-          <div class="cp-cell cp-cell--product">
-            <img class="cp-item-img" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=160&q=80" alt="Royal Canin">
-            <div class="cp-item-info">
-              <div class="cp-item-name">Royal Canin Adult Dog Food 2kg</div>
-              <div class="cp-item-cat">Food</div>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--price">250.000₫</div>
-          <div class="cp-cell cp-cell--qty">
-            <div class="cp-qty">
-              <button class="cp-qty-btn" onclick="changeQty(this,-1)">−</button>
-              <span class="cp-qty-val">1</span>
-              <button class="cp-qty-btn" onclick="changeQty(this,1)">+</button>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--total cp-line-total">250.000₫</div>
-          <div class="cp-cell cp-cell--del">
-            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="cp-row" data-id="2" data-price="85000">
-          <div class="cp-cell cp-cell--product">
-            <img class="cp-item-img" src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=160&q=80" alt="Cat Collar">
-            <div class="cp-item-info">
-              <div class="cp-item-name">Stylish Cat Collar</div>
-              <div class="cp-item-cat">Accessories</div>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--price">85.000₫</div>
-          <div class="cp-cell cp-cell--qty">
-            <div class="cp-qty">
-              <button class="cp-qty-btn" onclick="changeQty(this,-1)">−</button>
-              <span class="cp-qty-val">2</span>
-              <button class="cp-qty-btn" onclick="changeQty(this,1)">+</button>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--total cp-line-total">170.000₫</div>
-          <div class="cp-cell cp-cell--del">
-            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="cp-row" data-id="3" data-price="120000">
-          <div class="cp-cell cp-cell--product">
-            <img class="cp-item-img" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=160&q=80" alt="Shampoo">
-            <div class="cp-item-info">
-              <div class="cp-item-name">Biogroom Herbal Pet Shampoo</div>
-              <div class="cp-item-cat">Hygiene</div>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--price">120.000₫</div>
-          <div class="cp-cell cp-cell--qty">
-            <div class="cp-qty">
-              <button class="cp-qty-btn" onclick="changeQty(this,-1)">−</button>
-              <span class="cp-qty-val">1</span>
-              <button class="cp-qty-btn" onclick="changeQty(this,1)">+</button>
-            </div>
-          </div>
-          <div class="cp-cell cp-cell--total cp-line-total">120.000₫</div>
-          <div class="cp-cell cp-cell--del">
-            <button class="cp-del-btn" onclick="removeItem(this)" title="Xoá">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-
-      </div><!-- /cp-items -->
+        <div class="cp-no-items">Loading items...</div>
+      </div>
 
       <div class="cp-table-footer">
-        <a href="#" onclick="history.back(); return false;" class="cp-continue-link">
+        <a href="#shop" class="cp-continue-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-          Tiếp tục mua sắm
+          Continue shopping
         </a>
         <button class="cp-clear-btn" onclick="cpClearCart()">Clear all</button>
       </div>
-
-    </div><!-- /cp-table-col -->
+    </div>
 
     <!-- ── RIGHT: SUMMARY ── -->
     <div class="cp-summary-col">
 
-      <!-- Free shipping bar -->
+      <!-- Free ship progress -->
       <div class="cp-ship-card">
         <div class="cp-ship-label">
-          <span>Miễn phí vận chuyển khi đạt</span>
-          <strong id="ship-remaining">✓ Đã đủ!</strong>
+          <span>Free shipping threshold</span>
+          <strong id="ship-remaining">–</strong>
         </div>
         <div class="cp-ship-bar">
-          <div class="cp-ship-fill" id="ship-fill" style="width:100%"></div>
+          <div class="cp-ship-fill" id="ship-fill" style="width:0%"></div>
         </div>
         <div class="cp-ship-msg">
           <i class="fa fa-circle-check"></i>
-          <span id="ship-msg">Bạn được miễn phí giao hàng!</span>
+          <span id="ship-msg">Calculating...</span>
         </div>
       </div>
 
       <!-- Summary card -->
       <div class="cp-summary">
         <h3 class="cp-summary__title">
-          Tóm tắt đơn hàng
+          Order Summary
           <i class="fa fa-receipt"></i>
         </h3>
 
         <div class="cp-sum-rows">
           <div class="cp-sum-row">
-            <span>Tạm tính (<span id="sum-count">3</span> sp)</span>
-            <span class="val" id="cp-subtotal">540.000₫</span>
+            <span>Subtotal (<span id="sum-count">0</span> items)</span>
+            <span class="val" id="cp-subtotal">0₫</span>
           </div>
           <div class="cp-sum-row">
-            <span>Phí vận chuyển</span>
-            <span class="free"><i class="fa fa-check"></i> Miễn phí</span>
-          </div>
+              <span>Shipping</span>
+            
+              <span id="cp-shipping">
+                <i class="fa fa-check"></i> Free
+              </span>
+            </div>
           <div class="cp-sum-row discount" id="cp-discount-row" style="display:none">
             <span>Voucher <span id="cp-voucher-tag" style="font-size:.65rem;font-weight:800;background:var(--pink-pale);color:var(--pink);padding:2px 7px;border-radius:6px;border:1px solid var(--pink-border);margin-left:4px;"></span></span>
             <span class="val" id="cp-discount-val">−0₫</span>
@@ -990,10 +560,10 @@ body {
 
         <!-- Voucher -->
         <div class="cp-voucher">
-          <div class="cp-voucher__label">Mã giảm giá</div>
+          <div class="cp-voucher__label">Discount code</div>
           <div class="cp-voucher__row">
-            <input class="cp-voucher__input" id="cp-voucher-input" type="text" placeholder="Nhập mã voucher..." autocomplete="off">
-            <button class="cp-voucher__btn" onclick="applyVoucher()">Áp dụng</button>
+            <input class="cp-voucher__input" id="cp-voucher-input" type="text" placeholder="Enter voucher code..." autocomplete="off">
+            <button class="cp-voucher__btn" onclick="cpApplyVoucher()">Apply</button>
           </div>
           <div class="cp-voucher__msg" id="cp-voucher-msg"></div>
         </div>
@@ -1001,16 +571,15 @@ body {
         <div class="cp-sum-divider"></div>
 
         <div class="cp-sum-total">
-          <span>Tổng cộng</span>
-          <strong id="cp-grand-total">540.000₫</strong>
+          <span>Total</span>
+          <strong id="cp-grand-total">0₫</strong>
         </div>
 
-        <a href="#checkout" class="cp-checkout-btn">
-          <span>Tiến hành thanh toán</span>
+        <button class="cp-checkout-btn">
+          <span>Proceed to Checkout</span>
           <i class="fa fa-arrow-right"></i>
-        </a>
+        </button>
 
-        <!-- Payment icons -->
         <div class="cp-pay-icons">
           <i class="fa-brands fa-cc-visa"></i>
           <i class="fa-brands fa-cc-mastercard"></i>
@@ -1019,142 +588,23 @@ body {
           <i class="fa-brands fa-apple-pay"></i>
         </div>
 
-        <!-- Guarantees -->
         <div class="cp-guarantees">
           <div class="cp-guarantee">
             <div class="cp-guarantee-icon"><i class="fa fa-lock"></i></div>
-            Thanh toán bảo mật 256-bit SSL
+            256-bit SSL secure payment
           </div>
           <div class="cp-guarantee">
             <div class="cp-guarantee-icon"><i class="fa fa-rotate-left"></i></div>
-            Đổi trả miễn phí trong 30 ngày
+            Free returns within 30 days
           </div>
           <div class="cp-guarantee">
             <div class="cp-guarantee-icon"><i class="fa fa-truck"></i></div>
-            Giao hàng toàn quốc 2–4 ngày
+            Nationwide delivery in 2–4 days
           </div>
         </div>
       </div>
 
-    </div><!-- /cp-summary-col -->
-
+    </div>
   </div><!-- /cp-layout -->
 
 </div><!-- /cp-wrap -->
-
-<script>
-(function () {
-  const FREE_SHIP_THRESHOLD = 300000;
-
-  const VOUCHERS = {
-    'PETCARE10': { label: 'PETCARE10', value: 50000 },
-    'WELCOME20': { label: 'WELCOME20', value: 100000 },
-    'FREESHIP':  { label: 'FREESHIP',  value: 30000 },
-  };
-
-  let appliedDiscount = 0;
-
-  function fmt(n) {
-    return n.toLocaleString('vi-VN') + '₫';
-  }
-
-  function recalc() {
-    let subtotal = 0;
-    const rows = document.querySelectorAll('.cp-row');
-
-    rows.forEach(row => {
-      const price = parseInt(row.dataset.price) || 0;
-      const qty   = parseInt(row.querySelector('.cp-qty-val').textContent) || 1;
-      const line  = price * qty;
-      subtotal += line;
-      row.querySelector('.cp-line-total').textContent = fmt(line);
-    });
-
-    // Update totals
-    const el = id => document.getElementById(id);
-    el('cp-subtotal').textContent    = fmt(subtotal);
-    el('cp-grand-total').textContent = fmt(Math.max(0, subtotal - appliedDiscount));
-
-    // Item count updates
-    const n = rows.length;
-    el('sum-count').textContent  = n;
-    el('strip-count').textContent = n + ' sản phẩm trong giỏ';
-    el('nav-item-count').textContent = n + ' sản phẩm';
-    el('hero-meta').textContent  = n + ' sản phẩm được chọn';
-
-    // Free shipping bar
-    const pct = Math.min(100, Math.round((subtotal / FREE_SHIP_THRESHOLD) * 100));
-    el('ship-fill').style.width = pct + '%';
-    if (subtotal >= FREE_SHIP_THRESHOLD) {
-      el('ship-remaining').textContent = '✓ Đã đủ!';
-      el('ship-msg').textContent = 'Bạn được miễn phí giao hàng!';
-    } else {
-      const remain = FREE_SHIP_THRESHOLD - subtotal;
-      el('ship-remaining').textContent = fmt(remain) + ' nữa';
-      el('ship-msg').textContent = 'Mua thêm ' + fmt(remain) + ' để miễn phí ship';
-    }
-
-    // Empty state
-    if (n === 0) {
-      el('cp-layout').style.display = 'none';
-      el('cp-empty').classList.add('show');
-    } else {
-      el('cp-layout').style.display = '';
-      el('cp-empty').classList.remove('show');
-    }
-  }
-
-  window.changeQty = function (btn, delta) {
-    const row   = btn.closest('.cp-row');
-    const valEl = row.querySelector('.cp-qty-val');
-    let qty = parseInt(valEl.textContent) + delta;
-    if (qty < 1) { window.removeItem(row.querySelector('.cp-del-btn')); return; }
-    valEl.textContent = qty;
-    recalc();
-  };
-
-  window.removeItem = function (btn) {
-    const row = btn.closest('.cp-row');
-    row.style.transition = 'opacity .25s, transform .25s';
-    row.style.opacity = '0';
-    row.style.transform = 'translateX(24px)';
-    setTimeout(() => { row.remove(); recalc(); }, 270);
-  };
-
-  window.applyVoucher = function () {
-    const input = document.getElementById('cp-voucher-input');
-    const msg   = document.getElementById('cp-voucher-msg');
-    const code  = input.value.trim().toUpperCase();
-
-    if (!code) { setMsg(msg, 'Vui lòng nhập mã voucher.', false); return; }
-
-    const v = VOUCHERS[code];
-    if (v) {
-      appliedDiscount = v.value;
-      document.getElementById('cp-discount-row').style.display = 'flex';
-      document.getElementById('cp-discount-val').textContent   = '−' + fmt(v.value);
-      document.getElementById('cp-voucher-tag').textContent    = v.label;
-      setMsg(msg, '✓ Đã áp dụng — giảm ' + fmt(v.value), true);
-      input.disabled = true;
-      recalc();
-    } else {
-      setMsg(msg, '✗ Mã không hợp lệ hoặc đã hết hạn.', false);
-    }
-  };
-
-  function setMsg(el, text, ok) {
-    el.textContent = text;
-    el.className   = 'cp-voucher__msg ' + (ok ? 'ok' : 'err');
-  }
-
-  document.getElementById('cp-voucher-input').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { e.preventDefault(); applyVoucher(); }
-  });
-
-  // Initial calc
-  recalc();
-})();
-</script>
-
-</body>
-</html>

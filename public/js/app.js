@@ -95,7 +95,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const hash = location.hash.replace('#', '');
   const page = hash || 'home';
-  await showPage(page);  
+  await showPage(page);
 
   // Promo popup
   if (!sessionStorage.getItem("promoClosed")) {
@@ -245,7 +245,8 @@ var Cart = (function () {
     var n = count(), t = total();
     if (badge)  badge.textContent  = n;
     if (hCount) hCount.textContent = n + (n === 1 ? ' item' : ' items');
-    if (subtot) subtot.textContent = t.toFixed(3) + 'Đ';
+    if (subtot) subtot.textContent =
+      Number(t).toLocaleString('vi-VN') + '₫';
     if (items.length === 0) {
       body.innerHTML = ''; body.style.display = 'none';
       if (empty)  empty.classList.add('show');
@@ -268,7 +269,9 @@ var Cart = (function () {
         + '<button class="cd-qty-btn" onclick="Cart.setQty(\'' + item.id + '\',' + (item.qty + 1) + ')">+</button>'
         + '</div>'
         + '<button class="cd-remove" onclick="Cart.remove(\'' + item.id + '\')">Remove</button></div>'
-        + '<div class="cd-item-price">' + (parseFloat(String(item.price).replace(/[^0-9.]/g, '')) * item.qty).toFixed(3) + '₫</div></div>';
+        + '<div class="cd-item-price">'
+        + ((parseFloat(String(item.price).replace(/[^0-9.]/g, '')) * 1000) * item.qty).toLocaleString('vi-VN')
+        + '₫</div></div>';
     }).join('');
   }
 
@@ -322,6 +325,7 @@ window.renderProducts = renderProducts;
 // ===============================
 function initCartPage() {
   const FREE_SHIP_THRESHOLD = 300000;
+  const SHIPPING_FEE = 50000;
 
   // Đọc items từ localStorage
   let items = [];
@@ -355,7 +359,7 @@ function initCartPage() {
     const msg   = document.getElementById('cp-voucher-msg');
     if (!input || !msg) return;
     const code = input.value.trim().toUpperCase();
-    if (!code) { cpSetMsg(msg, 'Vui lòng nhập mã voucher.', false); return; }
+    if (!code) { cpSetMsg(msg, 'Please enter the voucher code.', false); return; }
     const v = VOUCHERS[code];
     if (v) {
       window._cpDiscount = v.value;
@@ -365,11 +369,11 @@ function initCartPage() {
       if (discountRow) discountRow.style.display = 'flex';
       if (discountVal) discountVal.textContent = '−' + cpFmt(v.value);
       if (voucherTag)  voucherTag.textContent  = v.label;
-      cpSetMsg(msg, '✓ Đã áp dụng — giảm ' + cpFmt(v.value), true);
+      cpSetMsg(msg, '✓ Discount applied — ' + cpFmt(v.value), true) + 'off';
       input.disabled = true;
       recalcCart();
     } else {
-      cpSetMsg(msg, '✗ Mã không hợp lệ hoặc đã hết hạn.', false);
+      cpSetMsg(msg, '✗ The code is invalid or has expired.', false);
     }
   };
 
@@ -442,7 +446,7 @@ function initCartPage() {
     if (empty)  empty.classList.remove('show');
 
     container.innerHTML = itemArr.map((item, i) => {
-      const price     = parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0;
+      const price     = (parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0) * 1000;
       const qty       = item.qty || 1;
       const lineTotal = price * qty;
       const imgEl     = item.img
@@ -480,52 +484,115 @@ function initCartPage() {
     }).join('');
   }
   function cpFmt(num) {
-  return (num * 1000).toLocaleString('vi-VN') + 'đ';
-}
+    return Number(num).toLocaleString('vi-VN') + 'đ';
+  }
   // Recalculate tất cả số liệu
   function recalcCart() {
     let subtotal = 0;
     const rows = document.querySelectorAll('.cp-row');
-
+  
     rows.forEach(row => {
       const price = parseInt(row.dataset.price) || 0;
       const qty   = parseInt(row.querySelector('.cp-qty-val')?.textContent) || 1;
-      const line  = price * qty;
+  
+      const line = price * qty;
       subtotal += line;
+  
       const lineEl = row.querySelector('.cp-line-total');
       if (lineEl) lineEl.textContent = cpFmt(line);
     });
-
-    const n          = rows.length;
-    const grandTotal = Math.max(0, subtotal - window._cpDiscount);
-    const el         = id => document.getElementById(id);
-
-    if (el('cp-subtotal'))    el('cp-subtotal').textContent    = cpFmt(subtotal);
-    if (el('cp-grand-total')) el('cp-grand-total').textContent = cpFmt(grandTotal);
-    if (el('sum-count'))      el('sum-count').textContent      = n;
-    if (el('strip-count'))    el('strip-count').textContent    = n + ' sản phẩm trong giỏ';
-    if (el('nav-item-count')) el('nav-item-count').textContent = n + ' sản phẩm';
-    if (el('hero-meta'))      el('hero-meta').textContent      = n + ' sản phẩm được chọn';
-
-    // Free shipping bar
-    const pct = Math.min(100, Math.round((subtotal / FREE_SHIP_THRESHOLD) * 100));
-    if (el('ship-fill')) el('ship-fill').style.width = pct + '%';
-    if (subtotal >= FREE_SHIP_THRESHOLD) {
-      if (el('ship-remaining')) el('ship-remaining').textContent = '✓ Đã đủ!';
-      if (el('ship-msg'))       el('ship-msg').textContent       = 'Bạn được miễn phí giao hàng!';
-    } else {
-      const remain = FREE_SHIP_THRESHOLD - subtotal;
-      if (el('ship-remaining')) el('ship-remaining').textContent = cpFmt(remain) + ' nữa';
-      if (el('ship-msg'))       el('ship-msg').textContent       = 'Mua thêm ' + cpFmt(remain) + ' để miễn phí ship';
+  
+    const n = rows.length;
+  
+    // shipping
+    const shippingFee = subtotal >= FREE_SHIP_THRESHOLD || subtotal === 0
+      ? 0
+      : SHIPPING_FEE;
+  
+    // total
+    const grandTotal = Math.max(
+      0,
+      subtotal + shippingFee - window._cpDiscount
+    );
+  
+    const el = id => document.getElementById(id);
+  
+    // subtotal
+    if (el('cp-subtotal')) {
+      el('cp-subtotal').textContent = cpFmt(subtotal);
     }
-
-    // Empty state
+  
+    // shipping fee
+    if (el('cp-shipping')) {
+      el('cp-shipping').textContent =
+        shippingFee === 0 ? 'Free' : cpFmt(shippingFee);
+    }
+  
+    // total
+    if (el('cp-grand-total')) {
+      el('cp-grand-total').textContent = cpFmt(grandTotal);
+    }
+  
+    // counts
+    if (el('sum-count')) {
+      el('sum-count').textContent = n;
+    }
+  
+    if (el('strip-count')) {
+      el('strip-count').textContent = n + ' product in the cart';
+    }
+  
+    if (el('nav-item-count')) {
+      el('nav-item-count').textContent = n + ' product';
+    }
+  
+    if (el('hero-meta')) {
+      el('hero-meta').textContent = n + ' products selected';
+    }
+  
+    // progress bar
+    const pct = Math.min(
+      100,
+      Math.round((subtotal / FREE_SHIP_THRESHOLD) * 100)
+    );
+  
+    if (el('ship-fill')) {
+      el('ship-fill').style.width = pct + '%';
+    }
+  
+    // free ship text
+    if (subtotal >= FREE_SHIP_THRESHOLD) {
+  
+      if (el('ship-remaining')) {
+        el('ship-remaining').textContent = '✓ Eligible';
+      }
+  
+      if (el('ship-msg')) {
+        el('ship-msg').textContent =
+          'You get free shipping!';
+      }
+  
+    } else {
+  
+      const remain = FREE_SHIP_THRESHOLD - subtotal;
+  
+      if (el('ship-remaining')) {
+        el('ship-remaining').textContent = cpFmt(remain);
+      }
+  
+      if (el('ship-msg')) {
+        el('ship-msg').textContent =
+          'Add ' + cpFmt(remain) + ' to your order for free shipping.';
+      }
+    }
+  
+    // empty state
     if (n === 0) {
       if (layout) layout.style.display = 'none';
-      if (empty)  empty.classList.add('show');
+      if (empty) empty.classList.add('show');
     } else {
       if (layout) layout.style.display = '';
-      if (empty)  empty.classList.remove('show');
+      if (empty) empty.classList.remove('show');
     }
   }
 }
@@ -860,6 +927,7 @@ function setLang(code, label) {
   location.reload();
 }
 window.setLang = setLang;
+
 
 // ===============================
 // MOBILE MENU
