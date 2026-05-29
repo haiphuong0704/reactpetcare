@@ -242,9 +242,101 @@
     <div class="pf-lbl pf-lbl--tr" data-i18n="home_pf_lbl2">Fresh, whole vegetables</div>
     <div class="pf-lbl pf-lbl--br" data-i18n="home_pf_lbl3">Essential vitamins<br>and minerals</div>
     <div class="pf-lbl pf-lbl--bl" data-i18n="home_pf_lbl4">Grain and<br>grain-free options</div>
-    <!-- SVG giữ nguyên không dịch -->
+    <!-- SVG: arrows + oval — z-index ABOVE bowl -->
     <svg class="pf-home-svg" viewBox="0 0 820 500" fill="none" aria-hidden="true">
-      <!-- ... giữ nguyên toàn bộ SVG ... -->
+      <defs>
+        <marker id="pf-arr" viewBox="0 0 14 14" refX="7" refY="7"
+          markerWidth="9" markerHeight="9" orient="auto">
+          <path d="M2 2 L12 7 L2 12" fill="none" stroke="#c0395e"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="pf-arrd" viewBox="0 0 14 14" refX="7" refY="7"
+          markerWidth="9" markerHeight="9" orient="auto">
+          <path d="M2 2 L12 7 L2 12" fill="none" stroke="#c0395e"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+        </marker>
+      </defs>
+
+      <!-- TOP-LEFT -->
+      <path d="
+        M 145 118
+        C 175 150, 208 168, 224 182
+        C 238 194, 236 208, 225 214
+        C 214 220, 202 212, 208 200
+        C 214 188, 230 190, 238 204
+        C 246 218, 248 228, 270 238
+      "
+        stroke="#c0395e"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        marker-end="url(#pf-arr)"
+        fill="none"
+      />
+
+      <!-- TOP-RIGHT -->
+      <path d="
+        M 655 118
+        C 643 150, 610 168, 594 182
+        C 580 194, 582 208, 593 214
+        C 604 220, 616 212, 610 200
+        C 604 188, 588 190, 580 204
+        C 572 218, 570 228, 548 238
+      "
+        stroke="#c0395e"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        marker-end="url(#pf-arr)"
+        fill="none"
+      />
+
+      <!-- BOTTOM-RIGHT -->
+      <path d="
+        M 655 382
+        C 643 350, 610 334, 592 320
+        C 578 308, 580 292, 592 286
+        C 604 280, 616 288, 610 300
+        C 604 312, 588 310, 580 296
+        C 572 282, 570 270, 550 262
+      "
+        stroke="#c0395e"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        marker-end="url(#pf-arr)"
+        fill="none"
+      />
+
+      <!-- BOTTOM-LEFT -->
+      <path d="
+        M 235 365
+        C 225 350, 224 335, 236 318
+        C 248 300, 258 296, 278 282
+      "
+        stroke="#c0395e"
+        stroke-width="2.3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="6 8"
+        marker-end="url(#pf-arrd)"
+        opacity=".8"
+        fill="none"
+      />
+      <!-- HAND-DRAWN OVAL around "Grain and grain-free options" -->
+      <path d="
+        M 20 388
+        Q 15 360, 60 348
+        Q 108 334, 180 345
+        Q 238 356, 240 378
+        Q 242 402, 192 418
+        Q 132 434, 65 426
+        Q 8 418, 12 398
+        Q 10 376, 34 366
+      "
+        stroke="#c0395e" stroke-width="2.4"
+        stroke-linecap="round" stroke-linejoin="round"
+        opacity=".85"/>
     </svg>
     <div class="pf-home-bowl">
       <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?w=900&q=80" alt="PawFeast organic pet food"/>
