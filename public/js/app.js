@@ -49,7 +49,7 @@ async function showPage(page) {
   app.innerHTML = html;
 
   history.pushState({ page }, "", page === 'home' ? '#' : `#${page}`);
-  setTimeout(() => {
+  setTimeout(async () => {
     observeFadeUps();
     if (page === 'about')      initAboutPage();
     if (page === 'home')       initHomePage();
@@ -57,6 +57,7 @@ async function showPage(page) {
     if (page === 'membership') initMemberPage();
     if (page === 'shop')       initShopPage();
     if (page === 'cart')       initCartPage();
+    await I18n.apply();
     loaderDone();
   }, 50);
 
@@ -89,10 +90,12 @@ window.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("auth-container",   "/components/auth.html");
   await loadComponent("cart-container",   "/components/cart.html");
   Cart.render();
+  // ← THÊM DÒNG NÀY: apply sau khi navbar/footer đã inject vào DOM
+  await I18n.apply();
 
   const hash = location.hash.replace('#', '');
   const page = hash || 'home';
-  showPage(page);
+  await showPage(page);  
 
   // Promo popup
   if (!sessionStorage.getItem("promoClosed")) {
@@ -136,6 +139,35 @@ window.addEventListener("popstate", () => {
 // ===============================
 // CART
 // ===============================
+function showAddToast(name) {
+  // Tạo toast nếu chưa có
+  let toast = document.getElementById('cart-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.style.cssText = `
+      position:fixed; bottom:32px; left:50%;
+      transform:translateX(-50%) translateY(80px);
+      background:#1a0e12; color:#fff;
+      padding:13px 24px; border-radius:999px;
+      font-family:'Manrope',sans-serif;
+      font-size:.85rem; font-weight:700;
+      display:flex; align-items:center; gap:10px;
+      box-shadow:0 8px 32px rgba(0,0,0,.25);
+      transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+      z-index:9999; pointer-events:none;
+      white-space:nowrap;
+    `;
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span style="color:#2dd4bf;font-size:1rem;">✓</span> <strong>${name.length > 30 ? name.slice(0,30)+'…' : name}</strong> added to cart`;
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(80px)';
+  }, 2500);
+}
+
 var Cart = (function () {
   var items = [];
 
@@ -149,14 +181,21 @@ var Cart = (function () {
     save();
     render();
     bumpBadge();
-    // Nếu đang ở trang cart → re-render tại chỗ, không mở drawer
+    showAddToast(product.name);
     var currentPage = location.hash.replace('#', '') || 'home';
+
+    if (currentPage === 'cart') {
+      initCartPage();
+    }
+    // Nếu đang ở trang cart → re-render tại chỗ, không mở drawer
+    /*var currentPage = location.hash.replace('#', '') || 'home';
     if (currentPage === 'cart') {
       initCartPage();
     } else {
       openCart();
-    }
+    }*/
   }
+
 
   function remove(id) {
     items = items.filter(function (i) { return i.id !== id; });
@@ -390,11 +429,6 @@ function initCartPage() {
     }, 250);
   };
 
-  // Format VND
-  function cpFmt(n) {
-    return n.toLocaleString('vi-VN') + '₫';
-  }
-
   // Render item rows từ mảng
   function renderCartItems(itemArr) {
     if (!container) return;
@@ -445,7 +479,9 @@ function initCartPage() {
         </div>`;
     }).join('');
   }
-
+  function cpFmt(num) {
+  return (num * 1000).toLocaleString('vi-VN') + 'đ';
+}
   // Recalculate tất cả số liệu
   function recalcCart() {
     let subtotal = 0;
@@ -808,15 +844,20 @@ function toggleAcc(button) {
 // LANGUAGE SWITCHER
 // ===============================
 function setLang(code, label) {
+  // cập nhật label nút
   const cur = document.getElementById('currentLang');
   if (cur) cur.textContent = label;
+
+  // active state
   document.querySelectorAll('.lang-sel__opt').forEach(o => {
     o.classList.toggle('active', o.getAttribute('onclick').includes(`'${code}'`));
   });
+
   document.getElementById('langSel')?.classList.remove('open');
-  const combo = document.querySelector('.goog-te-combo');
-  if (combo) { combo.value = code; combo.dispatchEvent(new Event('change')); }
+
+  // lưu và reload
   localStorage.setItem('lang', code);
+  location.reload();
 }
 window.setLang = setLang;
 

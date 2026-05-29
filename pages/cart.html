@@ -943,7 +943,7 @@ body {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
           Tiếp tục mua sắm
         </a>
-        <button class="cp-clear-btn" onclick="clearCart()">Xoá tất cả</button>
+        <button class="cp-clear-btn" onclick="cpClearCart()">Clear all</button>
       </div>
 
     </div><!-- /cp-table-col -->
@@ -1119,18 +1119,6 @@ body {
     row.style.opacity = '0';
     row.style.transform = 'translateX(24px)';
     setTimeout(() => { row.remove(); recalc(); }, 270);
-  };
-
-  window.clearCart = function () {
-    document.querySelectorAll('.cp-row').forEach(row => {
-      row.style.transition = 'opacity .2s, transform .2s';
-      row.style.opacity = '0';
-      row.style.transform = 'translateX(24px)';
-    });
-    setTimeout(() => {
-      document.querySelectorAll('.cp-row').forEach(r => r.remove());
-      recalc();
-    }, 250);
   };
 
   window.applyVoucher = function () {

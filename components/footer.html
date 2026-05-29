@@ -1,176 +1,101 @@
 <!-- BACK TO TOP -->
-<button
-  class="back-top"
-  id="back-top"
-  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
->
+<button class="back-top" id="back-top"
+  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
   <i class="fas fa-chevron-up"></i>
 </button>
 
-<!-- GOOGLE TRANSLATE -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<!-- CART DRAWER -->
-<div id="cart-drawer-container"></div>
-
-<!-- PROMO -->
-<div id="promo-container"></div>
-
-<!-- CHAT -->
-<div id="chat-container"></div>
-
 <!-- FOOTER -->
 <footer>
-
   <div class="footer-inner">
-
     <div class="footer-grid">
 
       <!-- BRAND -->
       <div class="footer-brand">
-
         <div class="logo" style="margin-bottom:14px;">
-          <a
-            href="#"
-            onclick="showPage('home'); return false;"
-            style="text-decoration:none; color:inherit;"
-          >
-            <div class="logo-text">
-              Petcare <span>Spa</span>
-            </div>
+          <a href="#" onclick="showPage('home'); return false;"
+             style="text-decoration:none; color:inherit;">
+            <div class="logo-text">Petcare <span>Spa</span></div>
           </a>
         </div>
-
-        <p>
+        <p data-i18n="footer_desc">
           Whether your pet is here for a day or a month, they are part of
           our family. Premium care, organic nutrition, free delivery.
         </p>
-
         <div class="footer-badges">
           <div class="footer-badge">🏅</div>
           <div class="footer-badge">🌿</div>
           <div class="footer-badge">⭐</div>
         </div>
-
-      </div>
-
-      <!-- SERVICES -->
-      <div class="footer-col">
-
-        <h4>Explore</h4>
-
-        <ul>
-
-          <li>
-            <a href="#" onclick="showPage('home'); return false;">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onclick="showPage('services'); return false;">
-              Luxe Services
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onclick="showPage('pawfeast'); return false;">
-              Spa Bites
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onclick="showPage('shop'); return false;">
-              Shop
-            </a>
-          </li>
-        </ul>
       </div>
 
       <!-- EXPLORE -->
       <div class="footer-col">
-
-        <h4>About Us</h4>
-
+        <h4 data-i18n="footer_explore">Explore</h4>
         <ul>
-
-          <li>
-            <a href="#" onclick="showPage('blog'); return false;">
-              Blog
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onclick="showPage('member'); return false;">
-              Membership
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onclick="showPage('contact'); return false;">
-              Contact
-            </a>
-          </li>
-
+          <li><a href="#" onclick="showPage('home'); return false;"
+                 data-i18n="nav_home">Home</a></li>
+          <li><a href="#" onclick="showPage('luxeservices'); return false;"
+                 data-i18n="nav_services">Luxe Services</a></li>
+          <li><a href="#" onclick="showPage('spabites'); return false;"
+                 data-i18n="nav_spabites">Spa Bites</a></li>
+          <li><a href="#" onclick="showPage('shop'); return false;"
+                 data-i18n="nav_shop">Shop</a></li>
         </ul>
+      </div>
 
+      <!-- ABOUT -->
+      <div class="footer-col">
+        <h4 data-i18n="nav_about">About Us</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('blog'); return false;"
+                 data-i18n="nav_blog">Blog</a></li>
+          <li><a href="#" onclick="showPage('membership'); return false;"
+                 data-i18n="nav_membership">Membership</a></li>
+          <li><a href="#" onclick="showPage('contact'); return false;"
+                 data-i18n="nav_contact">Contact</a></li>
+        </ul>
       </div>
 
       <!-- CONTACT -->
       <div class="footer-col">
-
-        <h4>Contact</h4>
-
+        <h4 data-i18n="footer_contact_title">Contact</h4>
         <div class="footer-contact-item">
           <i class="fas fa-phone"></i>
           <a href="tel:7816047387">(781) 604-7387</a>
         </div>
-
         <div class="footer-contact-item">
           <i class="fas fa-phone"></i>
           <a href="tel:7815483248">781-548-3248 (Rehab)</a>
         </div>
-
         <div class="footer-contact-item">
           <i class="fas fa-envelope"></i>
-          <a href="mailto:info@petcarespa.com">
-            info@petcarespa.com
-          </a>
+          <a href="mailto:info@petcarespa.com">info@petcarespa.com</a>
         </div>
-
         <div class="footer-contact-item">
           <i class="fas fa-map-marker-alt"></i>
-          <span>
+          <span data-i18n="footer_address">
             18 Street 35, Cat Lai, Ho Chi Minh City, Vietnam
           </span>
         </div>
-
         <div style="display:flex; gap:10px; margin-top:14px;">
-
-          <a href="#" class="social-btn">
-            <i class="fab fa-instagram"></i>
-          </a>
-
-          <a href="#" class="social-btn">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-
-          <a href="#" class="social-btn">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
         </div>
-
       </div>
 
       <!-- LEGAL -->
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h4 data-i18n="footer_legal">Legal</h4>
         <ul>
-          <li><a href="/pages/terms.html?tab=privacy">Privacy Policy</a></li>
-          <li><a href="/pages/terms.html?tab=terms">Terms of Service</a></li>
-          <li><a href="/pages/terms.html?tab=refund">Return Policy</a></li>
-          <li><a href="/pages/terms.html?tab=pet">Pet Care Policy</a></li>
+          <li><a href="/pages/terms.html?tab=privacy"
+                 data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="/pages/terms.html?tab=terms"
+                 data-i18n="footer_terms">Terms of Service</a></li>
+          <li><a href="/pages/terms.html?tab=refund"
+                 data-i18n="footer_refund">Return Policy</a></li>
+          <li><a href="/pages/terms.html?tab=pet"
+                 data-i18n="footer_pet_policy">Pet Care Policy</a></li>
         </ul>
       </div>
 
@@ -178,88 +103,20 @@
 
     <!-- FOOTER BOTTOM -->
     <div class="footer-bottom">
-
-      <span>
-        Petcare Spa © 2026 — ALL RIGHTS RESERVED
-      </span>
-
+      <span data-i18n="footer_copy">Petcare Spa © 2026 — ALL RIGHTS RESERVED</span>
       <div class="policy-links">
-
-        <a href="#" onclick="openTermsModal()">
-          POLICIES & FAQS
-        </a>
-
-        <a href="#" onclick="openTermsModal()">
-          PRIVACY
-        </a>
-
-        <a href="#" onclick="openTermsModal()">
-          TERMS
-        </a>
-
+        <a href="#" onclick="openTermsModal()"
+           data-i18n="footer_policies">POLICIES & FAQS</a>
+        <a href="#" onclick="openTermsModal()"
+           data-i18n="footer_privacy_short">PRIVACY</a>
+        <a href="#" onclick="openTermsModal()"
+           data-i18n="footer_terms_short">TERMS</a>
       </div>
-
     </div>
 
   </div>
-
 </footer>
 
-<!-- AUTH MODAL -->
-<div id="auth-modal-container"></div>
-
-<!-- APP JS -->
-<script src="public/js/app.js"></script>
-
-<!-- GOOGLE TRANSLATE -->
-<script>
-
-function googleTranslateElementInit() {
-
-  new google.translate.TranslateElement(
-    {
-      pageLanguage: 'vi',
-      autoDisplay: false
-    },
-    'google_translate_element'
-  );
-
-  // LOAD SAVED LANGUAGE
-  setTimeout(() => {
-
-    const saved = localStorage.getItem('lang');
-
-    if (saved) {
-
-      const combo = document.querySelector('.goog-te-combo');
-
-      if (combo) {
-
-        combo.value = saved;
-        combo.dispatchEvent(new Event('change'));
-
-      }
-    }
-
-  }, 1000);
-}
-
-// HIDE GOOGLE TOP BAR
-setInterval(() => {
-
-  const banner = document.querySelector(
-    'iframe.skiptranslate'
-  );
-
-  if (banner) {
-    banner.style.display = 'none';
-  }
-
-  document.body.style.top = '0px';
-
-}, 500);
-
-</script>
-
-<!-- GOOGLE TRANSLATE SCRIPT -->
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- APP JS — KHÔNG CÒN GOOGLE TRANSLATE -->
+<script src="/public/js/i18n.js"></script>
+<script src="/public/js/app.js"></script>
